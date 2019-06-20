@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="树莓派3b+安装Raspbian系统, 并使用VNC远程连接树莓派图形界面">
+<meta name="keywords" content="树莓派">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派3b+安装Raspbian系统">
+<meta property="og:url" content="blog.oahnus.top/2018/11/29/树莓派3b+安装Raspbian系统/index.html">
+<meta property="og:site_name" content="路仟">
+<meta property="og:description" content="树莓派3b+安装Raspbian系统, 并使用VNC远程连接树莓派图形界面">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-c2938a83f363b21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-3de02df08529755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-4d43b0ab2149c74d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-2963f139a18e3234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-9d9f5a5d632afade.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-20T15:45:19.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="树莓派3b+安装Raspbian系统">
+<meta name="twitter:description" content="树莓派3b+安装Raspbian系统, 并使用VNC远程连接树莓派图形界面">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5471630-c2938a83f363b21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="blog.oahnus.top/2018/11/29/树莓派3b+安装Raspbian系统/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>树莓派3b+安装Raspbian系统 | 路仟</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">路仟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.oahnus.top/2018/11/29/树莓派3b+安装Raspbian系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路仟">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/19245696?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="路仟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">树莓派3b+安装Raspbian系统
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-29 23:40:26" itemprop="dateCreated datePublished" datetime="2018-11-29T23:40:26+08:00">2018-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-20 23:45:19" itemprop="dateModified" datetime="2019-06-20T23:45:19+08:00">2019-06-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/category/树莓派/" itemprop="url" rel="index"><span itemprop="name">树莓派</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">树莓派3b+安装Raspbian系统, 并使用VNC远程连接树莓派图形界面</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="树莓派3b-安装Raspbian系统"><a href="#树莓派3b-安装Raspbian系统" class="headerlink" title="树莓派3b+安装Raspbian系统"></a>树莓派3b+安装Raspbian系统</h1><h2 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0 准备工作"></a>0 准备工作</h2><ul>
+<li>系统：windows10</li>
+<li>工具：SD卡、读卡器、树莓派3b+、<a href="https://www.sdcard.org/downloads/formatter_4/eula_windows/" target="_blank" rel="noopener">SD卡格式化工具</a>、<a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">win32DiskImager</a>、<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">Raspbian系统镜像</a>、Xshell(ssh工具)</li>
+</ul>
+<h2 id="1-选择镜像"><a href="#1-选择镜像" class="headerlink" title="1 选择镜像"></a>1 选择镜像</h2><p>树莓派系统镜像<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">下载地址</a></p>
+<p>树莓派官网提供了多种不同的系统供用户选择下载，除了官方的Raspbian系统外，在官网镜像中也提供了很多第三方镜像。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-c2938a83f363b21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>这里选择官方的Raspbian系统，Raspbian系统分为轻量版和桌面版两种。桌面版有图形化显示界面，并且预装了一些软件，看个人喜好下载其中一个就可以。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-3de02df08529755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h2 id="2-安装系统并初始化"><a href="#2-安装系统并初始化" class="headerlink" title="2 安装系统并初始化"></a>2 安装系统并初始化</h2><p>在镜像下载完成之前，要对SD做格式化操作。<br>将SD卡连接电脑后，打开格式化软件，选择SD卡所在盘符，点击format进行格式化。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-4d43b0ab2149c74d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h3 id="2-1-写入镜像"><a href="#2-1-写入镜像" class="headerlink" title="2.1 写入镜像"></a>2.1 写入镜像</h3><p>将下载完成的镜像压缩包解压，打开win32diskimager软件，选择刚才解压出的系统镜像<code>2018-10-09-raspbian-stretch.img</code>，选择SD卡盘符。点击<code>写入</code>后，等待系统镜像写入到SD卡中。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-2963f139a18e3234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h3 id="2-2-配置"><a href="#2-2-配置" class="headerlink" title="2.2 配置"></a>2.2 配置</h3><p>在写入完成后，不必急于拔出SD卡，现在在电脑中可以看到一个名字为boot的分区（此分区为FAT32格式，并且容量会很小，这是正常的，在SD卡插入树莓派后，这个<code>boot</code>分区就是系统的<code>/boot</code>文件夹），</p>
+<h4 id="2-2-1-开启SSH"><a href="#2-2-1-开启SSH" class="headerlink" title="2.2.1 开启SSH"></a>2.2.1 开启SSH</h4><p>现在的树莓派都是默认关闭SSH的，开启SSH只需要在boot下新建一个名为<code>ssh</code>的文件夹即可(无任何后缀)</p>
+<h4 id="2-2-2-开启强制HDMI输出-不接显示器的话可以跳过此处"><a href="#2-2-2-开启强制HDMI输出-不接显示器的话可以跳过此处" class="headerlink" title="2.2.2 开启强制HDMI输出 (不接显示器的话可以跳过此处)"></a>2.2.2 开启强制HDMI输出 (不接显示器的话可以跳过此处)</h4><p>打开boot分区下的config.txt<br>修改如下行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hdmi_safe=1</span><br><span class="line">config_hdmi_boost=4</span><br><span class="line">hdmi_ignore_edid=0xa5000080</span><br><span class="line">hdmi_group=2</span><br><span class="line">hdmi_mode=82</span><br></pre></td></tr></table></figure>
+
+<p>参数说明<br>|参数|说明|<br>|:–|:–|<br>hdmi_safe=1|    安全启动HDMI<br>config_hdmi_boost=4|    开启热插拔<br>hdmi_group=1|    CEA电视显示器<br>hdmi_group=2|    DMT电脑显示器<br>hdmi_ignore_edid=0xa5000080|    忽略自动探测的分辨率<br>hdmi_mode=4|    640x480 60Hz<br>hdmi_mode=9|    800x600 60Hz<br>hdmi_mode=16|    1024x768 60Hz<br>hdmi_mode=82|    1080p 60Hz</p>
+<h4 id="2-2-3-设置wifi连接-有网线连接可跳过此处"><a href="#2-2-3-设置wifi连接-有网线连接可跳过此处" class="headerlink" title="2.2.3 设置wifi连接(有网线连接可跳过此处)"></a>2.2.3 设置wifi连接(有网线连接可跳过此处)</h4><p>在boot分区下新建<code>wpa_supplicant.conf</code>文件<br>ssid 为wifi 名称<br>psk 为wifi密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">country=CN</span><br><span class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</span><br><span class="line">update_config=1</span><br><span class="line"></span><br><span class="line">network=&#123;</span><br><span class="line">    ssid=&quot;wifiname&quot;</span><br><span class="line">    psk=&quot;password&quot;</span><br><span class="line">    priority=1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置完成后，即可将SD卡插入树莓派，启动电源</p>
+<h3 id="3-连接树莓派"><a href="#3-连接树莓派" class="headerlink" title="3. 连接树莓派"></a>3. 连接树莓派</h3><p>树莓派启动后，指示灯会亮起，3b+上，红色灯亮起时，为接通电源状态，绿色灯亮起时，为系统在对SD卡做读写操作。树莓派启动后，就可以通过SSH连接登录系统。（查询树莓派的IP地址就可，端口默认22）<br>树莓派默认ssh账户为<code>pi</code>，密码为<code>raspberry</code></p>
+<h4 id="3-1-修改密码"><a href="#3-1-修改密码" class="headerlink" title="3.1 修改密码"></a>3.1 修改密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 修改pi密码</span><br><span class="line">sudo passwd pi</span><br><span class="line"></span><br><span class="line"># 修改root密码</span><br><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-校正时区，时间"><a href="#3-2-校正时区，时间" class="headerlink" title="3.2 校正时区，时间"></a>3.2 校正时区，时间</h4><p>输入<code>date</code>命令看查看当前系统时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 打开时区设置</span><br><span class="line">sudo dpkg-reconfigure tzdata</span><br><span class="line"># 选择Asia  ---&gt; ShangHai</span><br></pre></td></tr></table></figure>
+
+<p>再次输入<code>date</code>命令检查时间</p>
+<h4 id="3-3-修改系统软件源"><a href="#3-3-修改系统软件源" class="headerlink" title="3.3 修改系统软件源"></a>3.3 修改系统软件源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 树莓派系统默认使用nano做为编辑器，修改完成后使用ctrl+x退出，退出时会提示是否保存文件, 按Y即可</span><br><span class="line">sudo nano /etc/apt/sources.list</span><br><span class="line"># 修改系统源为清华大学源</span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-更换pip源"><a href="#3-4-更换pip源" class="headerlink" title="3.4 更换pip源"></a>3.4 更换pip源</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 国内源</span><br><span class="line"># 阿里云 https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"># 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line"># 豆瓣(douban) http://pypi.douban.com/simple/</span><br><span class="line"># 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line"># 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line"></span><br><span class="line"># 临时使用某一个源下载</span><br><span class="line">pip install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"># 更换源</span><br><span class="line"># linux 编辑~/.pip/pip.conf , 如果不存在就新建一个</span><br><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"># windows 在C:\Users\[username]\pip目录下新建pip.ini文件</span><br><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-安装vim-替代nano"><a href="#3-5-安装vim-替代nano" class="headerlink" title="3.5 安装vim 替代nano"></a>3.5 安装vim 替代nano</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 更新软件源</span><br><span class="line">sudo apt-get update</span><br><span class="line"># 安装vim</span><br><span class="line">sudo apt-get install vim</span><br><span class="line"># 修改配置</span><br><span class="line">sudo vim /etc/vim/vimrc</span><br></pre></td></tr></table></figure>
+
+<p>vim配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 语法高亮</span><br><span class="line">syntax on</span><br><span class="line"># 显示行号</span><br><span class="line">set nu</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-安装-oh-my-zsh"><a href="#3-6-安装-oh-my-zsh" class="headerlink" title="3.6 安装 oh-my-zsh"></a>3.6 安装 oh-my-zsh</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 查看当前shel</span><br><span class="line">echo $SHELL </span><br><span class="line"></span><br><span class="line"># Install</span><br><span class="line">sudo apt-get install zsh</span><br><span class="line"></span><br><span class="line"># 切换shell为zsh</span><br><span class="line">chsh -s /bin/zsh</span><br><span class="line"></span><br><span class="line"># 自改设置(文件不存在就新建一个)</span><br><span class="line">vim ~/.zshrc</span><br><span class="line"># 添加</span><br><span class="line">ZSH_THEME=&quot;blinks&quot;    #将zsh的主题更改为blinks</span><br><span class="line">ENABLE_CORRECTION=&quot;true&quot;    #(去掉ENABLE前的&quot;#&quot;)打开zsh的自动纠错功能</span><br><span class="line">plugins=(git sudo)    #为zsh添加git和sudo插件</span><br><span class="line"># Alias Settings</span><br><span class="line">alias ll=&apos;ls -all&apos;</span><br><span class="line">alias vi=&apos;vim&apos;</span><br><span class="line">alias ps=&apos;ps -A&apos;</span><br><span class="line">alias ifconfig=&apos;sudo ifconfig&apos;</span><br><span class="line"></span><br><span class="line"># 更新设置</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7-安装远程桌面"><a href="#3-7-安装远程桌面" class="headerlink" title="3.7 安装远程桌面"></a>3.7 安装远程桌面</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 给板子装服务端</span><br><span class="line">sudo apt-get install tightvncserver</span><br><span class="line"># 开启一个 VNC 流，代号为 1， 冒号前有一个空格</span><br><span class="line">tightvncserver :1</span><br><span class="line"># 输入命令后，即可开启服务</span><br><span class="line"># 第一个运行时，会做初始化设置，按提示设置访问权限、连接密码，密码限制为8个字符</span><br></pre></td></tr></table></figure>
+
+<p>下载VNC Viewer客户端 <a href="https://www.realvnc.com/en/connect/download/viewer/" target="_blank" rel="noopener">下载地址</a></p>
+<p>开启VNC流后，在VNC Viewer中输入 [IP地址]:[代号] 如：192.168.0.111:1，输入密码，连接树莓派上的服务端。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-9d9f5a5d632afade.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>停止VNC server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># vncserver -kill [代号]</span><br><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/30/jQuery的简易使用方法/" rel="next" title="jQuery简易使用方法">
+                <i class="fa fa-chevron-left"></i> jQuery简易使用方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/19245696?s=460&v=4" alt="路仟">
+            
+              <p class="site-author-name" itemprop="name">路仟</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/oahnus" title="GitHub &rarr; https://github.com/oahnus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:478606127@qq.com" title="E-Mail &rarr; mailto:478606127@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树莓派3b-安装Raspbian系统"><span class="nav-number">1.</span> <span class="nav-text">树莓派3b+安装Raspbian系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">0 准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-选择镜像"><span class="nav-number">1.2.</span> <span class="nav-text">1 选择镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装系统并初始化"><span class="nav-number">1.3.</span> <span class="nav-text">2 安装系统并初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-写入镜像"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 写入镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-配置"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-开启SSH"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">2.2.1 开启SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-开启强制HDMI输出-不接显示器的话可以跳过此处"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2.2.2 开启强制HDMI输出 (不接显示器的话可以跳过此处)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-设置wifi连接-有网线连接可跳过此处"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">2.2.3 设置wifi连接(有网线连接可跳过此处)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-连接树莓派"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 连接树莓派</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-修改密码"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">3.1 修改密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-校正时区，时间"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">3.2 校正时区，时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-修改系统软件源"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">3.3 修改系统软件源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-更换pip源"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">3.4 更换pip源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-安装vim-替代nano"><span class="nav-number">1.3.3.5.</span> <span class="nav-text">3.5 安装vim 替代nano</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-安装-oh-my-zsh"><span class="nav-number">1.3.3.6.</span> <span class="nav-text">3.6 安装 oh-my-zsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-安装远程桌面"><span class="nav-number">1.3.3.7.</span> <span class="nav-text">3.7 安装远程桌面</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路仟</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="使用Python2.7构建简易爬虫">
+<meta name="keywords" content="爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 爬虫入门">
+<meta property="og:url" content="blog.oahnus.top/2016/12/13/Python爬虫入门/index.html">
+<meta property="og:site_name" content="路仟">
+<meta property="og:description" content="使用Python2.7构建简易爬虫">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="blog.oahnus.top/2016/12/13/images/python-regex.png">
+<meta property="og:updated_time" content="2019-06-20T15:38:30.640Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 爬虫入门">
+<meta name="twitter:description" content="使用Python2.7构建简易爬虫">
+<meta name="twitter:image" content="blog.oahnus.top/2016/12/13/images/python-regex.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="blog.oahnus.top/2016/12/13/Python爬虫入门/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python 爬虫入门 | 路仟</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">路仟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.oahnus.top/2016/12/13/Python爬虫入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路仟">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/19245696?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="路仟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 爬虫入门
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-13 00:00:00" itemprop="dateCreated datePublished" datetime="2016-12-13T00:00:00+08:00">2016-12-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-20 23:38:30" itemprop="dateModified" datetime="2019-06-20T23:38:30+08:00">2019-06-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/category/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">使用Python2.7构建简易爬虫</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="爬虫概述"><a href="#爬虫概述" class="headerlink" title="爬虫概述"></a>爬虫概述</h2><p>网络蜘蛛（Web spider）也叫网络爬虫（Web crawler），蚂蚁（ant），自动检索工具（automatic indexer），或者（在FOAF软件概念中）网络疾走（WEB scutter），是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。</p>
+<h2 id="使用爬虫抓取网页"><a href="#使用爬虫抓取网页" class="headerlink" title="使用爬虫抓取网页"></a>使用爬虫抓取网页</h2><p>想要使用python抓取网页，首先出场的就是urllib2，使用其<code>urlopen</code>方法就可以获取到一个网页信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">response = urllib2.urlopen(<span class="string">"http://baidu.com"</span>)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<p>对于urllib2库中的urlopen()方法，它可以接受三个参数<br><code>urlopen(url,data,timeout)</code><br>url即为URL，data为访问URL时要传送的数据，timeout为超时时间。后两个参数可以不添加，data默认为空None，timeout默认为<code>socket._GLOBAL_DEFAULT_TIMEOUT</code><br>通过urlopen方法获得的信息保存到response中<br>通过打印response.read()可以获取网页内容</p>
+<p>第三的参数就是timeout设置</p>
+<p><code>response = urllib2.urlopen(&#39;http://sdfsdf&#39;,timeout=10)</code><br><code>response = urllib2.urlopen(&#39;http://sdfsdf&#39;,data,10)</code></p>
+<h3 id="Request对象"><a href="#Request对象" class="headerlink" title="Request对象"></a>Request对象</h3><p>在urlopen的参数中，可以传入一个request请求，我们可以创建一个Request的实例来作为参数传给urlopen</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">request = urllib2.Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Post请求与Get请求"><a href="#Post请求与Get请求" class="headerlink" title="Post请求与Get请求"></a>Post请求与Get请求</h3><h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">values = &#123;<span class="string">"usename"</span>:<span class="string">"12345678@123.com"</span>,<span class="string">"password"</span>:<span class="string">"xxx"</span>&#125;</span><br><span class="line">data = urllib.urlencode(values)</span><br><span class="line">url = <span class="string">"http://urlurlurl"</span></span><br><span class="line">request = urllib2.Request(url,data)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<p>还可以使用以下方式定义字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">values = &#123;&#125;</span><br><span class="line">values[<span class="string">'username'</span>] = <span class="string">"123456@123.com"</span></span><br><span class="line">values[<span class="string">'password'</span>] = <span class="string">"123456"</span></span><br><span class="line">data = urllib.urlencode(values)</span><br></pre></td></tr></table></figure>
+
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">data = urllib.urlencode(values)</span><br><span class="line">url = <span class="string">"http://urlurlurl"</span>+<span class="string">"?"</span>+data</span><br><span class="line">request = urllib2.Request(url)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Urllib库用法"><a href="#Urllib库用法" class="headerlink" title="Urllib库用法"></a>Urllib库用法</h2><h3 id="设置Headers"><a href="#设置Headers" class="headerlink" title="设置Headers"></a>设置Headers</h3><p>在Headers里有很多的信息，如文件编码，压缩方式，请求身份等<br>user_agent就是请求身份<br><code>&#39;User_Agent&#39;:&#39;Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)&#39;</code><br>这样就设置好了一个headers，在构建request时传入，这样在请求页面是，就会与request一起发到服务器上。<br>另外，有的服务器设置了防盗链，服务器会识别headers中的referer是不是它自己，如果不是，服务器就不会响应请求。<br><code>&#39;Referer&#39;:&#39;http://urlurlurl&#39;</code><br>另外，在headers中还有一些其他属性</p>
+<blockquote>
+<p>User-Agent : 有些服务器或 Proxy 会通过该值来判断是否是浏览器发出的请求<br>Content-Type : 在使用 REST 接口时，服务器会检查该值，用来确定 HTTP Body 中的内容该怎样解析。<br>application/xml ： 在 XML RPC，如 RESTful/SOAP 调用时使用<br>application/json ： 在 JSON RPC 调用时使用<br>application/x-www-form-urlencoded ： 浏览器提交 Web 表单时使用<br>在使用服务器提供的 RESTful 或 SOAP 服务时， Content-Type 设置错误会导致服务器拒绝服务</p>
+</blockquote>
+<h3 id="Proxy设置"><a href="#Proxy设置" class="headerlink" title="Proxy设置"></a>Proxy设置</h3><p>urllib2默认会使用环境变量http_proxy设置HTTP Proxy.有些网站会检测某一段时间内某个IP的访问次数，如果访问次数过多，会禁止访问。所以可以通过设置一些代理服务器来协助你抓取页面。</p>
+<p>Proxy的用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">enable_proxy = <span class="literal">True</span></span><br><span class="line">proxy_handler = urllib2.ProxyHandler(&#123;<span class="string">"http"</span>:<span class="string">"http://some-proxy.com:8080"</span>&#125;)</span><br><span class="line">null_proxy_handler = urllib2.ProxyHandler(&#123;&#125;)</span><br><span class="line"><span class="keyword">if</span> enable_proxy:</span><br><span class="line">    opener = urllib2.build_opener(proxy_handler)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    opener = urllib2.build_opener(null_proxy_handler)</span><br><span class="line">urllib2.install_opener(opener)</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTP的PUT和DELETE方法"><a href="#HTTP的PUT和DELETE方法" class="headerlink" title="HTTP的PUT和DELETE方法"></a>HTTP的PUT和DELETE方法</h3><blockquote>
+<p>PUT和POST极为相似，都是向服务器发送数据，但它们之间有一个重要区别，PUT通常指定了资源的存放位置，而POST则没有，POST的数据存放位置由服务器自己决定。<br>DELETE：删除某一个资源。很少用到。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">request = urllib2.Request(uri, data=data)</span><br><span class="line">request.get_method = <span class="keyword">lambda</span>: <span class="string">'PUT'</span> <span class="comment"># or 'DELETE'</span></span><br><span class="line">response = urllib2.urlopen(request)</span><br></pre></td></tr></table></figure>
+
+<h2 id="URLError异常处理"><a href="#URLError异常处理" class="headerlink" title="URLError异常处理"></a>URLError异常处理</h2><h3 id="URLError"><a href="#URLError" class="headerlink" title="URLError"></a>URLError</h3><p>要想在python中捕获异常，就要用到try-except语句</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">requset = urllib2.Request(<span class="string">'http://www.xxxxx.com'</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    urllib2.urlopen(requset)</span><br><span class="line"><span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">    <span class="keyword">print</span> e.reason</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTPError"><a href="#HTTPError" class="headerlink" title="HTTPError"></a>HTTPError</h3><p>HTTPError是URLError的子类，HTTPError实例产生后，会有一个code属性。<br>code属性是服务器返回的状态码<br>由于HTTPError的父类是URLError，因此父类的异常应该放在子类的后面</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">req = urllib2.Request(<span class="string">'http://blog.csdn.net/cqcre'</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    urllib2.urlopen(req)</span><br><span class="line"><span class="keyword">except</span> urllib2.HTTPError, e:</span><br><span class="line">    <span class="keyword">print</span> e.code</span><br><span class="line"><span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">    <span class="keyword">print</span> e.reason</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"OK"</span></span><br></pre></td></tr></table></figure>
+
+<p>如果捕获到了HTTPError，则输出code，不会再处理URLError异常。如果发生的不是HTTPError，则会去捕获URLError异常，输出错误原因。</p>
+<p>另外还可以加入 hasattr属性提前对属性进行判断</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">req = urllib2.Request(<span class="string">'http://blog.csdn.net/cqcre'</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    urllib2.urlopen(req)</span><br><span class="line"><span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">    <span class="keyword">if</span> hasattr(e,<span class="string">"code"</span>):</span><br><span class="line">        <span class="keyword">print</span> e.code</span><br><span class="line">    <span class="keyword">if</span> hasattr(e,<span class="string">"reason"</span>):</span><br><span class="line">        <span class="keyword">print</span> e.reason</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"OK"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookie的使用"><a href="#Cookie的使用" class="headerlink" title="Cookie的使用"></a>Cookie的使用</h2><h3 id="Opener"><a href="#Opener" class="headerlink" title="Opener"></a>Opener</h3><p>当你获取一个URL你使用一个opener(一个urllib2.OpenerDirector的实例)。在前面，我们都是使用的默认的opener，也就是urlopen。它是一个特殊的opener，可以理解成opener的一个特殊实例，传入的参数仅仅是url，data，timeout。</p>
+<p>如果我们需要用到Cookie，只用这个opener是不能达到目的的，所以我们需要创建更一般的opener来实现对Cookie的设置。</p>
+<h3 id="Cookielib"><a href="#Cookielib" class="headerlink" title="Cookielib"></a>Cookielib</h3><p>cookielib模块的主要作用是提供可存储cookie的对象，以便于与urllib2模块配合使用来访问Internet资源。<br>可以利用本模块的CookieJar类的对象来捕获cookie并在后续连接请求时重新发送，比如可以实现模拟登录功能。该模块主要的对象有CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar。</p>
+<blockquote>
+<p>CookieJar —-派生—-&gt;FileCookieJar  —-派生—–&gt;MozillaCookieJar和LWPCookieJar</p>
+</blockquote>
+<h4 id="获取Cookie保存到变量"><a href="#获取Cookie保存到变量" class="headerlink" title="获取Cookie保存到变量"></a>获取Cookie保存到变量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明CookieJar保存Cookie对象</span></span><br><span class="line">cookie = cookielib.CookieJar()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建cookie处理器</span></span><br><span class="line">handler = urllib2.HTTPCookieProcessor(cookie)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过handler构建opener</span></span><br><span class="line">opener = urllib2.build_opener(handler)</span><br><span class="line"></span><br><span class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> cookie:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Name='</span>+item.name</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Value='</span>+item.value</span><br></pre></td></tr></table></figure>
+
+<p>打印结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Name=BAIDUID</span><br><span class="line">Value=61D539BC6FC3780C74A3F9E76D463B12:FG=1</span><br><span class="line">Name=BIDUPSID</span><br><span class="line">Value=61D539BC6FC3780C74A3F9E76D463B12</span><br><span class="line">Name=H_PS_PSSID</span><br><span class="line">Value=19684_1433_18240_20076_19860_15268_11463</span><br><span class="line">Name=PSTM</span><br><span class="line">Value=1464948230</span><br><span class="line">Name=BDSVRTM</span><br><span class="line">Value=0</span><br><span class="line">Name=BD_HOME</span><br><span class="line">Value=0</span><br></pre></td></tr></table></figure>
+
+<h4 id="保存Cookie到文件"><a href="#保存Cookie到文件" class="headerlink" title="保存Cookie到文件"></a>保存Cookie到文件</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置保存cookie的文件</span></span><br><span class="line">filename = <span class="string">'cookie.txt'</span></span><br><span class="line"><span class="comment"># 声明MozillaCookieJar保存cookie，并写入文件</span></span><br><span class="line">cookie = cookielib.MozillaCookieJar(filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建Cookie管理器</span></span><br><span class="line">handler = urllib2.HTTPCookieProcessor(cookie)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建opener</span></span><br><span class="line">opener = urllib2.build_opener(handler)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建请求</span></span><br><span class="line">response = opener.open(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="comment"># 保存到文件</span></span><br><span class="line">cookie.save(ignore_discard=<span class="literal">True</span>, ignore_expires=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>ignore_discard的意思是即使cookies将被丢弃也将它保存下来，ignore_expires的意思是如果在该文件中cookies已经存在，则覆盖原文件写入，在这里，我们将这两个全部设置为True。运行之后，cookies将被保存到cookie.txt文件中</p>
+<h4 id="从文件中获取Cookie并访问"><a href="#从文件中获取Cookie并访问" class="headerlink" title="从文件中获取Cookie并访问"></a>从文件中获取Cookie并访问</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建MozillaCookieJar</span></span><br><span class="line">cookie = cookielib.MozillaCookieJar()</span><br><span class="line"><span class="comment"># 从文件中读取cookie</span></span><br><span class="line">cookie.load(<span class="string">'cookie.txt'</span>, ignore_expires=<span class="literal">True</span>, ignore_discard=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 创建request</span></span><br><span class="line">request = urllib2.Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="comment"># 创建opener</span></span><br><span class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</span><br><span class="line">response = opener.open(request)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<h4 id="利用Cookie模拟网站登录"><a href="#利用Cookie模拟网站登录" class="headerlink" title="利用Cookie模拟网站登录"></a>利用Cookie模拟网站登录</h4><p>利用cookie模拟网站登录学校教务系统，读取课表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存cookie的文件</span></span><br><span class="line">filename = <span class="string">'cookie.txt'</span></span><br><span class="line"><span class="comment"># 创建cookie</span></span><br><span class="line">cookie = cookielib.MozillaCookieJar(filename)</span><br><span class="line"><span class="comment"># 创建opener</span></span><br><span class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</span><br><span class="line"><span class="comment"># 要提交的登陆账号密码</span></span><br><span class="line">postdata = urllib.urlencode(&#123;<span class="string">'USERNAME'</span>: <span class="string">'1341901120'</span>, <span class="string">'PASSWORD'</span>: <span class="string">'chuxuan123sh'</span>&#125;)</span><br><span class="line"><span class="comment"># 登陆验证要提交的后台页面地址</span></span><br><span class="line">loginurl = <span class="string">'http://jwgl.just.edu.cn:8080/jsxsd/xk/LoginToXk'</span></span><br><span class="line"></span><br><span class="line">response = opener.open(loginurl, postdata)</span><br><span class="line"><span class="comment"># 保存登陆成功的Cookie</span></span><br><span class="line">cookie.save(ignore_discard=<span class="literal">True</span>, ignore_expires=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示课表的后台页面地址</span></span><br><span class="line">gradeUrl = <span class="string">'http://jwgl.just.edu.cn:8080/jsxsd/xskb/xskb_list.do'</span></span><br><span class="line">response = opener.open(gradeUrl)</span><br><span class="line"><span class="comment"># 显示页面html</span></span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><img src="../images/python-regex.png" alt="正则表达式"></p>
+<h3 id="正则表达式注解"><a href="#正则表达式注解" class="headerlink" title="正则表达式注解"></a>正则表达式注解</h3><h4 id="贪婪模式与非贪婪模式"><a href="#贪婪模式与非贪婪模式" class="headerlink" title="贪婪模式与非贪婪模式"></a>贪婪模式与非贪婪模式</h4><p>Python里数量词默认是贪婪的（在少数语言里也可能是默认非贪婪），总是尝试匹配尽可能多的字符；非贪婪的则相反，总是尝试匹配尽可能少的字符。例如：正则表达式”ab<em>”如果用于查找”abbbc”，将找到”abbb”。而如果使用非贪婪的数量词”ab</em>?”，将找到”a”。</p>
+<p>常用非贪婪模式提取</p>
+<h4 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠"></a>反斜杠</h4><p>使用反斜杠作为转义字符<br>python中可以使用r代替\<br>在正则表达式中如果要匹配”&quot;,需要写成\\,使用r可以写成r” \“表示。匹配使用可以写成\d,r” \d”</p>
+<h4 id="python-Re模块"><a href="#python-Re模块" class="headerlink" title="python Re模块"></a>python Re模块</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#返回pattern对象</span></span><br><span class="line">re.compile(string[,flag])  </span><br><span class="line"><span class="comment">#以下为匹配所用函数</span></span><br><span class="line">re.match(pattern, string[, flags])</span><br><span class="line">re.search(pattern, string[, flags])</span><br><span class="line">re.split(pattern, string[, maxsplit])</span><br><span class="line">re.findall(pattern, string[, flags])</span><br><span class="line">re.finditer(pattern, string[, flags])</span><br><span class="line">re.sub(pattern, repl, string[, count])</span><br><span class="line">re.subn(pattern, repl, string[, count])</span><br></pre></td></tr></table></figure>
+
+<p><code>pattern = re.compile(r&#39;hello&#39;)</code></p>
+<p>在参数中我们传入了原生字符串对象，通过compile方法编译生成一个pattern对象，然后我们利用这个对象来进行进一步的匹配<br>参数flag是匹配模式，取值可以使用按位或运算符’|’表示同时生效，比如<code>re.I|re.M</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">re.I(全拼：IGNORECASE): 忽略大小写（括号内是完整写法，下同）</span><br><span class="line">re.M(全拼：MULTILINE): 多行模式，改变&apos;^&apos;和&apos;$&apos;的行为（参见上图）</span><br><span class="line">re.S(全拼：DOTALL): 点任意匹配模式，改变&apos;.&apos;的行为</span><br><span class="line">re.L(全拼：LOCALE): 使预定字符类 \w \W \b \B \s \S 取决于当前区域设定</span><br><span class="line">re.U(全拼：UNICODE): 使预定字符类 \w \W \b \B \s \S \d \D 取决于unicode定义的字符属性</span><br><span class="line">re.X(全拼：VERBOSE): 详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释。</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-match-pattern-string-flags"><a href="#re-match-pattern-string-flags" class="headerlink" title="re.match(pattern, string[, flags])"></a>re.match(pattern, string[, flags])</h5><p>这个方法将会从string（我们要匹配的字符串）的开头开始，尝试匹配pattern，一直向后匹配，如果遇到无法匹配的字符，立即返回None，如果匹配未结束已经到达string的末尾，也会返回None。两个结果均表示匹配失败，否则匹配pattern成功，同时匹配终止，不再对string向后匹配</p>
+<p>match对象的的属性和方法<br>result.group , result.string</p>
+<ol>
+<li>string: 匹配时使用的文本。</li>
+<li>re: 匹配时使用的Pattern对象。</li>
+<li>pos: 文本中正则表达式开始搜索的索引。值与Pattern.match()和Pattern.seach()方法的同名参数相同。</li>
+<li>endpos: 文本中正则表达式结束搜索的索引。值与Pattern.match()和Pattern.seach()方法的同名参数相同。</li>
+<li>lastindex: 最后一个被捕获的分组在文本中的索引。如果没有被捕获的分组，将为None。</li>
+<li>lastgroup: 最后一个被捕获的分组的别名。如果这个分组没有别名或者没有被捕获的分组，将为None。</li>
+</ol>
+<p>方法：</p>
+<ol>
+<li>group([group1, …]):<br>获得一个或多个分组截获的字符串；指定多个参数时将以元组形式返回。group1可以使用编号也可以使用别名；编号0代表整个匹配的子串；不填写参数时，返回group(0)；没有截获字符串的组返回None；截获了多次的组返回最后一次截获的子串。</li>
+<li>groups([default]):<br>以元组形式返回全部分组截获的字符串。相当于调用group(1,2,…last)。default表示没有截获字符串的组以这个值替代，默认为None。</li>
+<li>groupdict([default]):<br>返回以有别名的组的别名为键、以该组截获的子串为值的字典，没有别名的组不包含在内。default含义同上。</li>
+<li>start([group]):<br>返回指定的组截获的子串在string中的起始索引（子串第一个字符的索引）。group默认值为0。</li>
+<li>end([group]):<br>返回指定的组截获的子串在string中的结束索引（子串最后一个字符的索引+1）。group默认值为0。</li>
+<li>span([group]):<br>返回(start(group), end(group))。</li>
+<li>expand(template):<br>将匹配到的分组代入template中然后返回。template中可以使用\id或\g、\g引用分组，但不能使用编号0。\id与\g是等价的；但\10将被认为是第10个分组，如果你想表达\1之后是字符’0’，只能使用\g0。</li>
+</ol>
+<h5 id="re-search-pattern-string-flags"><a href="#re-search-pattern-string-flags" class="headerlink" title="re.search(pattern, string[, flags])"></a>re.search(pattern, string[, flags])</h5><p>search方法与match方法极其类似，区别在于match()函数只检测re是不是在string的开始位置匹配，search()会扫描整个string查找匹配，match（）只有在0位置匹配成功的话才有返回，如果不是开始位置匹配成功的话，match()就返回None。同样，search方法的返回对象同样match()返回对象的方法和属性</p>
+<h5 id="re-split-pattern-string-maxsplit"><a href="#re-split-pattern-string-maxsplit" class="headerlink" title="re.split(pattern, string[, maxsplit])"></a>re.split(pattern, string[, maxsplit])</h5><p>按照能够匹配的子串将string分割后返回列表。maxsplit用于指定最大分割次数，不指定将全部分割</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;\d+&apos;)</span><br><span class="line">print re.split(pattern,&apos;one1two2three3four4&apos;)</span><br><span class="line"></span><br><span class="line">### 输出 ###</span><br><span class="line"># [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;, &apos;four&apos;, &apos;&apos;]</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-findall-pattern-string-flags"><a href="#re-findall-pattern-string-flags" class="headerlink" title="re.findall(pattern, string[, flags])"></a>re.findall(pattern, string[, flags])</h5><p>搜索string，以列表形式返回全部能匹配的子串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;\d+&apos;)</span><br><span class="line">print re.findall(pattern,&apos;one1two2three3four4&apos;)</span><br><span class="line"></span><br><span class="line">### 输出 ###</span><br><span class="line"># [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;]</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-finditer-pattern-string-flags"><a href="#re-finditer-pattern-string-flags" class="headerlink" title="re.finditer(pattern, string[, flags])"></a>re.finditer(pattern, string[, flags])</h5><p>搜索string，返回一个顺序访问每一个匹配结果（Match对象）的迭代器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;\d+&apos;)</span><br><span class="line">for m in re.finditer(pattern,&apos;one1two2three3four4&apos;):</span><br><span class="line">    print m.group(),</span><br><span class="line"></span><br><span class="line">### 输出 ###</span><br><span class="line"># 1 2 3 4</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-sub-pattern-repl-string-count"><a href="#re-sub-pattern-repl-string-count" class="headerlink" title="re.sub(pattern, repl, string[, count])"></a>re.sub(pattern, repl, string[, count])</h5><p>使用repl替换string中每一个匹配的子串后返回替换后的字符串。<br>当repl是一个字符串时，可以使用\id或\g、\g引用分组，但不能使用编号0<br>当repl是一个方法时，这个方法应当只接受一个参数（Match对象），并返回一个字符串用于替换（返回的字符串中不能再引用分组）。<br>count用于指定最多替换次数，不指定时全部替换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;(\w+) (\w+)&apos;)</span><br><span class="line">s = &apos;i say, hello world!&apos;</span><br><span class="line"></span><br><span class="line">print re.sub(pattern,r&apos;\2 \1&apos;, s)</span><br><span class="line"></span><br><span class="line">def func(m):</span><br><span class="line">    return m.group(1).title() + &apos; &apos; + m.group(2).title()</span><br><span class="line"></span><br><span class="line">print re.sub(pattern,func, s)</span><br><span class="line"></span><br><span class="line">### output ###</span><br><span class="line"># say i, world hello!</span><br><span class="line"># I Say, Hello World!</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-subn-pattern-repl-string-count"><a href="#re-subn-pattern-repl-string-count" class="headerlink" title="re.subn(pattern, repl, string[, count])"></a>re.subn(pattern, repl, string[, count])</h5><p>返回 (sub(repl, string[, count]), 替换次数)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;(\w+) (\w+)&apos;)</span><br><span class="line">s = &apos;i say, hello world!&apos;</span><br><span class="line">print re.subn(pattern,r&apos;\2 \1&apos;, s)</span><br><span class="line">def func(m):</span><br><span class="line">    return m.group(1).title() + &apos; &apos; + m.group(2).title()</span><br><span class="line">print re.subn(pattern,func, s)</span><br><span class="line">### output ###</span><br><span class="line"># (&apos;say i, world hello!&apos;, 2)</span><br><span class="line"># (&apos;I Say, Hello World!&apos;, 2)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/06/2016-12-6-Java中的super关键字/" rel="next" title="java中的super关键字">
+                <i class="fa fa-chevron-left"></i> java中的super关键字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/30/jQuery的简易使用方法/" rel="prev" title="jQuery简易使用方法">
+                jQuery简易使用方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/19245696?s=460&v=4" alt="路仟">
+            
+              <p class="site-author-name" itemprop="name">路仟</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/oahnus" title="GitHub &rarr; https://github.com/oahnus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:478606127@qq.com" title="E-Mail &rarr; mailto:478606127@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫概述"><span class="nav-number">1.</span> <span class="nav-text">爬虫概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用爬虫抓取网页"><span class="nav-number">2.</span> <span class="nav-text">使用爬虫抓取网页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Request对象"><span class="nav-number">2.1.</span> <span class="nav-text">Request对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Post请求与Get请求"><span class="nav-number">2.2.</span> <span class="nav-text">Post请求与Get请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#POST"><span class="nav-number">2.2.1.</span> <span class="nav-text">POST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GET"><span class="nav-number">2.2.2.</span> <span class="nav-text">GET</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Urllib库用法"><span class="nav-number">3.</span> <span class="nav-text">Urllib库用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置Headers"><span class="nav-number">3.1.</span> <span class="nav-text">设置Headers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Proxy设置"><span class="nav-number">3.2.</span> <span class="nav-text">Proxy设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP的PUT和DELETE方法"><span class="nav-number">3.3.</span> <span class="nav-text">HTTP的PUT和DELETE方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#URLError异常处理"><span class="nav-number">4.</span> <span class="nav-text">URLError异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#URLError"><span class="nav-number">4.1.</span> <span class="nav-text">URLError</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTPError"><span class="nav-number">4.2.</span> <span class="nav-text">HTTPError</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie的使用"><span class="nav-number">5.</span> <span class="nav-text">Cookie的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Opener"><span class="nav-number">5.1.</span> <span class="nav-text">Opener</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookielib"><span class="nav-number">5.2.</span> <span class="nav-text">Cookielib</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取Cookie保存到变量"><span class="nav-number">5.2.1.</span> <span class="nav-text">获取Cookie保存到变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保存Cookie到文件"><span class="nav-number">5.2.2.</span> <span class="nav-text">保存Cookie到文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从文件中获取Cookie并访问"><span class="nav-number">5.2.3.</span> <span class="nav-text">从文件中获取Cookie并访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用Cookie模拟网站登录"><span class="nav-number">5.2.4.</span> <span class="nav-text">利用Cookie模拟网站登录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">6.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则表达式注解"><span class="nav-number">6.1.</span> <span class="nav-text">正则表达式注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#贪婪模式与非贪婪模式"><span class="nav-number">6.1.1.</span> <span class="nav-text">贪婪模式与非贪婪模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反斜杠"><span class="nav-number">6.1.2.</span> <span class="nav-text">反斜杠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#python-Re模块"><span class="nav-number">6.1.3.</span> <span class="nav-text">python Re模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#re-match-pattern-string-flags"><span class="nav-number">6.1.3.1.</span> <span class="nav-text">re.match(pattern, string[, flags])</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#re-search-pattern-string-flags"><span class="nav-number">6.1.3.2.</span> <span class="nav-text">re.search(pattern, string[, flags])</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#re-split-pattern-string-maxsplit"><span class="nav-number">6.1.3.3.</span> <span class="nav-text">re.split(pattern, string[, maxsplit])</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#re-findall-pattern-string-flags"><span class="nav-number">6.1.3.4.</span> <span class="nav-text">re.findall(pattern, string[, flags])</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#re-finditer-pattern-string-flags"><span class="nav-number">6.1.3.5.</span> <span class="nav-text">re.finditer(pattern, string[, flags])</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#re-sub-pattern-repl-string-count"><span class="nav-number">6.1.3.6.</span> <span class="nav-text">re.sub(pattern, repl, string[, count])</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#re-subn-pattern-repl-string-count"><span class="nav-number">6.1.3.7.</span> <span class="nav-text">re.subn(pattern, repl, string[, count])</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路仟</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
