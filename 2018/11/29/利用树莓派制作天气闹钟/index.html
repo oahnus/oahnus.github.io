@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="树莓派+墨迹天气API+讯飞TTS 制作天气闹钟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用树莓派制作天气闹钟">
+<meta property="og:url" content="blog.oahnus.top/2018/11/29/利用树莓派制作天气闹钟/index.html">
+<meta property="og:site_name" content="路仟">
+<meta property="og:description" content="树莓派+墨迹天气API+讯飞TTS 制作天气闹钟">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-d9844a0bf18326dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-0ba46589d4f9e193.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-74621a31d89480da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-d57d11d626ddecb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-4a8bd5eb3137fa1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5471630-a7e9ee1c5299bd22.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-06-21T01:53:17.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用树莓派制作天气闹钟">
+<meta name="twitter:description" content="树莓派+墨迹天气API+讯飞TTS 制作天气闹钟">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5471630-d9844a0bf18326dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="blog.oahnus.top/2018/11/29/利用树莓派制作天气闹钟/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>利用树莓派制作天气闹钟 | 路仟</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?D1uEUaoKZJA4CK2Z";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">路仟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="blog.oahnus.top/2018/11/29/利用树莓派制作天气闹钟/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="路仟">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/19245696?s=460&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="路仟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">利用树莓派制作天气闹钟
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-29 09:48:51" itemprop="dateCreated datePublished" datetime="2018-11-29T09:48:51+08:00">2018-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-21 09:53:17" itemprop="dateModified" datetime="2019-06-21T09:53:17+08:00">2019-06-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/category/树莓派/" itemprop="url" rel="index"><span itemprop="name">树莓派</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">树莓派+墨迹天气API+讯飞TTS 制作天气闹钟</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为了能让刚买的树莓派有效的利用起来（避免吃灰），今天分享一下如何用树莓派做天气闹钟。</p>
+<h1 id="环境及工具"><a href="#环境及工具" class="headerlink" title="环境及工具"></a>环境及工具</h1><p>树莓派3B+、IDE、XShell、FileZilla(FTP文件上传)、小音箱。</p>
+<h1 id="查询天气"><a href="#查询天气" class="headerlink" title="查询天气"></a>查询天气</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>既然要做天气闹钟，那肯定先要知道今天的天气是什么，查询天气服务还是很大众的一种服务，很多网站都可以提供了查询天气的API接口，搜索一下。<br>做数据服务的网站就那么几家，简单浏览之后，选择了阿里云市场里的墨迹天气API（免费是重点，免费的可用1000次，最近有0元/10000次的活动）。<a href="https://market.aliyun.com/products/57096001/cmapi023656.html?spm=5176.730005-56956004-57096001.productlist.d_cmapi023656.51c03524aldKef&innerSource=search#sku=yuncode1765600000" target="_blank" rel="noopener">云市场-免费版气象服务（cityid）-墨迹天气</a><br>这个API提供一个根据城市Id查询三天精简天气预报的接口，深得我心，买。</p>
+<blockquote>
+<p>购买成功后，需要从<code>阿里云控制台-产品与服务-API网关-调用API-已购API</code>中查到请求Token。<a href="https://image-1253653901.cos.ap-shanghai.myqcloud.com/md-image/weather/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E9%9C%80%E8%A6%81%E7%9A%84token.pdf" target="_blank" rel="noopener">详细查询过程</a></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/5471630-d9844a0bf18326dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>点击操作中的<code>详情</code>可以看到Token, 之后需要点击<code>授权</code>按钮，为你要调取的接口生成一个授权码（阿里云API网关需要这个）。</p>
+<h2 id="接口详情"><a href="#接口详情" class="headerlink" title="接口详情"></a>接口详情</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">url: http://freecityid.market.alicloudapi.com/whapi/json/alicityweather/briefforecast3days</span><br><span class="line">method: POST</span><br><span class="line">body: &#123;</span><br><span class="line">    &quot;cityid&quot;: &quot;城市id&quot;，</span><br><span class="line">    “token”: &quot;API详情页查询到的&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp: &#123;</span><br><span class="line">  &quot;code&quot;: 0,</span><br><span class="line">  &quot;data&quot;: &#123;</span><br><span class="line">    &quot;city&quot;: &#123;</span><br><span class="line">      &quot;cityId&quot;: 284609,</span><br><span class="line">      &quot;counname&quot;: &quot;中国&quot;,</span><br><span class="line">      &quot;name&quot;: &quot;东城区&quot;,</span><br><span class="line">      &quot;pname&quot;: &quot;北京市&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;forecast&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;conditionDay&quot;: &quot;多云&quot;,</span><br><span class="line">        &quot;conditionIdDay&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;conditionIdNight&quot;: &quot;31&quot;,</span><br><span class="line">        &quot;conditionNight&quot;: &quot;多云&quot;,</span><br><span class="line">        &quot;predictDate&quot;: &quot;2016-09-01&quot;,</span><br><span class="line">        &quot;tempDay&quot;: &quot;27&quot;,</span><br><span class="line">        &quot;tempNight&quot;: &quot;18&quot;,</span><br><span class="line">        &quot;updatetime&quot;: &quot;2016-09-01 09:07:08&quot;,</span><br><span class="line">        &quot;windDirDay&quot;: &quot;西北风&quot;,</span><br><span class="line">        &quot;windDirNight&quot;: &quot;西北风&quot;,</span><br><span class="line">        &quot;windLevelDay&quot;: &quot;3&quot;,</span><br><span class="line">        &quot;windLevelNight&quot;: &quot;2&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      ...省略两个...</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;msg&quot;: &quot;success&quot;,</span><br><span class="line">  &quot;rc&quot;: &#123;</span><br><span class="line">    &quot;c&quot;: 0,</span><br><span class="line">    &quot;p&quot;: &quot;success&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拿到接口，接下来肯定就是写代码调用接口了，调用过程中涉及的部分问题，都写在代码注释里了（这里及后面的所有请求都是用的python的requests库，本身娱乐项目，也就没有生成requirement文件）。</p>
+<p>Num2Word.py (将数字转为中文字符串)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Num2Word</span>:</span></span><br><span class="line">    words = &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="string">'零'</span>,</span><br><span class="line">        <span class="number">1</span>: <span class="string">'一'</span>,</span><br><span class="line">        <span class="number">2</span>: <span class="string">'二'</span>,</span><br><span class="line">        <span class="number">3</span>: <span class="string">'三'</span>,</span><br><span class="line">        <span class="number">4</span>: <span class="string">'四'</span>,</span><br><span class="line">        <span class="number">5</span>: <span class="string">'五'</span>,</span><br><span class="line">        <span class="number">6</span>: <span class="string">'六'</span>,</span><br><span class="line">        <span class="number">7</span>: <span class="string">'七'</span>,</span><br><span class="line">        <span class="number">8</span>: <span class="string">'八'</span>,</span><br><span class="line">        <span class="number">9</span>: <span class="string">'九'</span>,</span><br><span class="line">        <span class="number">10</span>: <span class="string">'十'</span>,</span><br><span class="line">        <span class="number">100</span>: <span class="string">'百'</span>,</span><br><span class="line">        <span class="number">1000</span>: <span class="string">'千'</span>,</span><br><span class="line">        <span class="number">10000</span>: <span class="string">'万'</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># TODO 1024 -&gt; 一千二十四  ==&gt; 1024 -&gt; 一千零二十四</span></span><br><span class="line">    <span class="comment"># TODO 1004 -&gt; 一千四  ==&gt; 1024 -&gt; 一千零四</span></span><br><span class="line">    <span class="comment"># TODO 1024.2 小数点</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_word</span><span class="params">(num)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(num, int):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">elif</span> isinstance(num, str):</span><br><span class="line">            num = int(num)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'num must be int or str'</span>)</span><br><span class="line">        <span class="keyword">if</span> num &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'负'</span> + Num2Word.to_word(-num)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            quotient = num</span><br><span class="line">            remainder = <span class="number">0</span></span><br><span class="line">            s = <span class="string">""</span></span><br><span class="line">            ten_num = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> quotient &gt; <span class="number">0</span>:</span><br><span class="line">                quotient = int(num / <span class="number">10</span>)</span><br><span class="line">                remainder = num % <span class="number">10</span></span><br><span class="line">                <span class="keyword">if</span> remainder &gt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">if</span> ten_num &gt; <span class="number">0</span>:</span><br><span class="line">                        s = Num2Word.words[remainder] + Num2Word.words[int(math.pow(<span class="number">10</span>, ten_num))] + s</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        s = Num2Word.words[remainder] + s</span><br><span class="line">                num = int(num / <span class="number">10</span>)</span><br><span class="line">                ten_num += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+
+<p>MoJiWeather.py</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> Num2Word <span class="keyword">import</span> Num2Word</span><br><span class="line"><span class="keyword">from</span> VoicePlayer <span class="keyword">import</span> VoicePlayer</span><br><span class="line"><span class="keyword">from</span> XunFeiTTS <span class="keyword">import</span> XunFeiTTS</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    handlers=[logging.StreamHandler()],</span><br><span class="line">    format=<span class="string">'%(levelname)s:%(asctime)s:%(message)s'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RespBody</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># data = "&#123;\"code\":0,\"data\":&#123;\"city\":&#123;\"cityId\":50,\"counname\":\"中国\",\"name\":\"闵行区\",\"pname\":\"上海市\",\"timezone\":\"8\"&#125;,\"forecast\":[&#123;\"conditionDay\":\"多云\",\"conditionIdDay\":\"1\",\"conditionIdNight\":\"31\",\"conditionNight\":\"多云\",\"predictDate\":\"2018-10-17\",\"tempDay\":\"23\",\"tempNight\":\"14\",\"updatetime\":\"2018-10-17 22:09:00\",\"windDirDay\":\"北风\",\"windDirNight\":\"北风\",\"windLevelDay\":\"3-4\",\"windLevelNight\":\"3-4\"&#125;,&#123;\"conditionDay\":\"多云\",\"conditionIdDay\":\"1\",\"conditionIdNight\":\"31\",\"conditionNight\":\"多云\",\"predictDate\":\"2018-10-18\",\"tempDay\":\"21\",\"tempNight\":\"12\",\"updatetime\":\"2018-10-17 22:09:00\",\"windDirDay\":\"北风\",\"windDirNight\":\"北风\",\"windLevelDay\":\"5-6\",\"windLevelNight\":\"3-4\"&#125;,&#123;\"conditionDay\":\"多云\",\"conditionIdDay\":\"1\",\"conditionIdNight\":\"31\",\"conditionNight\":\"多云\",\"predictDate\":\"2018-10-19\",\"tempDay\":\"22\",\"tempNight\":\"13\",\"updatetime\":\"2018-10-17 22:09:00\",\"windDirDay\":\"东北风\",\"windDirNight\":\"东北风\",\"windLevelDay\":\"3-4\",\"windLevelNight\":\"3\"&#125;]&#125;,\"msg\":\"success\",\"rc\":&#123;\"c\":0,\"p\":\"success\"&#125;&#125;"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.__dict__ = d</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Forecast</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.prdict_date = d.predictDate <span class="comment"># yyyy-MM-dd</span></span><br><span class="line">        self.update_time = d.updatetime <span class="comment"># yyyy-MM-dd HH:mm:ss</span></span><br><span class="line">        self.condition_day = d.conditionDay <span class="comment"># 多云</span></span><br><span class="line">        self.condition_night = d.conditionNight <span class="comment"># 多云</span></span><br><span class="line">        self.temp_day = d.tempDay <span class="comment"># 23</span></span><br><span class="line">        self.temp_night = d.tempNight <span class="comment"># 14</span></span><br><span class="line">        self.wind_dir_day = d.windDirDay <span class="comment"># 北风</span></span><br><span class="line">        self.wind_dir_night = d.windDirNight <span class="comment"># 北风</span></span><br><span class="line">        self.wind_level_day = d.windLevelDay <span class="comment"># 3-4</span></span><br><span class="line">        self.wind_level_night = d.windLevelNight <span class="comment"># 4</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wind_level_to_word</span><span class="params">(self, wind_level)</span>:</span></span><br><span class="line">        wind_level = str(wind_level)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wind_level.__contains__(<span class="string">'-'</span>):</span><br><span class="line">            <span class="keyword">return</span> Num2Word.to_word(wind_level)</span><br><span class="line">        <span class="keyword">return</span> Num2Word.to_word(wind_level.split(<span class="string">'-'</span>)[<span class="number">0</span>]) + <span class="string">'至'</span> + Num2Word.to_word(wind_level.split(<span class="string">'-'</span>)[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_chinese</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># date转为文字</span></span><br><span class="line">        month = self.prdict_date.split(<span class="string">'-'</span>)[<span class="number">1</span>]</span><br><span class="line">        day = self.prdict_date.split(<span class="string">'-'</span>)[<span class="number">2</span>]</span><br><span class="line">        date_word = Num2Word.to_word(month) + <span class="string">'月'</span> + Num2Word.to_word(day) + <span class="string">'日'</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"%s, 白天天气%s, 温度%s度, %s%s级, 夜间天气%s, 温度%s度, %s%s级"</span> % \</span><br><span class="line">              (date_word, self.condition_day, Num2Word.to_word(self.temp_day), self.wind_dir_day, self.wind_level_to_word(self.wind_level_day),</span><br><span class="line">               self.condition_night, Num2Word.to_word(self.temp_night), self.wind_dir_night, self.wind_level_to_word(self.wind_level_night))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MoJiWeather</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.config = &#123;</span><br><span class="line">            <span class="string">"baseURL"</span>: <span class="string">"http://freecityid.market.alicloudapi.com"</span>,</span><br><span class="line">            <span class="string">"forecastURL"</span>: <span class="string">"/whapi/json/alicityweather/briefforecast3days"</span>,</span><br><span class="line">            <span class="string">"AppCode"</span>: <span class="string">"阿里云的授权码"</span>,</span><br><span class="line">            <span class="string">"headers"</span>: &#123;</span><br><span class="line">                <span class="string">"Host"</span>:<span class="string">"freecityid.market.alicloudapi.com"</span>,</span><br><span class="line">                <span class="string">"gateway_channel"</span>:<span class="string">"http"</span>,</span><br><span class="line">                <span class="string">"Content-Type"</span>:<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,</span><br><span class="line">                <span class="string">"Authorization"</span>:<span class="string">"APPCODE 阿里云的授权码"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"token"</span>: <span class="string">"墨迹天气token"</span></span><br><span class="line">        &#125;</span><br><span class="line">        self.city_codes = &#123;</span><br><span class="line">            <span class="string">"BeiJing"</span>: <span class="string">"2"</span>,</span><br><span class="line">            <span class="string">"ShangHaiMinHang"</span>: <span class="string">"50"</span>  <span class="comment"># 国内城市地区id见末尾附录</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetch_forecast</span><span class="params">(self, cityId)</span>:</span></span><br><span class="line">        req_body = &#123;</span><br><span class="line">            <span class="string">"cityId"</span>: str(cityId),</span><br><span class="line">            <span class="string">"token"</span>: self.config[<span class="string">"token"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        json_str = json.dumps(req_body)</span><br><span class="line">        url = self.config[<span class="string">"baseURL"</span>] + self.config[<span class="string">"forecastURL"</span>]</span><br><span class="line">        <span class="comment"># print(url)</span></span><br><span class="line">        <span class="comment"># print(self.config["headers"])</span></span><br><span class="line">        resp = requests.post(url=url, data=req_body, headers=self.config[<span class="string">"headers"</span>])</span><br><span class="line">        resp_json = resp.content.decode(<span class="string">'utf8'</span>)</span><br><span class="line">        <span class="comment"># print(resp_json)</span></span><br><span class="line">        <span class="comment"># print(resp.headers)</span></span><br><span class="line">        logging.debug(<span class="string">"[MoJiWeather.fetch_forecast] - status = %s"</span> % resp.status_code)</span><br><span class="line">        logging.debug(<span class="string">"[MoJiWeather.fetch_forecast] - resp json = %s"</span> % resp_json)</span><br><span class="line"></span><br><span class="line">        resp_body = json.loads(resp_json, object_hook=RespBody)</span><br><span class="line"></span><br><span class="line">        code = resp_body.code</span><br><span class="line">        <span class="keyword">if</span> code == <span class="number">0</span>:</span><br><span class="line">            data = resp_body.data</span><br><span class="line">            city = data.city</span><br><span class="line">            province_name = city.pname</span><br><span class="line">            city_name = city.name</span><br><span class="line">            logging.info(<span class="string">"[MoJiWeather.fetch_forecast] - %s, %s"</span> % (province_name, city_name))</span><br><span class="line"></span><br><span class="line">            three_days_forecast_list = data.forecast</span><br><span class="line">            <span class="keyword">return</span> three_days_forecast_list</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            logging.info(<span class="string">"[MoJiWeather.fetch_forecast] - Resp Not Success"</span>)</span><br><span class="line">            <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+
+<p>现在可以测试一下代码运行效果了，<code>MojiWeather.fetch_forecast</code>方法返回的是天气预报数组（字典数组）。为了方便测试，就直接在<code>MoJiWeather</code>中创建一个main方法来获取数据。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    mo_ji_weather = MoJiWeather()</span><br><span class="line">     <span class="comment"># 天气预报的数组</span></span><br><span class="line">    forecast_list = mo_ji_weather.fetch_forecast(mo_ji_weather.city_codes[<span class="string">"ShangHaiMinHang"</span>])</span><br><span class="line"></span><br><span class="line">    print(forecast_list)</span><br><span class="line">    forecast_words = []</span><br><span class="line">    <span class="keyword">for</span> forecast <span class="keyword">in</span> forecast_list:</span><br><span class="line">        <span class="comment"># 将dict转为Forecast对象</span></span><br><span class="line">        f = Forecast(forecast)</span><br><span class="line">        <span class="comment"># 将天气预报转为中文文字</span></span><br><span class="line">        forecast_words.append(f.to_chinese())</span><br><span class="line">        print(f.to_chinese())</span><br><span class="line">    <span class="comment"># 将三个预报文本拼接成一个字符串</span></span><br><span class="line">    s = <span class="string">","</span>.join(forecast_words)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="http://upload-images.jianshu.io/upload_images/5471630-0ba46589d4f9e193.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h1 id="语音合成"><a href="#语音合成" class="headerlink" title="语音合成"></a>语音合成</h1><p>到目前为止，我们已经能够拿到最近三天内的天气预报了，既然是做天气闹钟，那就要让程序会“说话”，也就是把文字转为语音（语音合成）。国内做语音合成，第一个想到的就是讯飞了，而且<a href="https://www.xfyun.cn/services/online_tts" target="_blank" rel="noopener">讯飞语音合成</a>也有免费版的（每日500次限额，只有一个发音人可选），讯飞TTS介绍页也可以体验语音合成，经测试，讯飞的TTS还是挺清晰的。</p>
+<p>然后按照下面的步骤去获取讯飞的API-KEY，完成准备工作。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-74621a31d89480da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>剩下的工作就是按文档下代码</p>
+<p>XunFeiTTS.py</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    handlers=[logging.StreamHandler()],</span><br><span class="line">    format=<span class="string">'%(levelname)s:%(asctime)s:%(message)s'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XunFeiTTS</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.app_id = <span class="string">"讯飞App id"</span> <span class="comment"># 讯飞的应用id</span></span><br><span class="line">        self.app_key = <span class="string">"讯飞TOKEN"</span> <span class="comment"># 讯飞的token</span></span><br><span class="line">        self.tts_url = <span class="string">"http://api.xfyun.cn/v1/service/v1/tts"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__gen_sig</span><span class="params">(self, req_params_base64, time_now)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        授权认证，生成认证信息</span></span><br><span class="line"><span class="string">        :param req_params_base64: 请求参数的base64串</span></span><br><span class="line"><span class="string">        :param time_now: 当前时间</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        s = self.app_key + time_now + req_params_base64</span><br><span class="line">        hl = hashlib.md5()</span><br><span class="line">        hl.update(s.encode(encoding=<span class="string">'utf8'</span>))</span><br><span class="line">        <span class="keyword">return</span> hl.hexdigest()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__gen_req_header</span><span class="params">(self, time_now, req_params_base64, sig)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        生成请求头</span></span><br><span class="line"><span class="string">        :param time_now: 当前时间</span></span><br><span class="line"><span class="string">        :param req_params_base64: 请求参数的base64串</span></span><br><span class="line"><span class="string">        :param sig:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        header = &#123;</span><br><span class="line">            <span class="string">"X-Appid"</span>: self.app_id,</span><br><span class="line">            <span class="string">"X-CurTime"</span>: time_now,</span><br><span class="line">            <span class="string">"X-Param"</span>: req_params_base64,</span><br><span class="line">            <span class="string">"X-CheckSum"</span>: sig,</span><br><span class="line">            <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> header</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetch_voice</span><span class="params">(self, text)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        根据传入text生成语音</span></span><br><span class="line"><span class="string">        :param text: </span></span><br><span class="line"><span class="string">        :return: </span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        req_params = &#123;</span><br><span class="line">            <span class="string">"auf"</span>: <span class="string">"audio/L16;rate=16000"</span>,</span><br><span class="line">            <span class="string">"aue"</span>: <span class="string">"raw"</span>, <span class="comment"># 返回的语音格式 raw为wav格式语音, lame为MP3格式语音</span></span><br><span class="line">            <span class="string">"voice_name"</span>: <span class="string">"xiaoyan"</span>,</span><br><span class="line">            <span class="string">"speed"</span>: <span class="string">"50"</span>,</span><br><span class="line">            <span class="string">"volume"</span>: <span class="string">"50"</span>,</span><br><span class="line">            <span class="string">"pitch"</span>: <span class="string">"50"</span>,</span><br><span class="line">            <span class="string">"engine_type"</span>: <span class="string">"intp65"</span>,</span><br><span class="line">            <span class="string">"text_type"</span>: <span class="string">"text"</span>,</span><br><span class="line">            <span class="string">"text"</span>: text + <span class="string">" 噻"</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        time_now = str(time.time()).split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">        req_params_json = json.dumps(req_params)</span><br><span class="line">        req_params_base64 = str(base64.b64encode(req_params_json.encode(<span class="string">'ascii'</span>)).decode(<span class="string">'ascii'</span>))</span><br><span class="line">        header = self.__gen_req_header(time_now, req_params_base64, self.__gen_sig(req_params_base64, time_now))</span><br><span class="line"></span><br><span class="line">        resp = requests.post(url=self.tts_url, data=req_params, headers=header)</span><br><span class="line">        content_type = resp.headers[<span class="string">'Content-type'</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 请求成功时， contentType为audio.mpeg, 失败时，contentType为text/plain, 返回异常信息</span></span><br><span class="line">        <span class="keyword">if</span> content_type == <span class="string">'audio/mpeg'</span>:</span><br><span class="line">            <span class="comment"># 将语音写入文件voice.wav</span></span><br><span class="line">            f = open(<span class="string">'voice.wav'</span>, <span class="string">'wb'</span>)</span><br><span class="line">            f.write(resp.content)</span><br><span class="line">            f.close()</span><br><span class="line"></span><br><span class="line">            logging.info(<span class="string">"[XunFeiTTS.fetch_voice] - Fetch Voice Success! Save As %s"</span> % f.name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            resp_json = resp.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">            logging.info(<span class="string">"[XunFeiTTs.fetch_voice] - %s"</span> % resp_json)</span><br><span class="line">            resp_dict = json.loads(resp_json)</span><br><span class="line">            logging.error(<span class="string">"[XunFeiTTS.fetch_voice] - ErrCode = %s, Desc = %s"</span> % (resp_dict[<span class="string">'code'</span>], resp_dict[<span class="string">'desc'</span>]))</span><br></pre></td></tr></table></figure>
+
+<p>现在我们需要重新修改MoJiWeather中的main方法，调用讯飞TTS将天气预报的字符串转变为语音。<br>接下来就是使用pyaudio库来播放天气预报语音（python上有很多库可以播放音频，试了几个之后，感觉还是pyaudio更适合这个例子）。</p>
+<blockquote>
+<p>如果在树莓派上使用pip安装pyaudio时出现<code>Pyaudio installation error - &#39;command &#39;gcc&#39; failed with exit status 1&#39;</code>错误，请在树莓派上执行下面的命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-dev</span><br><span class="line">sudo apt-get install portaudio19-dev</span><br><span class="line">sudo apt-get install libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev</span><br><span class="line"></span><br><span class="line">pip3 install pyaudio</span><br></pre></td></tr></table></figure>
+
+<h2 id="播放wav语音的工具类"><a href="#播放wav语音的工具类" class="headerlink" title="播放wav语音的工具类"></a>播放wav语音的工具类</h2><p>VoicePlayer.py</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pyaudio</span><br><span class="line"><span class="keyword">import</span> wave</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    handlers=[logging.StreamHandler()],</span><br><span class="line">    format=<span class="string">'%(levelname)s:%(asctime)s:%(message)s'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VoicePlayer</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.chunk = <span class="number">1024</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">play</span><span class="params">(self, filename)</span>:</span></span><br><span class="line">        logging.debug(<span class="string">"[VoicePlayer.play] - load file %s"</span> % filename)</span><br><span class="line">        chunk = <span class="number">1024</span></span><br><span class="line">        wf = wave.open(<span class="string">'voice.wav'</span>, <span class="string">'rb'</span>)</span><br><span class="line">        p = pyaudio.PyAudio()</span><br><span class="line"></span><br><span class="line">        stream = p.open(</span><br><span class="line">            format=p.get_format_from_width(wf.getsampwidth()),</span><br><span class="line">            channels=wf.getnchannels(),</span><br><span class="line">            rate=wf.getframerate(),</span><br><span class="line">            output=<span class="literal">True</span>)</span><br><span class="line">        data = wf.readframes(chunk)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> data != <span class="string">''</span>:</span><br><span class="line">            stream.write(data)</span><br><span class="line">            data = wf.readframes(chunk)</span><br><span class="line">            <span class="keyword">if</span> data == <span class="string">b''</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        stream.close()</span><br><span class="line">        p.terminate()</span><br><span class="line">        logging.debug(<span class="string">"[VoicePlayer.play] - Voice Play Finish"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="整合"><a href="#整合" class="headerlink" title="整合"></a>整合</h2><p>到这里，就可以把上面的代码整合到一起了，这里要注意一下Python的包引入问题，在<code>MoJiWeather.py</code>中会引入<code>Num2Word.py</code>,<code>VoicePlayer.py</code>,<code>XunFeiTTS.py</code>，在运行程序时请保证这几个文件都在同一目录下</p>
+<p>MoJiWeather.py</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    mo_ji_weather = MoJiWeather()</span><br><span class="line">    forecast_list = mo_ji_weather.fetch_forecast(mo_ji_weather.city_codes[<span class="string">"ShangHaiMinHang"</span>])</span><br><span class="line"></span><br><span class="line">    print(forecast_list)</span><br><span class="line"></span><br><span class="line">    xun_fei_tts = XunFeiTTS()</span><br><span class="line">    s = <span class="string">""</span></span><br><span class="line">    forecast_words = []</span><br><span class="line">    <span class="keyword">for</span> forecast <span class="keyword">in</span> forecast_list:</span><br><span class="line">        f = Forecast(forecast)</span><br><span class="line">        forecast_words.append(f.to_chinese())</span><br><span class="line">        print(f.to_chinese())</span><br><span class="line">    s = <span class="string">","</span>.join(forecast_words)</span><br><span class="line">    logging.debug(<span class="string">"[MojiWeather.main] - %s"</span> % s)</span><br><span class="line">    xun_fei_tts.fetch_voice(s)</span><br><span class="line"></span><br><span class="line">    voice_player = VoicePlayer()</span><br><span class="line">    voice_player.play(<span class="string">'voice.wav'</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>程序编写完成后，将代码通过FileZilla上传工具把代码上传到树莓派。现在距离天气闹钟只差最后一步（闹钟）。借助linux的crond定时任务就可以很容易的实现闹钟这一功能。在树莓派上执行<code>crontab -e</code>就可以编辑crond任务了，第一次打开时会提示让你选择一个编辑器，按个人喜好选择即可。</p>
+<blockquote>
+<p>使用<code>crontab -e</code>命令时要注意不要手滑按成<code>crontab -r</code>（这两个键挨着很近），后者是【清空corntab配置】。</p>
+</blockquote>
+<p>crond 配置说明 <img src="http://upload-images.jianshu.io/upload_images/5471630-d57d11d626ddecb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>附上本人树莓派上的crontab设置 <img src="http://upload-images.jianshu.io/upload_images/5471630-4a8bd5eb3137fa1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h1 id="实际效果"><a href="#实际效果" class="headerlink" title="实际效果"></a>实际效果</h1><p><img src="http://upload-images.jianshu.io/upload_images/5471630-a7e9ee1c5299bd22.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br>左边的就是淘宝上几十块买的小音响，分蓝牙和有线两种链接模式，颜值还是很高的。文章里的代码贴的比较多（娱乐项目，代码写的比较糟，想吐槽就吐吧orz），请各位看客海涵。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><ul>
+<li><a href="https://image-1253653901.cos.ap-shanghai.myqcloud.com/md-image/weather/5887.xml" target="_blank" rel="noopener">查询墨迹天气 城市id</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/10/树莓派3b+安装Raspbian系统/" rel="next" title="树莓派3b+安装Raspbian系统">
+                <i class="fa fa-chevron-left"></i> 树莓派3b+安装Raspbian系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/19245696?s=460&v=4" alt="路仟">
+            
+              <p class="site-author-name" itemprop="name">路仟</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/oahnus" title="GitHub &rarr; https://github.com/oahnus" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:478606127@qq.com" title="E-Mail &rarr; mailto:478606127@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境及工具"><span class="nav-number">2.</span> <span class="nav-text">环境及工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询天气"><span class="nav-number">3.</span> <span class="nav-text">查询天气</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">3.1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口详情"><span class="nav-number">3.2.</span> <span class="nav-text">接口详情</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语音合成"><span class="nav-number">4.</span> <span class="nav-text">语音合成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#播放wav语音的工具类"><span class="nav-number">4.1.</span> <span class="nav-text">播放wav语音的工具类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整合"><span class="nav-number">4.2.</span> <span class="nav-text">整合</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署"><span class="nav-number">5.</span> <span class="nav-text">部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实际效果"><span class="nav-number">6.</span> <span class="nav-text">实际效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">7.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">路仟</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
