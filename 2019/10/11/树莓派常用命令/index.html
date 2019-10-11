@@ -95,17 +95,18 @@
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66464579" charset="UTF-8"></script>
 
 
-  <meta name="description" content="理解java的多态">
+  <meta name="description" content="树莓派(3B+)常用命令">
+<meta name="keywords" content="树莓派">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java 多态">
-<meta property="og:url" content="blog.oahnus.top/2016/11/21/java多态/index.html">
+<meta property="og:title" content="树莓派常用命令">
+<meta property="og:url" content="blog.oahnus.top/2019/10/11/树莓派常用命令/index.html">
 <meta property="og:site_name" content="路仟">
-<meta property="og:description" content="理解java的多态">
+<meta property="og:description" content="树莓派(3B+)常用命令">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-20T15:38:30.654Z">
+<meta property="og:updated_time" content="2019-10-11T14:22:33.147Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java 多态">
-<meta name="twitter:description" content="理解java的多态">
+<meta name="twitter:title" content="树莓派常用命令">
+<meta name="twitter:description" content="树莓派(3B+)常用命令">
 
 
 
@@ -113,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="blog.oahnus.top/2016/11/21/java多态/">
+  <link rel="canonical" href="blog.oahnus.top/2019/10/11/树莓派常用命令/">
 
 
 
@@ -123,7 +124,7 @@
   };
 </script>
 
-  <title>java 多态 | 路仟</title>
+  <title>树莓派常用命令 | 路仟</title>
   
 
 
@@ -332,7 +333,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="blog.oahnus.top/2016/11/21/java多态/">
+    <link itemprop="mainEntityOfPage" href="blog.oahnus.top/2019/10/11/树莓派常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路仟">
@@ -349,7 +350,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java 多态
+          <h1 class="post-title" itemprop="name headline">树莓派常用命令
 
               
             
@@ -375,24 +376,12 @@
                 
               
 
-              <time title="创建时间：2016-11-21 00:00:00" itemprop="dateCreated datePublished" datetime="2016-11-21T00:00:00+08:00">2016-11-21</time>
+              <time title="创建时间：2019-10-11 22:02:26 / 修改时间：22:22:33" itemprop="dateCreated datePublished" datetime="2019-10-11T22:02:26+08:00">2019-10-11</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-20 23:38:30" itemprop="dateModified" datetime="2019-06-20T23:38:30+08:00">2019-06-20</time>
               
             
           </span>
@@ -409,7 +398,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/category/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/category/树莓派/" itemprop="url" rel="index"><span itemprop="name">树莓派</span></a></span>
 
                 
                 
@@ -428,8 +417,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2016/11/21/java多态/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/21/java多态/" itemprop="commentCount"></span>
+                <a href="/2019/10/11/树莓派常用命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/11/树莓派常用命令/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -443,7 +432,7 @@
           
 
           
-            <div class="post-description">理解java的多态</div>
+            <div class="post-description">树莓派(3B+)常用命令</div>
           
 
         </div>
@@ -459,32 +448,68 @@
       
 
       
-        <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性</p>
-<p>在多态中<br>指向子类的父类引用由于向上转型了，它只能访问父类中拥有的方法和属性，而对于子类中存在而父类中不存在的方法，该引用是不能使用的，尽管是重载该方法。若子类重写了父类中的某些方法，在调用该些方法的时候，必定是使用子类中定义的这些方法（动态连接、动态调用）</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>多态分为编译时多态和运行时多态<br>编译时多态是静态的，主要指方法的重载<br>运行时多态是通过动态绑定实现的</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>java中实现多态有三个条件：继承，重写，向上转型</p>
-<p>实现多态有两种方式：接口和继承</p>
-<h3 id="基于继承的多态"><a href="#基于继承的多态" class="headerlink" title="基于继承的多态"></a>基于继承的多态</h3><p>基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为</p>
-<p>由于所有的类都是由Object类继承而来，因此假设有类B继承自类A,类B重写了toString方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object o = new B();</span><br><span class="line">o.toString();</span><br></pre></td></tr></table></figure>
+        <h1 id="树莓派常用命令"><a href="#树莓派常用命令" class="headerlink" title="树莓派常用命令"></a>树莓派常用命令</h1><p>[TOC]</p>
+<h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">uname -a               # 查看内核/操作系统/CPU信息</span><br><span class="line">lsb_release -a         # 查看操作系统版本 (适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb)   </span><br><span class="line">cat /proc/cpuinfo      # 查看CPU信息</span><br><span class="line">hostname               # 查看计算机名</span><br><span class="line">lspci -tv              # 列出所有PCI设备</span><br><span class="line">lsusb -tv              # 列出所有USB设备</span><br><span class="line">lsmod                  # 列出加载的内核模块</span><br><span class="line">env                    # 查看环境变量</span><br><span class="line">vcgencmd measure_temp  # 查看CPU温度</span><br><span class="line">alsamixer              # 调节系统音量</span><br></pre></td></tr></table></figure>
 
-<p>程序段会执行类B的toString方法，当子类重写父类的方法被调用时，只有对象继承链中的最末端的方法才会被调用，这里Object-&gt;A-&gt;B，B在对象链的末端</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object o = new A();</span><br><span class="line">o.toString();</span><br></pre></td></tr></table></figure>
+<p>查看CPU信息（型号） </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br></pre></td></tr></table></figure>
 
-<p>若A重写了toString方法，执行的是A的toString方法</p>
-<p>对于引用子类的父类类型，在处理该引用时，它适用于继承该父类的所有子类，子类对象的不同，对方法的实现也就不同，执行相同动作产生的行为也就不同<br>如果父类是抽象类，那么子类必须要实现父类中所有的抽象方法，这样该父类所有的子类一定存在统一的对外接口，但其内部的具体实现可以各异。这样我们就可以使用顶层类提供的统一接口来处理该层次的方法</p>
-<h3 id="基于接口的多态"><a href="#基于接口的多态" class="headerlink" title="基于接口的多态"></a>基于接口的多态</h3><p>继承是通过重写父类的同一方法的几个不同子类来体现的，那么就可就是通过实现接口并覆盖接口中同一方法的几不同的类体现的。<br>在接口的多态中，指向接口的引用必须是指定这实现了该接口的一个类的实例程序，在运行时，根据对象引用的实际类型来执行对应的方法</p>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">public class A &#123;</span><br><span class="line">    public String show(D obj) &#123;</span><br><span class="line">        return (&quot;A and D&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String show(A obj) &#123;</span><br><span class="line">        return (&quot;A and A&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class B extends A&#123;</span><br><span class="line">    public String show(B obj)&#123;</span><br><span class="line">        return (&quot;B and B&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String show(A obj)&#123;</span><br><span class="line">        return (&quot;B and A&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class C extends B&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class D extends B&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        A a1 = new A();</span><br><span class="line">        A a2 = new B();</span><br><span class="line">        B b = new B();</span><br><span class="line">        C c = new C();</span><br><span class="line">        D d = new D();</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;1--&quot; + a1.show(b));</span><br><span class="line">        System.out.println(&quot;2--&quot; + a1.show(c));</span><br><span class="line">        System.out.println(&quot;3--&quot; + a1.show(d));</span><br><span class="line">        System.out.println(&quot;4--&quot; + a2.show(b));</span><br><span class="line">        System.out.println(&quot;5--&quot; + a2.show(c));</span><br><span class="line">        System.out.println(&quot;6--&quot; + a2.show(d));</span><br><span class="line">        System.out.println(&quot;7--&quot; + b.show(b));</span><br><span class="line">        System.out.println(&quot;8--&quot; + b.show(c));</span><br><span class="line">        System.out.println(&quot;9--&quot; + b.show(d));      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>8  Intel(R) Xeon(R) CPU            E5410   @ 2.33GHz </p>
+</blockquote>
+<p>(看到有8个逻辑CPU, 也知道了CPU型号) </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep physical | uniq -c</span><br></pre></td></tr></table></figure>
 
-<p>结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1--A and A</span><br><span class="line">2--A and A</span><br><span class="line">3--A and D</span><br><span class="line">4--B and A</span><br><span class="line">5--B and A</span><br><span class="line">6--A and D</span><br><span class="line">7--B and B</span><br><span class="line">8--B and B</span><br><span class="line">9--A and D</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>4 physical id      : 0 <br><br>4 physical id      : 1 </p>
+</blockquote>
+<p>(说明实际上是两颗4核的CPU) </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></table></figure>
 
-<p>当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法。这句话对多态进行了一个概括。其实在继承链中对象方法的调用存在一个优先级：<br><font color="blue"><code>this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)</code></font></p>
-<p>分析5，a2.show(c)，a2是A类型的引用变量，所以this就代表了A，a2.show(c),它在A类中找发现没有找到，于是到A的超类中找(super)，由于A没有超类（Object除外），所以跳到第三级，也就是this.show((super)O)，C的超类有B、A，所以(super)O为B、A，this同样是A，这里在A中找到了show(A obj)，同时由于a2是B类的一个引用且B类重写了show(A obj)，因此最终会调用子类B类的show(A obj)方法，结果也就是B and A</p>
-<p>方法已经找到了但是我们这里还是存在一点疑问，我们还是来看这句话：当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法。这我们用一个例子来说明这句话所代表的含义：a2.show(b)</p>
-<p>这里a2是引用变量，为A类型，它引用的是B对象，因此按照上面那句话的意思是说有B来决定调用谁的方法,所以a2.show(b)应该要调用B中的show(B obj)，产生的结果应该是“B and B”，但是为什么会与前面的运行结果产生差异呢？这里我们忽略了后面那句话“但是这儿被调用的方法必须是在超类中定义过的”，那么show(B obj)在A类中存在吗？根本就不存在！所以这句话在这里不适用？那么难道是这句话错误了？非也！其实这句话还隐含这这句话：它仍然要按照继承链中调用方法的优先级来确认。所以它才会在A类中找到show(A obj)，同时由于B重写了该方法所以才会调用B类中的方法，否则就会调用A类中的方法</p>
-<p>所以多态机制遵循的原则概括为：当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法，但是它仍然要根据继承链中方法调用的优先级来确认方法，该优先级为：<b>this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)</b></p>
+<blockquote>
+<p>32 </p>
+</blockquote>
+<p>(说明当前CPU运行在32bit模式下, 但不代表CPU不支持64bit) </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep flags | grep ' lm ' | wc -l</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>8 </p>
+</blockquote>
+<p>(结果大于0, 说明支持64bit计算. lm指long mode, 支持lm则是64bit)<br><br></p>
+<p>完整看cpu详细信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmidecode | grep 'Processor Information'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>查看当前操作系统内核信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Linux euis1 2.6.9-55.ELsmp #1 SMP Fri Apr 20 17:03:35 EDT 2007 i686 i686 i386 GNU/Linux </p>
+</blockquote>
+<br>
+
+<p>查看当前操作系统发行版信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/issue | grep Linux</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Red Hat Enterprise Linux AS release 4 (Nahant Update 5) </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dmidecode | grep "Product Name"  # 查看机器型号</span><br><span class="line">dmesg | grep -i eth # 查看网卡信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">free -m                # 查看内存使用量和交换区使用量</span><br><span class="line">df -h                  # 查看各分区使用情况</span><br><span class="line">du -sh &lt;目录名&gt;        # 查看指定目录的大小</span><br><span class="line">grep MemTotal /proc/meminfo   # 查看内存总量</span><br><span class="line">grep MemFree /proc/meminfo    # 查看空闲内存量</span><br><span class="line">uptime                 # 查看系统运行时间、用户数、负载</span><br><span class="line">cat /proc/loadavg      # 查看系统负载</span><br></pre></td></tr></table></figure>
+
+<h2 id="磁盘和分区"><a href="#磁盘和分区" class="headerlink" title="磁盘和分区"></a>磁盘和分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount | column -t      # 查看挂接的分区状态</span><br><span class="line">fdisk -l               # 查看所有分区</span><br><span class="line">swapon -s              # 查看所有交换分区</span><br><span class="line">hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)</span><br><span class="line">dmesg | grep IDE       # 查看启动时IDE设备检测状况</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ifconfig               # 查看所有网络接口的属性</span><br><span class="line">iptables -L            # 查看防火墙设置</span><br><span class="line">route -n               # 查看路由表</span><br><span class="line">netstat -lntp          # 查看所有监听端口</span><br><span class="line">netstat -antp          # 查看所有已经建立的连接</span><br><span class="line">netstat -s             # 查看网络统计信息</span><br><span class="line"></span><br><span class="line">vim /etc/wpa_supplicant/wpa_supplicant.conf  # 修改wifi密码</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w                       # 查看活动用户</span><br><span class="line">id &lt;用户名&gt;              # 查看指定用户信息</span><br><span class="line">last                    # 查看用户登录日志</span><br><span class="line">cut -d: -f1 /etc/passwd # 查看系统所有用户</span><br><span class="line">cut -d: -f1 /etc/group  # 查看系统所有组</span><br><span class="line">crontab -l              # 查看当前用户的计划任务</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list       # 列出所有系统服务</span><br><span class="line">chkconfig --list | grep on    # 列出所有启动的系统服务</span><br></pre></td></tr></table></figure>
+
+<h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa                # 查看所有安装的软件包</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -505,6 +530,15 @@
 
     <footer class="post-footer">
       
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
+          
+        </div>
+      
 
       
       
@@ -514,8 +548,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/12/静态代码块与构造函数/" rel="next" title="静态代码块与构造函数">
-                <i class="fa fa-chevron-left"></i> 静态代码块与构造函数
+              <a href="/2019/10/10/supervisor常见问题/" rel="next" title="supervisor常见问题">
+                <i class="fa fa-chevron-left"></i> supervisor常见问题
               </a>
             
           </div>
@@ -523,10 +557,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/21/String/" rel="prev" title="String">
-                String <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -726,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">1.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">2.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">3.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于继承的多态"><span class="nav-number">3.1.</span> <span class="nav-text">基于继承的多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于接口的多态"><span class="nav-number">3.2.</span> <span class="nav-text">基于接口的多态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">4.</span> <span class="nav-text">实例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树莓派常用命令"><span class="nav-number">1.</span> <span class="nav-text">树莓派常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统"><span class="nav-number">1.1.</span> <span class="nav-text">系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源"><span class="nav-number">1.2.</span> <span class="nav-text">资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘和分区"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘和分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">1.4.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户"><span class="nav-number">1.5.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务"><span class="nav-number">1.6.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序"><span class="nav-number">1.7.</span> <span class="nav-text">程序</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -896,9 +926,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "blog.oahnus.top/2016/11/21/java多态/";
-    this.page.identifier = "2016/11/21/java多态/";
-    this.page.title = 'java 多态';
+    this.page.url = "blog.oahnus.top/2019/10/11/树莓派常用命令/";
+    this.page.identifier = "2019/10/11/树莓派常用命令/";
+    this.page.title = '树莓派常用命令';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
