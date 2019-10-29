@@ -421,19 +421,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2016/11/21/String/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/21/String/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -566,8 +553,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/21/java多态/" rel="next" title="java 多态">
-                <i class="fa fa-chevron-left"></i> java 多态
+              <a href="/2016/11/12/静态代码块与构造函数/" rel="next" title="静态代码块与构造函数">
+                <i class="fa fa-chevron-left"></i> 静态代码块与构造函数
               </a>
             
           </div>
@@ -576,8 +563,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/29/MySQL存储过程/" rel="prev" title="MySQL存储过程">
-                MySQL存储过程 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/11/21/java多态/" rel="prev" title="java 多态">
+                java 多态 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -601,10 +588,7 @@
           
 
   
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
+    <div class="comments" id="gitalk-container">
     </div>
 
   
@@ -656,7 +640,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -714,7 +698,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -933,57 +923,36 @@
   
 
   
+
+
   
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
 <script>
-  function loadCount() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://oahnus.disqus.com/count.js';
-    s.id = 'dsq-count-scr';
-    (d.head || d.body).appendChild(s);
-  }
-  // defer loading until the whole page loading is completed
-  window.addEventListener('load', loadCount, false);
+  var gitalk = new Gitalk({
+    clientID: 'e85cff06ad30515f4b1d',
+    clientSecret: '3f27ba840dddddf34aec6d8b2d56586a3301f0b2',
+    repo: 'oahnus.github.io',
+    owner: 'oahnus',
+    admin: ['oahnus'],
+    id: md5(location.pathname),
+    
+      language: window.navigator.language || window.navigator.userLanguage,
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
 </script>
-
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "blog.oahnus.top/2016/11/21/String/";
-    this.page.identifier = "2016/11/21/String/";
-    this.page.title = 'String';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://oahnus.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
-  
-    $(function() {
-      var offsetTop = $('#comments').offset().top - $(window).height();
-      if (offsetTop <= 0) {
-        // load directly when there's no a scrollbar
-        window.addEventListener('load', loadComments, false);
-      } else {
-        $(window).on('scroll.disqus_scroll', function() {
-          // offsetTop may changes because of manually resizing browser window or lazy loading images.
-          var offsetTop = $('#comments').offset().top - $(window).height();
-          var scrollTop = $(window).scrollTop();
-
-          // pre-load comments a bit? (margin or anything else)
-          if (offsetTop - scrollTop < 60) {
-            $(window).off('.disqus_scroll');
-            loadComments();
-          }
-        });
-      }
-    });
-  
-</script>
-
-
-
-
 
   
 

@@ -95,18 +95,18 @@
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=66464579" charset="UTF-8"></script>
 
 
-  <meta name="description" content="树莓派(3B+)常用命令">
-<meta name="keywords" content="树莓派">
+  <meta name="description" content="通过Python ctypes调用DLL文件的方法">
+<meta name="keywords" content="Python,DLL,ctypes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树莓派常用命令">
-<meta property="og:url" content="blog.oahnus.top/2019/10/11/树莓派常用命令/index.html">
+<meta property="og:title" content="Python使用ctypes模块调用DLL">
+<meta property="og:url" content="blog.oahnus.top/2019/10/29/Python使用ctypes模块调用DLL/index.html">
 <meta property="og:site_name" content="路仟">
-<meta property="og:description" content="树莓派(3B+)常用命令">
+<meta property="og:description" content="通过Python ctypes调用DLL文件的方法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T14:22:33.147Z">
+<meta property="og:updated_time" content="2019-10-29T14:26:01.284Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="树莓派常用命令">
-<meta name="twitter:description" content="树莓派(3B+)常用命令">
+<meta name="twitter:title" content="Python使用ctypes模块调用DLL">
+<meta name="twitter:description" content="通过Python ctypes调用DLL文件的方法">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="blog.oahnus.top/2019/10/11/树莓派常用命令/">
+  <link rel="canonical" href="blog.oahnus.top/2019/10/29/Python使用ctypes模块调用DLL/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>树莓派常用命令 | 路仟</title>
+  <title>Python使用ctypes模块调用DLL | 路仟</title>
   
 
 
@@ -333,7 +333,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="blog.oahnus.top/2019/10/11/树莓派常用命令/">
+    <link itemprop="mainEntityOfPage" href="blog.oahnus.top/2019/10/29/Python使用ctypes模块调用DLL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="路仟">
@@ -350,7 +350,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">树莓派常用命令
+          <h1 class="post-title" itemprop="name headline">Python使用ctypes模块调用DLL
 
               
             
@@ -376,7 +376,7 @@
                 
               
 
-              <time title="创建时间：2019-10-11 22:02:26 / 修改时间：22:22:33" itemprop="dateCreated datePublished" datetime="2019-10-11T22:02:26+08:00">2019-10-11</time>
+              <time title="创建时间：2019-10-29 22:13:12 / 修改时间：22:26:01" itemprop="dateCreated datePublished" datetime="2019-10-29T22:13:12+08:00">2019-10-29</time>
             
 
             
@@ -398,7 +398,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/category/树莓派/" itemprop="url" rel="index"><span itemprop="name">树莓派</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/category/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
 
                 
                 
@@ -419,7 +419,7 @@
           
 
           
-            <div class="post-description">树莓派(3B+)常用命令</div>
+            <div class="post-description">通过Python ctypes调用DLL文件的方法</div>
           
 
         </div>
@@ -435,68 +435,154 @@
       
 
       
-        <h1 id="树莓派常用命令"><a href="#树莓派常用命令" class="headerlink" title="树莓派常用命令"></a>树莓派常用命令</h1><p>[TOC]</p>
-<h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">uname -a               # 查看内核/操作系统/CPU信息</span><br><span class="line">lsb_release -a         # 查看操作系统版本 (适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb)   </span><br><span class="line">cat /proc/cpuinfo      # 查看CPU信息</span><br><span class="line">hostname               # 查看计算机名</span><br><span class="line">lspci -tv              # 列出所有PCI设备</span><br><span class="line">lsusb -tv              # 列出所有USB设备</span><br><span class="line">lsmod                  # 列出加载的内核模块</span><br><span class="line">env                    # 查看环境变量</span><br><span class="line">vcgencmd measure_temp  # 查看CPU温度</span><br><span class="line">alsamixer              # 调节系统音量</span><br></pre></td></tr></table></figure>
+        <h1 id="Python使用ctypes模块调用DLL"><a href="#Python使用ctypes模块调用DLL" class="headerlink" title="Python使用ctypes模块调用DLL"></a>Python使用ctypes模块调用DLL</h1><p>[TOC]</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用ctypes调用DLL文件时，要保证python解释器的位数和DLL使用的C解释器位数一致，32位C解释器必须与32位Python解释器配合使用，否则会报错<code>OSError: [WinError xxx] xxx 不是有效的 Win32 应用程序</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前python环境使用的解释器位数</span></span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">print(platform.architecture())</span><br></pre></td></tr></table></figure>
 
-<p>查看CPU信息（型号） </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br></pre></td></tr></table></figure>
+<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>针对DLL的两种调用约定，使用不同的调用方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line"></span><br><span class="line"><span class="comment"># cdecl</span></span><br><span class="line">lib = ctypes.cdll.ctypes.cdll.LoadLibrary(<span class="string">"dll_path"</span>)</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">lib = ctypes.CDLL(<span class="string">"dll_path"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># stdcall</span></span><br><span class="line">lib = ctypes.windll.LoadLibrary(<span class="string">"dll_path"</span>)</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">lib = ctypes.WinDLL(<span class="string">"dll_path"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="调用DLL内方法"><a href="#调用DLL内方法" class="headerlink" title="调用DLL内方法"></a>调用DLL内方法</h2><p>通过<code>lib.methodName</code>即可调用DLLn内部方法，调用DLL内部方法时，要将python参数通过ctypes转换为C语言参数</p>
+<h3 id="ctypes-C类型与python类型对应表"><a href="#ctypes-C类型与python类型对应表" class="headerlink" title="ctypes C类型与python类型对应表"></a>ctypes C类型与python类型对应表</h3><table>
+<thead>
+<tr>
+<th>ctypes type</th>
+<th>C type</th>
+<th>Python type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>c_bool</td>
+<td>_Bool</td>
+<td>bool(1)</td>
+</tr>
+<tr>
+<td>c_char</td>
+<td>char</td>
+<td>单个字符的bytes对象，等同于 b’a’</td>
+</tr>
+<tr>
+<td>c_wchar</td>
+<td>wchar_t</td>
+<td>单个字符的字符串</td>
+</tr>
+<tr>
+<td>c_byte</td>
+<td>char</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ubyte</td>
+<td>unsigned char</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_short</td>
+<td>short</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ushort</td>
+<td>unsigned short</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_int</td>
+<td>int</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_uint</td>
+<td>unsigned int</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_long</td>
+<td>long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ulong</td>
+<td>unsigned long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_longlong</td>
+<td>__int64 or long long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_size_t</td>
+<td>size_t</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ssize_t</td>
+<td>ssize_t</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_float</td>
+<td>float</td>
+<td>float</td>
+</tr>
+<tr>
+<td>c_double</td>
+<td>double</td>
+<td>float</td>
+</tr>
+<tr>
+<td>c_longdouble</td>
+<td>long double</td>
+<td>float</td>
+</tr>
+<tr>
+<td>c_cahr_p</td>
+<td>char *</td>
+<td>bytes object or None</td>
+</tr>
+<tr>
+<td>c_wchar_p</td>
+<td>wchar *</td>
+<td>string or None</td>
+</tr>
+<tr>
+<td>c_void_p</td>
+<td>void *</td>
+<td>int or None</td>
+</tr>
+</tbody></table>
+<h3 id="调用范例"><a href="#调用范例" class="headerlink" title="调用范例"></a>调用范例</h3><p>Example1:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># DLL中定义的函数</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">char</span> *ip, <span class="keyword">int</span> port)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lib为调用CDLL或WinDLL返回的对象</span></span><br><span class="line">ip = <span class="string">'192.168.0.2'</span></span><br><span class="line">port = <span class="number">8939</span></span><br><span class="line">res = lib.func(ctypes.c_char_p(ip.encode()), ctypes.c_int(port))</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># DLL中定义的方法，方法内部会通过buf和data的指针，修改参数值向函数外传值</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span>* data)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">data = ctypes.c_int()</span><br><span class="line"><span class="comment"># 创建一个string buffer, 指定容量为100</span></span><br><span class="line">buf = ctypes.create_string_buffer(<span class="number">100</span>)</span><br><span class="line"><span class="comment"># ctypes.byref获取buf的引用，也可以使用ctypes.pointer(buf)</span></span><br><span class="line">res = lib.func2(ctypes.byref(buf), ctypes.byref(data))</span><br><span class="line"><span class="comment"># 获取data的值</span></span><br><span class="line">print(data.value)</span><br><span class="line"><span class="comment"># buf是一个c的char类型的数组，需要自定义转换为Python的字符串</span></span><br><span class="line"><span class="comment"># print(buf)  ==&gt; &lt;ctypes.c_char_Array_100 object at 0x02F2AF80&gt; </span></span><br><span class="line">print(buf.value.decode())</span><br><span class="line"><span class="comment"># 直接遍历buf</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(buf)):</span><br><span class="line">  ch = buf[i].decode()</span><br><span class="line">  	<span class="comment"># 特殊字符处理</span></span><br><span class="line">  	<span class="keyword">if</span> ch != <span class="string">"\n"</span> <span class="keyword">and</span> ch != <span class="string">"\t"</span> <span class="keyword">and</span> ch != <span class="string">"\r"</span> <span class="keyword">and</span> ch != <span class="string">"\0"</span>:</span><br><span class="line">      ret_str = ret_str + ch</span><br><span class="line">ret_str= ret_str.strip()ret_str.strip()</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>8  Intel(R) Xeon(R) CPU            E5410   @ 2.33GHz </p>
+<p>Note: </p>
+<p>C语言字符串的末尾会带有‘\0’结束符， 直接处理字符串时要注意‘\0’</p>
+<p>ctypes.byref用来传递引用参数，ctypes.pointer()作为传参会创建实际的指针对象</p>
+<p>byref可以通过value属性获取值，pointer可以通过contents获取返回值</p>
+<p>如果参数需要传递空指针时，直接传递None，用None作为空指针</p>
 </blockquote>
-<p>(看到有8个逻辑CPU, 也知道了CPU型号) </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep physical | uniq -c</span><br></pre></td></tr></table></figure>
+<p>Example3:</p>
+<p>数组参数的创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># arr1 = int[5] 并且值为0</span></span><br><span class="line">arr1 = (ctypes.c_int * <span class="number">5</span>)()</span><br><span class="line"><span class="comment"># arr2 = double[10] 并且前三个值为1,2,3 其他值为0</span></span><br><span class="line">arr2 = (ctypes.c_double)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 二维数组</span></span><br><span class="line">arr3 = ((c_int * <span class="number">4</span>) * <span class="number">3</span>)()</span><br></pre></td></tr></table></figure>
+
+<p>Example4:</p>
+<p>结构体传参， 结构体参数可以通过Python class创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _fileds_属性定义为二维tuple</span></span><br><span class="line"><span class="comment"># 二维tuple中的每个tuple 第一个值为变量名，第二个值为类型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StructParam</span><span class="params">(types.Structure)</span>:</span></span><br><span class="line">  _fields_ = (</span><br><span class="line">    (<span class="string">'x'</span>, c_int),</span><br><span class="line">    (<span class="string">'y'</span>, c_double)</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">param = StructParam()</span><br><span class="line">param.x = <span class="number">10</span></span><br><span class="line">param.y = <span class="number">20</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>4 physical id      : 0 <br><br>4 physical id      : 1 </p>
+<p>Note:</p>
+<p>python中定义的结构体的class名，变量名可以不同于C中定义的结构体，但是变量的类型和定义顺序一定要与C中的类型顺序一致。</p>
 </blockquote>
-<p>(说明实际上是两颗4核的CPU) </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></table></figure>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://docs.python.org/zh-cn/3.7/library/ctypes.html" target="_blank" rel="noopener">ctypes中文文档</a></p>
 
-<blockquote>
-<p>32 </p>
-</blockquote>
-<p>(说明当前CPU运行在32bit模式下, 但不代表CPU不支持64bit) </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep flags | grep ' lm ' | wc -l</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>8 </p>
-</blockquote>
-<p>(结果大于0, 说明支持64bit计算. lm指long mode, 支持lm则是64bit)<br><br></p>
-<p>完整看cpu详细信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dmidecode | grep 'Processor Information'</span><br></pre></td></tr></table></figure>
-
-<br>
-
-<p>查看当前操作系统内核信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Linux euis1 2.6.9-55.ELsmp #1 SMP Fri Apr 20 17:03:35 EDT 2007 i686 i686 i386 GNU/Linux </p>
-</blockquote>
-<br>
-
-<p>查看当前操作系统发行版信息</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/issue | grep Linux</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Red Hat Enterprise Linux AS release 4 (Nahant Update 5) </p>
-</blockquote>
-<br>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dmidecode | grep "Product Name"  # 查看机器型号</span><br><span class="line">dmesg | grep -i eth # 查看网卡信息</span><br></pre></td></tr></table></figure>
-
-<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">free -m                # 查看内存使用量和交换区使用量</span><br><span class="line">df -h                  # 查看各分区使用情况</span><br><span class="line">du -sh &lt;目录名&gt;        # 查看指定目录的大小</span><br><span class="line">grep MemTotal /proc/meminfo   # 查看内存总量</span><br><span class="line">grep MemFree /proc/meminfo    # 查看空闲内存量</span><br><span class="line">uptime                 # 查看系统运行时间、用户数、负载</span><br><span class="line">cat /proc/loadavg      # 查看系统负载</span><br></pre></td></tr></table></figure>
-
-<h2 id="磁盘和分区"><a href="#磁盘和分区" class="headerlink" title="磁盘和分区"></a>磁盘和分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount | column -t      # 查看挂接的分区状态</span><br><span class="line">fdisk -l               # 查看所有分区</span><br><span class="line">swapon -s              # 查看所有交换分区</span><br><span class="line">hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)</span><br><span class="line">dmesg | grep IDE       # 查看启动时IDE设备检测状况</span><br></pre></td></tr></table></figure>
-
-<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ifconfig               # 查看所有网络接口的属性</span><br><span class="line">iptables -L            # 查看防火墙设置</span><br><span class="line">route -n               # 查看路由表</span><br><span class="line">netstat -lntp          # 查看所有监听端口</span><br><span class="line">netstat -antp          # 查看所有已经建立的连接</span><br><span class="line">netstat -s             # 查看网络统计信息</span><br><span class="line"></span><br><span class="line">vim /etc/wpa_supplicant/wpa_supplicant.conf  # 修改wifi密码</span><br></pre></td></tr></table></figure>
-
-<h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w                       # 查看活动用户</span><br><span class="line">id &lt;用户名&gt;              # 查看指定用户信息</span><br><span class="line">last                    # 查看用户登录日志</span><br><span class="line">cut -d: -f1 /etc/passwd # 查看系统所有用户</span><br><span class="line">cut -d: -f1 /etc/group  # 查看系统所有组</span><br><span class="line">crontab -l              # 查看当前用户的计划任务</span><br></pre></td></tr></table></figure>
-
-<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig --list       # 列出所有系统服务</span><br><span class="line">chkconfig --list | grep on    # 列出所有启动的系统服务</span><br></pre></td></tr></table></figure>
-
-<h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa                # 查看所有安装的软件包</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -522,7 +608,11 @@
         
         <div class="post-tags">
           
-            <a href="/tags/树莓派/" rel="tag"># 树莓派</a>
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/DLL/" rel="tag"># DLL</a>
+          
+            <a href="/tags/ctypes/" rel="tag"># ctypes</a>
           
         </div>
       
@@ -535,8 +625,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/10/supervisor常见问题/" rel="next" title="supervisor常见问题">
-                <i class="fa fa-chevron-left"></i> supervisor常见问题
+              <a href="/2019/10/11/树莓派常用命令/" rel="next" title="树莓派常用命令">
+                <i class="fa fa-chevron-left"></i> 树莓派常用命令
               </a>
             
           </div>
@@ -544,10 +634,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/29/Python使用ctypes模块调用DLL/" rel="prev" title="Python使用ctypes模块调用DLL">
-                Python使用ctypes模块调用DLL <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -750,7 +836,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#树莓派常用命令"><span class="nav-number">1.</span> <span class="nav-text">树莓派常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统"><span class="nav-number">1.1.</span> <span class="nav-text">系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源"><span class="nav-number">1.2.</span> <span class="nav-text">资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘和分区"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘和分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">1.4.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户"><span class="nav-number">1.5.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务"><span class="nav-number">1.6.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序"><span class="nav-number">1.7.</span> <span class="nav-text">程序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python使用ctypes模块调用DLL"><span class="nav-number">1.</span> <span class="nav-text">Python使用ctypes模块调用DLL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.1.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载"><span class="nav-number">1.2.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用DLL内方法"><span class="nav-number">1.3.</span> <span class="nav-text">调用DLL内方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ctypes-C类型与python类型对应表"><span class="nav-number">1.3.1.</span> <span class="nav-text">ctypes C类型与python类型对应表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用范例"><span class="nav-number">1.3.2.</span> <span class="nav-text">调用范例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录"><span class="nav-number">1.4.</span> <span class="nav-text">附录</span></a></li></ol></li></ol></div>
             
 
           </div>
