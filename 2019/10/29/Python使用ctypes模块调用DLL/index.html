@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="路仟">
 <meta property="og:description" content="通过Python ctypes调用DLL文件的方法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-29T14:26:01.284Z">
+<meta property="og:updated_time" content="2020-03-09T05:19:29.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python使用ctypes模块调用DLL">
 <meta name="twitter:description" content="通过Python ctypes调用DLL文件的方法">
@@ -221,10 +221,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-10-29 22:13:12 / 修改时间：22:26:01" itemprop="dateCreated datePublished" datetime="2019-10-29T22:13:12+08:00">2019-10-29</time>
+              <time title="创建时间：2019-10-29 22:13:12" itemprop="dateCreated datePublished" datetime="2019-10-29T22:13:12+08:00">2019-10-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-09 13:19:29" itemprop="dateModified" datetime="2020-03-09T13:19:29+08:00">2020-03-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -247,8 +253,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Python使用ctypes模块调用DLL"><a href="#Python使用ctypes模块调用DLL" class="headerlink" title="Python使用ctypes模块调用DLL"></a>Python使用ctypes模块调用DLL</h1><p>[TOC]</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用ctypes调用DLL文件时，要保证python解释器的位数和DLL使用的C解释器位数一致，32位C解释器必须与32位Python解释器配合使用，否则会报错<code>OSError: [WinError xxx] xxx 不是有效的 Win32 应用程序</code></p>
+        <h1 id="Python使用ctypes模块调用DLL"><a href="#Python使用ctypes模块调用DLL" class="headerlink" title="Python使用ctypes模块调用DLL"></a>Python使用ctypes模块调用DLL</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用ctypes调用DLL文件时，要保证python解释器的位数和DLL使用的C解释器位数一致，32位C解释器必须与32位Python解释器配合使用，否则会报错<code>OSError: [WinError xxx] xxx 不是有效的 Win32 应用程序</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看当前python环境使用的解释器位数</span></span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">print(platform.architecture())</span><br></pre></td></tr></table></figure>
 
 <h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>针对DLL的两种调用约定，使用不同的调用方法</p>
@@ -497,20 +502,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/oahnus.github.io/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/oahnus.github.io/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/oahnus.github.io/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

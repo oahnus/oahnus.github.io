@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>git submodule</title>
+    <url>/oahnus.github.io/2020/03/10/git-submodule/</url>
+    <content><![CDATA[<h1 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h1><p>git submodule，子模块，允许将一个git仓库作为另一个git仓库的子目录，能够让你将另一个仓库克隆到自己的项目中，同时保持提交的独立性。</p>
+<a id="more"></a>
+<h2 id="添加子模块"><a href="#添加子模块" class="headerlink" title="添加子模块"></a>添加子模块</h2><p>将一个已存在的远程仓库添加到当前仓库作为子模块</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule add https://github.com/&#123;username&#125;/&#123;repo&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，子模块会将子项目放在当前仓库的同名目录中</p>
+<p>如果需要将子项目放在其他目录</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git submodule add https://github.com/&#123;username&#125;/&#123;repo&#125; path</span><br><span class="line"><span class="meta">#</span> Example</span><br><span class="line">git submodule add git@github.com:lvraikkonen/hexo-theme-next.git themes/next</span><br></pre></td></tr></table></figure>
+
+<p>此时运行<code>git status</code>会在目录下发现新增了<code>.gitmodules</code>文件</p>
+<p>.gitmodules文件范例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[submodule &quot;themes/hexo-theme-next&quot;]</span><br><span class="line">	path = themes/hexo-theme-next</span><br><span class="line">	url = git@github.com:oahnus/hexo-theme-next.git</span><br></pre></td></tr></table></figure>
+
+<p>配置文件保存项目URL与本地目录之间的映射关系</p>
+<p>如果有多个子模块，配置文件中会有多条记录</p>
+<h2 id="Clone-含有子模块的项目"><a href="#Clone-含有子模块的项目" class="headerlink" title="Clone 含有子模块的项目"></a>Clone 含有子模块的项目</h2><p>当clone一个含有子模块的项目到本地时，仓库中默认会包含子模块目录，但目录内没有任何文件。</p>
+<p>此时需要先运行<code>git submodule init</code>命令初始化本地配置文件，然后运行<code>git submodule update</code>命令拉取子模块代码</p>
+<p>除此之外，在clone项目时，还可以添加<code>--recurse-submodule</code>选项，此选项会自动初始化并更新仓库中的每一个子模块以及嵌套子模块</p>
+<p>如果已经clone项目但没有添加<code>--recurse-submodule</code>，可以通过运行<code>git submodule update --init</code>来完成相同的任务</p>
+<p>如果需要初始化、抓取并检出任何嵌套的子模块， 可以使用 <code>git submodule update --init --recursive</code></p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="noopener">git子模块文档</a></p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux常见命令</title>
     <url>/oahnus.github.io/2020/02/26/linux%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="linux常见命令"><a href="#linux常见命令" class="headerlink" title="linux常见命令"></a>linux常见命令</h1><p>[toc]</p>
-<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
+    <content><![CDATA[<h1 id="linux常见命令"><a href="#linux常见命令" class="headerlink" title="linux常见命令"></a>linux常见命令</h1><h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
 <li><p>统计目录下文件数量(不包含子目录文件)</p>
 <figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">ls -l|grep "^-"| wc -l</span><br><span class="line"># grep "^-" 过滤已'-'开头的行</span><br><span class="line"># wc 统计显示行数</span><br></pre></td></tr></table></figure>
 </li>
@@ -41,8 +72,7 @@
   <entry>
     <title>Python使用ctypes模块调用DLL</title>
     <url>/oahnus.github.io/2019/10/29/Python%E4%BD%BF%E7%94%A8ctypes%E6%A8%A1%E5%9D%97%E8%B0%83%E7%94%A8DLL/</url>
-    <content><![CDATA[<h1 id="Python使用ctypes模块调用DLL"><a href="#Python使用ctypes模块调用DLL" class="headerlink" title="Python使用ctypes模块调用DLL"></a>Python使用ctypes模块调用DLL</h1><p>[TOC]</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用ctypes调用DLL文件时，要保证python解释器的位数和DLL使用的C解释器位数一致，32位C解释器必须与32位Python解释器配合使用，否则会报错<code>OSError: [WinError xxx] xxx 不是有效的 Win32 应用程序</code></p>
+    <content><![CDATA[<h1 id="Python使用ctypes模块调用DLL"><a href="#Python使用ctypes模块调用DLL" class="headerlink" title="Python使用ctypes模块调用DLL"></a>Python使用ctypes模块调用DLL</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用ctypes调用DLL文件时，要保证python解释器的位数和DLL使用的C解释器位数一致，32位C解释器必须与32位Python解释器配合使用，否则会报错<code>OSError: [WinError xxx] xxx 不是有效的 Win32 应用程序</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前python环境使用的解释器位数</span></span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">print(platform.architecture())</span><br></pre></td></tr></table></figure>
 
 <h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>针对DLL的两种调用约定，使用不同的调用方法</p>
@@ -201,8 +231,7 @@
   <entry>
     <title>树莓派常用命令</title>
     <url>/oahnus.github.io/2019/10/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="树莓派常用命令"><a href="#树莓派常用命令" class="headerlink" title="树莓派常用命令"></a>树莓派常用命令</h1><p>[TOC]</p>
-<h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -a               # 查看内核/操作系统/CPU信息</span><br><span class="line">lsb_release -a         # 查看操作系统版本 (适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb)   </span><br><span class="line">cat /proc/cpuinfo      # 查看CPU信息</span><br><span class="line">hostname               # 查看计算机名</span><br><span class="line">lspci -tv              # 列出所有PCI设备</span><br><span class="line">lsusb -tv              # 列出所有USB设备</span><br><span class="line">lsmod                  # 列出加载的内核模块</span><br><span class="line">env                    # 查看环境变量</span><br><span class="line">vcgencmd measure_temp  # 查看CPU温度</span><br><span class="line">alsamixer              # 调节系统音量</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="树莓派常用命令"><a href="#树莓派常用命令" class="headerlink" title="树莓派常用命令"></a>树莓派常用命令</h1><h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -a               # 查看内核/操作系统/CPU信息</span><br><span class="line">lsb_release -a         # 查看操作系统版本 (适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb)   </span><br><span class="line">cat /proc/cpuinfo      # 查看CPU信息</span><br><span class="line">hostname               # 查看计算机名</span><br><span class="line">lspci -tv              # 列出所有PCI设备</span><br><span class="line">lsusb -tv              # 列出所有USB设备</span><br><span class="line">lsmod                  # 列出加载的内核模块</span><br><span class="line">env                    # 查看环境变量</span><br><span class="line">vcgencmd measure_temp  # 查看CPU温度</span><br><span class="line">alsamixer              # 调节系统音量</span><br></pre></td></tr></table></figure>
 
 <p>查看CPU信息（型号） </p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br></pre></td></tr></table></figure>
