@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Linux常见命令</title>
+    <url>/2020/02/26/linux%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="linux常见命令"><a href="#linux常见命令" class="headerlink" title="linux常见命令"></a>linux常见命令</h1><p>[toc]</p>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
+<li><p>统计目录下文件数量(不包含子目录文件)</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">ls -l|grep "^-"| wc -l</span><br><span class="line"># grep "^-" 过滤已'-'开头的行</span><br><span class="line"># wc 统计显示行数</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>统计目录下文件数量(包含子目录文件)</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">ls -lR|grep "^-"| wc -l</span><br><span class="line"># -R 包含子目录</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>命令</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python日期时间处理</title>
+    <url>/2020/02/25/Python%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<h1 id="Python-日期时间处理"><a href="#Python-日期时间处理" class="headerlink" title="Python 日期时间处理"></a>Python 日期时间处理</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取年月 YYYYMM</span></span><br><span class="line">today = datetime.date.today()</span><br><span class="line">first = today.replace(day=<span class="number">1</span>)</span><br><span class="line">last_month = first - datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">period = last_month.strftime(<span class="string">"%Y%m"</span>)</span><br><span class="line">print(<span class="string">"当前日期(YYYYMM) =&gt; %s"</span> % period)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化时间</span></span><br><span class="line">now = datetime.datetime.now()</span><br><span class="line">date_str = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">print(<span class="string">"当前时间(YYYY-MM-DD HH:mm:ss) =&gt; %s"</span> % date_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换时间</span></span><br><span class="line">result = datetime.datetime.strptime(<span class="string">"2012-10-11 10:00:12"</span>, <span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">print(<span class="string">"字符串转时间 =&gt; %s"</span> % result)</span><br><span class="line">print(str(result.year))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间戳</span></span><br><span class="line">print(<span class="string">"时间戳 =&gt; %s"</span> % time.time())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 两个日期相差天数</span></span><br><span class="line">d1 = datetime.datetime.strptime(<span class="string">"2012-10-11"</span>, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line">d2 = datetime.datetime.strptime(<span class="string">"2012-11-1"</span>, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line">delta = d2 - d1</span><br><span class="line">print(<span class="string">"相差 %s 天"</span> % delta.days)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python中时间日期格式化符号：</span><br><span class="line">%y 两位数的年份表示（00-99）</span><br><span class="line">%Y 四位数的年份表示（000-9999）</span><br><span class="line">%m 月份（01-12）</span><br><span class="line">%d 月内中的一天（0-31）</span><br><span class="line">%H 24小时制小时数（0-23）</span><br><span class="line">%I 12小时制小时数（01-12）</span><br><span class="line">%M 分钟数（00=59）</span><br><span class="line">%S 秒（00-59）</span><br><span class="line">%a 本地简化星期名称</span><br><span class="line">%A 本地完整星期名称</span><br><span class="line">%b 本地简化的月份名称</span><br><span class="line">%B 本地完整的月份名称</span><br><span class="line">%c 本地相应的日期表示和时间表示</span><br><span class="line">%j 年内的一天（001-366）</span><br><span class="line">%p 本地A.M.或P.M.的等价符</span><br><span class="line">%U 一年中的星期数（00-53）星期天为星期的开始</span><br><span class="line">%w 星期（0-6），星期天为星期的开始</span><br><span class="line">%W 一年中的星期数（00-53）星期一为星期的开始</span><br><span class="line">%x 本地相应的日期表示</span><br><span class="line">%X 本地相应的时间表示</span><br><span class="line">%Z 当前时区的名称</span><br><span class="line">%% %号本身</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>日期格式化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python使用ctypes模块调用DLL</title>
+    <url>/2019/10/29/Python%E4%BD%BF%E7%94%A8ctypes%E6%A8%A1%E5%9D%97%E8%B0%83%E7%94%A8DLL/</url>
+    <content><![CDATA[<h1 id="Python使用ctypes模块调用DLL"><a href="#Python使用ctypes模块调用DLL" class="headerlink" title="Python使用ctypes模块调用DLL"></a>Python使用ctypes模块调用DLL</h1><p>[TOC]</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用ctypes调用DLL文件时，要保证python解释器的位数和DLL使用的C解释器位数一致，32位C解释器必须与32位Python解释器配合使用，否则会报错<code>OSError: [WinError xxx] xxx 不是有效的 Win32 应用程序</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前python环境使用的解释器位数</span></span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">print(platform.architecture())</span><br></pre></td></tr></table></figure>
+
+<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>针对DLL的两种调用约定，使用不同的调用方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> ctypes</span><br><span class="line"></span><br><span class="line"><span class="comment"># cdecl</span></span><br><span class="line">lib = ctypes.cdll.ctypes.cdll.LoadLibrary(<span class="string">"dll_path"</span>)</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">lib = ctypes.CDLL(<span class="string">"dll_path"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># stdcall</span></span><br><span class="line">lib = ctypes.windll.LoadLibrary(<span class="string">"dll_path"</span>)</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">lib = ctypes.WinDLL(<span class="string">"dll_path"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="调用DLL内方法"><a href="#调用DLL内方法" class="headerlink" title="调用DLL内方法"></a>调用DLL内方法</h2><p>通过<code>lib.methodName</code>即可调用DLLn内部方法，调用DLL内部方法时，要将python参数通过ctypes转换为C语言参数</p>
+<h3 id="ctypes-C类型与python类型对应表"><a href="#ctypes-C类型与python类型对应表" class="headerlink" title="ctypes C类型与python类型对应表"></a>ctypes C类型与python类型对应表</h3><table>
+<thead>
+<tr>
+<th>ctypes type</th>
+<th>C type</th>
+<th>Python type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>c_bool</td>
+<td>_Bool</td>
+<td>bool(1)</td>
+</tr>
+<tr>
+<td>c_char</td>
+<td>char</td>
+<td>单个字符的bytes对象，等同于 b’a’</td>
+</tr>
+<tr>
+<td>c_wchar</td>
+<td>wchar_t</td>
+<td>单个字符的字符串</td>
+</tr>
+<tr>
+<td>c_byte</td>
+<td>char</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ubyte</td>
+<td>unsigned char</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_short</td>
+<td>short</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ushort</td>
+<td>unsigned short</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_int</td>
+<td>int</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_uint</td>
+<td>unsigned int</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_long</td>
+<td>long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ulong</td>
+<td>unsigned long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_longlong</td>
+<td>__int64 or long long</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_size_t</td>
+<td>size_t</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_ssize_t</td>
+<td>ssize_t</td>
+<td>int</td>
+</tr>
+<tr>
+<td>c_float</td>
+<td>float</td>
+<td>float</td>
+</tr>
+<tr>
+<td>c_double</td>
+<td>double</td>
+<td>float</td>
+</tr>
+<tr>
+<td>c_longdouble</td>
+<td>long double</td>
+<td>float</td>
+</tr>
+<tr>
+<td>c_cahr_p</td>
+<td>char *</td>
+<td>bytes object or None</td>
+</tr>
+<tr>
+<td>c_wchar_p</td>
+<td>wchar *</td>
+<td>string or None</td>
+</tr>
+<tr>
+<td>c_void_p</td>
+<td>void *</td>
+<td>int or None</td>
+</tr>
+</tbody></table>
+<h3 id="调用范例"><a href="#调用范例" class="headerlink" title="调用范例"></a>调用范例</h3><p>Example1:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"># DLL中定义的函数</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">char</span> *ip, <span class="keyword">int</span> port)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># lib为调用CDLL或WinDLL返回的对象</span></span><br><span class="line">ip = <span class="string">'192.168.0.2'</span></span><br><span class="line">port = <span class="number">8939</span></span><br><span class="line">res = lib.func(ctypes.c_char_p(ip.encode()), ctypes.c_int(port))</span><br></pre></td></tr></table></figure>
+
+<p>Example2:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"># DLL中定义的方法，方法内部会通过buf和data的指针，修改参数值向函数外传值</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span>* data)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data = ctypes.c_int()</span><br><span class="line"><span class="comment"># 创建一个string buffer, 指定容量为100</span></span><br><span class="line">buf = ctypes.create_string_buffer(<span class="number">100</span>)</span><br><span class="line"><span class="comment"># ctypes.byref获取buf的引用，也可以使用ctypes.pointer(buf)</span></span><br><span class="line">res = lib.func2(ctypes.byref(buf), ctypes.byref(data))</span><br><span class="line"><span class="comment"># 获取data的值</span></span><br><span class="line">print(data.value)</span><br><span class="line"><span class="comment"># buf是一个c的char类型的数组，需要自定义转换为Python的字符串</span></span><br><span class="line"><span class="comment"># print(buf)  ==&gt; &lt;ctypes.c_char_Array_100 object at 0x02F2AF80&gt; </span></span><br><span class="line">print(buf.value.decode())</span><br><span class="line"><span class="comment"># 直接遍历buf</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(buf)):</span><br><span class="line">  ch = buf[i].decode()</span><br><span class="line">  	<span class="comment"># 特殊字符处理</span></span><br><span class="line">  	<span class="keyword">if</span> ch != <span class="string">"\n"</span> <span class="keyword">and</span> ch != <span class="string">"\t"</span> <span class="keyword">and</span> ch != <span class="string">"\r"</span> <span class="keyword">and</span> ch != <span class="string">"\0"</span>:</span><br><span class="line">      ret_str = ret_str + ch</span><br><span class="line">ret_str= ret_str.strip()ret_str.strip()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note: </p>
+<p>C语言字符串的末尾会带有‘\0’结束符， 直接处理字符串时要注意‘\0’</p>
+<p>ctypes.byref用来传递引用参数，ctypes.pointer()作为传参会创建实际的指针对象</p>
+<p>byref可以通过value属性获取值，pointer可以通过contents获取返回值</p>
+<p>如果参数需要传递空指针时，直接传递None，用None作为空指针</p>
+</blockquote>
+<p>Example3:</p>
+<p>数组参数的创建</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># arr1 = int[5] 并且值为0</span></span><br><span class="line">arr1 = (ctypes.c_int * <span class="number">5</span>)()</span><br><span class="line"><span class="comment"># arr2 = double[10] 并且前三个值为1,2,3 其他值为0</span></span><br><span class="line">arr2 = (ctypes.c_double)(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="comment"># 二维数组</span></span><br><span class="line">arr3 = ((c_int * <span class="number">4</span>) * <span class="number">3</span>)()</span><br></pre></td></tr></table></figure>
+
+<p>Example4:</p>
+<p>结构体传参， 结构体参数可以通过Python class创建</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># _fileds_属性定义为二维tuple</span></span><br><span class="line"><span class="comment"># 二维tuple中的每个tuple 第一个值为变量名，第二个值为类型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StructParam</span><span class="params">(types.Structure)</span>:</span></span><br><span class="line">  _fields_ = (</span><br><span class="line">    (<span class="string">'x'</span>, c_int),</span><br><span class="line">    (<span class="string">'y'</span>, c_double)</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">param = StructParam()</span><br><span class="line">param.x = <span class="number">10</span></span><br><span class="line">param.y = <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<p>python中定义的结构体的class名，变量名可以不同于C中定义的结构体，但是变量的类型和定义顺序一定要与C中的类型顺序一致。</p>
+</blockquote>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://docs.python.org/zh-cn/3.7/library/ctypes.html" target="_blank" rel="noopener">ctypes中文文档</a></p>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>DLL</tag>
+        <tag>ctypes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派常用命令</title>
+    <url>/2019/10/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="树莓派常用命令"><a href="#树莓派常用命令" class="headerlink" title="树莓派常用命令"></a>树莓派常用命令</h1><p>[TOC]</p>
+<h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -a               # 查看内核/操作系统/CPU信息</span><br><span class="line">lsb_release -a         # 查看操作系统版本 (适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb)   </span><br><span class="line">cat /proc/cpuinfo      # 查看CPU信息</span><br><span class="line">hostname               # 查看计算机名</span><br><span class="line">lspci -tv              # 列出所有PCI设备</span><br><span class="line">lsusb -tv              # 列出所有USB设备</span><br><span class="line">lsmod                  # 列出加载的内核模块</span><br><span class="line">env                    # 查看环境变量</span><br><span class="line">vcgencmd measure_temp  # 查看CPU温度</span><br><span class="line">alsamixer              # 调节系统音量</span><br></pre></td></tr></table></figure>
+
+<p>查看CPU信息（型号） </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>8  Intel(R) Xeon(R) CPU            E5410   @ 2.33GHz </p>
+</blockquote>
+<p>(看到有8个逻辑CPU, 也知道了CPU型号) </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep physical | uniq -c</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4 physical id      : 0 <br><br>4 physical id      : 1 </p>
+</blockquote>
+<p>(说明实际上是两颗4核的CPU) </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">getconf LONG_BIT</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>32 </p>
+</blockquote>
+<p>(说明当前CPU运行在32bit模式下, 但不代表CPU不支持64bit) </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /proc/cpuinfo | grep flags | grep ' lm ' | wc -l</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>8 </p>
+</blockquote>
+<p>(结果大于0, 说明支持64bit计算. lm指long mode, 支持lm则是64bit)<br><br></p>
+<p>完整看cpu详细信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dmidecode | grep 'Processor Information'</span><br></pre></td></tr></table></figure>
+
+<br>
+
+<p>查看当前操作系统内核信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Linux euis1 2.6.9-55.ELsmp #1 SMP Fri Apr 20 17:03:35 EDT 2007 i686 i686 i386 GNU/Linux </p>
+</blockquote>
+<br>
+
+<p>查看当前操作系统发行版信息</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /etc/issue | grep Linux</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Red Hat Enterprise Linux AS release 4 (Nahant Update 5) </p>
+</blockquote>
+<br>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dmidecode | grep "Product Name"  # 查看机器型号</span><br><span class="line">dmesg | grep -i eth # 查看网卡信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">free -m                # 查看内存使用量和交换区使用量</span><br><span class="line">df -h                  # 查看各分区使用情况</span><br><span class="line">du -sh &lt;目录名&gt;        # 查看指定目录的大小</span><br><span class="line">grep MemTotal /proc/meminfo   # 查看内存总量</span><br><span class="line">grep MemFree /proc/meminfo    # 查看空闲内存量</span><br><span class="line">uptime                 # 查看系统运行时间、用户数、负载</span><br><span class="line">cat /proc/loadavg      # 查看系统负载</span><br></pre></td></tr></table></figure>
+
+<h2 id="磁盘和分区"><a href="#磁盘和分区" class="headerlink" title="磁盘和分区"></a>磁盘和分区</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mount | column -t      # 查看挂接的分区状态</span><br><span class="line">fdisk -l               # 查看所有分区</span><br><span class="line">swapon -s              # 查看所有交换分区</span><br><span class="line">hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)</span><br><span class="line">dmesg | grep IDE       # 查看启动时IDE设备检测状况</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ifconfig               # 查看所有网络接口的属性</span><br><span class="line">iptables -L            # 查看防火墙设置</span><br><span class="line">route -n               # 查看路由表</span><br><span class="line">netstat -lntp          # 查看所有监听端口</span><br><span class="line">netstat -antp          # 查看所有已经建立的连接</span><br><span class="line">netstat -s             # 查看网络统计信息</span><br><span class="line"></span><br><span class="line">vim /etc/wpa_supplicant/wpa_supplicant.conf  # 修改wifi密码</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">w                       # 查看活动用户</span><br><span class="line">id &lt;用户名&gt;              # 查看指定用户信息</span><br><span class="line">last                    # 查看用户登录日志</span><br><span class="line">cut -d: -f1 /etc/passwd # 查看系统所有用户</span><br><span class="line">cut -d: -f1 /etc/group  # 查看系统所有组</span><br><span class="line">crontab -l              # 查看当前用户的计划任务</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chkconfig --list       # 列出所有系统服务</span><br><span class="line">chkconfig --list | grep on    # 列出所有启动的系统服务</span><br></pre></td></tr></table></figure>
+
+<h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -qa                # 查看所有安装的软件包</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他命令参考Linux常见命令"><a href="#其他命令参考Linux常见命令" class="headerlink" title="其他命令参考Linux常见命令"></a>其他命令参考Linux常见命令</h2>]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>supervisor常见问题</title>
+    <url>/2019/10/10/supervisor%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="Supervisor常见问题"><a href="#Supervisor常见问题" class="headerlink" title="Supervisor常见问题"></a>Supervisor常见问题</h1><p>[TOC]</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install supervisor </span><br><span class="line">或</span><br><span class="line">pip install supervisor</span><br></pre></td></tr></table></figure>
+
+<p>配置文件在</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/etc/supervisor/supervisord.conf</span><br><span class="line"></span><br><span class="line">[program:process_node]</span><br><span class="line">command=python /home/x/mt4client/process_node.py -n ss1@127.0.0.1 -c 123456 2&gt;&amp;1 &amp;</span><br><span class="line">autorstart=true</span><br><span class="line">stdout_logfile=/home/x/mt4client/log/process_node.log</span><br><span class="line"></span><br><span class="line">[inet_http_server]         ; supervisor web管理服务器</span><br><span class="line">port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)</span><br><span class="line">username=user              ; (default is no username (open server))</span><br><span class="line">password=123               ; (default is no password (open server))</span><br><span class="line"></span><br><span class="line">[supervisord]</span><br><span class="line">logfile=/tmp/supervisord.log ; 日志文件，默认是 $CWD/supervisord.log</span><br><span class="line">logfile_maxbytes=50MB        ; 日志文件大小，超出会 rotate，默认 50MB</span><br><span class="line">logfile_backups=10           ; 日志文件保留备份数量默认 10</span><br><span class="line">loglevel=info                ; 日志级别，默认 info，其它: debug,warn,trace</span><br><span class="line">pidfile=/tmp/supervisord.pid ; pid 文件</span><br><span class="line">nodaemon=false               ; 是否在前台启动，默认是 false，即以 daemon 的方式启动</span><br><span class="line">minfds=1024                  ; 可以打开的文件描述符的最小值，默认 1024</span><br><span class="line">minprocs=200                 ; 可以打开的进程数的最小值，默认 200</span><br><span class="line"></span><br><span class="line">[include]</span><br><span class="line">files = relative/directory/*.ini    ; 包含其他的配置文件 可以是 *.conf 或 *.ini</span><br></pre></td></tr></table></figure>
+
+<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">supervisord -c /etc/supervisord.conf  # 启动</span><br><span class="line">supervisorctl reload # 重新加载配置文件 会重启配置的program</span><br></pre></td></tr></table></figure>
+
+<p>supervisord是否以daemon方式运行，是在supervisord.conf的supervisord项里配置的，当配置了nodaemon=true时，就是以非daemon方式运行。与它是非带参数运行没有关系。</p>
+<p>它监控的进程是否随着supervisord被杀而退出跟supervisord是否以daemon方式运行没有关系。使用kill -9杀死supervisord时，supervisord就会来不及告诉它监控的进程，它已经死了，它监控的进程变成了孤儿进程。当使用kill -15杀死supervisord时，supervisord有足够的时间来处理监控的进程，它监控的进程会跟着supervisord一起死的。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="Q-Starting-supervisor-Unlinking-stale-socket-var-run-supervisor-sock"><a href="#Q-Starting-supervisor-Unlinking-stale-socket-var-run-supervisor-sock" class="headerlink" title="Q: Starting supervisor: Unlinking stale socket /var/run/supervisor.sock"></a>Q: Starting supervisor: Unlinking stale socket /var/run/supervisor.sock</h3><p>安装python-meld3</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">aptitude install python-meld3</span><br><span class="line">pip install meld3==0.6.7</span><br></pre></td></tr></table></figure>
+
+<p>如果报错</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">The program &apos;aptitude&apos; can be found in the following packages:</span><br><span class="line"> * aptitude</span><br><span class="line"> * aptitude-gtk</span><br><span class="line">Try: apt-get install &lt;selected package&gt;</span><br></pre></td></tr></table></figure>
+
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">apt-get install aptitude aptitude-gtk</span><br></pre></td></tr></table></figure>
+
+<h3 id="error-lt-class-‘socket-error’-gt-Errno-13-Permission-denied-file-usr-local-lib-python2-7-socket-py-line-228"><a href="#error-lt-class-‘socket-error’-gt-Errno-13-Permission-denied-file-usr-local-lib-python2-7-socket-py-line-228" class="headerlink" title="error: &lt;class ‘socket.error’&gt;, [Errno 13] Permission denied: file: /usr/local/lib/python2.7/socket.py line: 228"></a>error: &lt;class ‘socket.error’&gt;, [Errno 13] Permission denied: file: /usr/local/lib/python2.7/socket.py line: 228</h3><p>权限问题</p>
+<p>修改配置文件<code>supervisord.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[unix_http_server]</span><br><span class="line">file=/tmp/supervisor.sock   ; (the path to the socket file)</span><br><span class="line">chmod=0766                 ; socket file mode (default 0700)</span><br></pre></td></tr></table></figure>
+
+<h3 id="unix-tmp-supervisor-sock-no-such-file"><a href="#unix-tmp-supervisor-sock-no-such-file" class="headerlink" title="unix:///tmp/supervisor.sock no such file"></a>unix:///tmp/supervisor.sock no such file</h3><p>修改supervisord.conf</p>
+<p>修改所有/tmp路径到其他路径</p>
+<p><code>/tmp/supervisor.sock</code> 改为 <code>/var/run/supervisor.sock</code></p>
+<p>然后修改新路径权限</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod 775 /var/run</span><br></pre></td></tr></table></figure>
+
+<p>重新启动 supervisord</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>运维</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用树莓派制作天气闹钟</title>
+    <url>/2018/11/29/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%B6%E4%BD%9C%E5%A4%A9%E6%B0%94%E9%97%B9%E9%92%9F/</url>
+    <content><![CDATA[<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>讯飞API升级，旧的语音合成接口已不可用，新的实现方式直接扔<a href="https://github.com/oahnus/raspberrypi-python-weather-alarm" target="_blank" rel="noopener">github</a>了。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为了能让刚买的树莓派有效的利用起来（避免吃灰），今天分享一下如何用树莓派做天气闹钟。</p>
+<h1 id="环境及工具"><a href="#环境及工具" class="headerlink" title="环境及工具"></a>环境及工具</h1><p>树莓派3B+、IDE、XShell、FileZilla(FTP文件上传)、小音箱。</p>
+<h1 id="查询天气"><a href="#查询天气" class="headerlink" title="查询天气"></a>查询天气</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>既然要做天气闹钟，那肯定先要知道今天的天气是什么，查询天气服务还是很大众的一种服务，很多网站都可以提供了查询天气的API接口，搜索一下。<br>做数据服务的网站就那么几家，简单浏览之后，选择了阿里云市场里的墨迹天气API（免费是重点，免费的可用1000次，最近有0元/10000次的活动）。<a href="https://market.aliyun.com/products/57096001/cmapi023656.html?spm=5176.730005-56956004-57096001.productlist.d_cmapi023656.51c03524aldKef&innerSource=search#sku=yuncode1765600000" target="_blank" rel="noopener">云市场-免费版气象服务（cityid）-墨迹天气</a><br>这个API提供一个根据城市Id查询三天精简天气预报的接口，深得我心，买。</p>
+<blockquote>
+<p>购买成功后，需要从<code>阿里云控制台-产品与服务-API网关-调用API-已购API</code>中查到请求Token。<a href="https://image-1253653901.cos.ap-shanghai.myqcloud.com/md-image/weather/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E9%9C%80%E8%A6%81%E7%9A%84token.pdf" target="_blank" rel="noopener">详细查询过程</a></p>
+</blockquote>
+<p><img src="http://upload-images.jianshu.io/upload_images/5471630-d9844a0bf18326dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>点击操作中的<code>详情</code>可以看到Token, 之后需要点击<code>授权</code>按钮，为你要调取的接口生成一个授权码（阿里云API网关需要这个）。</p>
+<h2 id="接口详情"><a href="#接口详情" class="headerlink" title="接口详情"></a>接口详情</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url: http://freecityid.market.alicloudapi.com/whapi/json/alicityweather/briefforecast3days</span><br><span class="line">method: POST</span><br><span class="line">body: &#123;</span><br><span class="line">    &quot;cityid&quot;: &quot;城市id&quot;，</span><br><span class="line">    “token”: &quot;API详情页查询到的&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp: &#123;</span><br><span class="line">  &quot;code&quot;: 0,</span><br><span class="line">  &quot;data&quot;: &#123;</span><br><span class="line">    &quot;city&quot;: &#123;</span><br><span class="line">      &quot;cityId&quot;: 284609,</span><br><span class="line">      &quot;counname&quot;: &quot;中国&quot;,</span><br><span class="line">      &quot;name&quot;: &quot;东城区&quot;,</span><br><span class="line">      &quot;pname&quot;: &quot;北京市&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;forecast&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;conditionDay&quot;: &quot;多云&quot;,</span><br><span class="line">        &quot;conditionIdDay&quot;: &quot;1&quot;,</span><br><span class="line">        &quot;conditionIdNight&quot;: &quot;31&quot;,</span><br><span class="line">        &quot;conditionNight&quot;: &quot;多云&quot;,</span><br><span class="line">        &quot;predictDate&quot;: &quot;2016-09-01&quot;,</span><br><span class="line">        &quot;tempDay&quot;: &quot;27&quot;,</span><br><span class="line">        &quot;tempNight&quot;: &quot;18&quot;,</span><br><span class="line">        &quot;updatetime&quot;: &quot;2016-09-01 09:07:08&quot;,</span><br><span class="line">        &quot;windDirDay&quot;: &quot;西北风&quot;,</span><br><span class="line">        &quot;windDirNight&quot;: &quot;西北风&quot;,</span><br><span class="line">        &quot;windLevelDay&quot;: &quot;3&quot;,</span><br><span class="line">        &quot;windLevelNight&quot;: &quot;2&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      ...省略两个...</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;msg&quot;: &quot;success&quot;,</span><br><span class="line">  &quot;rc&quot;: &#123;</span><br><span class="line">    &quot;c&quot;: 0,</span><br><span class="line">    &quot;p&quot;: &quot;success&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拿到接口，接下来肯定就是写代码调用接口了，调用过程中涉及的部分问题，都写在代码注释里了（这里及后面的所有请求都是用的python的requests库，本身娱乐项目，也就没有生成requirement文件）。</p>
+<p>Num2Word.py (将数字转为中文字符串)</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Num2Word</span>:</span></span><br><span class="line">    words = &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="string">'零'</span>,</span><br><span class="line">        <span class="number">1</span>: <span class="string">'一'</span>,</span><br><span class="line">        <span class="number">2</span>: <span class="string">'二'</span>,</span><br><span class="line">        <span class="number">3</span>: <span class="string">'三'</span>,</span><br><span class="line">        <span class="number">4</span>: <span class="string">'四'</span>,</span><br><span class="line">        <span class="number">5</span>: <span class="string">'五'</span>,</span><br><span class="line">        <span class="number">6</span>: <span class="string">'六'</span>,</span><br><span class="line">        <span class="number">7</span>: <span class="string">'七'</span>,</span><br><span class="line">        <span class="number">8</span>: <span class="string">'八'</span>,</span><br><span class="line">        <span class="number">9</span>: <span class="string">'九'</span>,</span><br><span class="line">        <span class="number">10</span>: <span class="string">'十'</span>,</span><br><span class="line">        <span class="number">100</span>: <span class="string">'百'</span>,</span><br><span class="line">        <span class="number">1000</span>: <span class="string">'千'</span>,</span><br><span class="line">        <span class="number">10000</span>: <span class="string">'万'</span>,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># TODO 1024 -&gt; 一千二十四  ==&gt; 1024 -&gt; 一千零二十四</span></span><br><span class="line">    <span class="comment"># TODO 1004 -&gt; 一千四  ==&gt; 1024 -&gt; 一千零四</span></span><br><span class="line">    <span class="comment"># TODO 1024.2 小数点</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_word</span><span class="params">(num)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> isinstance(num, int):</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">elif</span> isinstance(num, str):</span><br><span class="line">            num = int(num)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">'num must be int or str'</span>)</span><br><span class="line">        <span class="keyword">if</span> num &lt; <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'负'</span> + Num2Word.to_word(-num)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            quotient = num</span><br><span class="line">            remainder = <span class="number">0</span></span><br><span class="line">            s = <span class="string">""</span></span><br><span class="line">            ten_num = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> quotient &gt; <span class="number">0</span>:</span><br><span class="line">                quotient = int(num / <span class="number">10</span>)</span><br><span class="line">                remainder = num % <span class="number">10</span></span><br><span class="line">                <span class="keyword">if</span> remainder &gt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">if</span> ten_num &gt; <span class="number">0</span>:</span><br><span class="line">                        s = Num2Word.words[remainder] + Num2Word.words[int(math.pow(<span class="number">10</span>, ten_num))] + s</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        s = Num2Word.words[remainder] + s</span><br><span class="line">                num = int(num / <span class="number">10</span>)</span><br><span class="line">                ten_num += <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+
+<p>MoJiWeather.py</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> sys <span class="keyword">import</span> path</span><br><span class="line"><span class="keyword">from</span> Num2Word <span class="keyword">import</span> Num2Word</span><br><span class="line"><span class="keyword">from</span> VoicePlayer <span class="keyword">import</span> VoicePlayer</span><br><span class="line"><span class="keyword">from</span> XunFeiTTS <span class="keyword">import</span> XunFeiTTS</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    handlers=[logging.StreamHandler()],</span><br><span class="line">    format=<span class="string">'%(levelname)s:%(asctime)s:%(message)s'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RespBody</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># data = "&#123;\"code\":0,\"data\":&#123;\"city\":&#123;\"cityId\":50,\"counname\":\"中国\",\"name\":\"闵行区\",\"pname\":\"上海市\",\"timezone\":\"8\"&#125;,\"forecast\":[&#123;\"conditionDay\":\"多云\",\"conditionIdDay\":\"1\",\"conditionIdNight\":\"31\",\"conditionNight\":\"多云\",\"predictDate\":\"2018-10-17\",\"tempDay\":\"23\",\"tempNight\":\"14\",\"updatetime\":\"2018-10-17 22:09:00\",\"windDirDay\":\"北风\",\"windDirNight\":\"北风\",\"windLevelDay\":\"3-4\",\"windLevelNight\":\"3-4\"&#125;,&#123;\"conditionDay\":\"多云\",\"conditionIdDay\":\"1\",\"conditionIdNight\":\"31\",\"conditionNight\":\"多云\",\"predictDate\":\"2018-10-18\",\"tempDay\":\"21\",\"tempNight\":\"12\",\"updatetime\":\"2018-10-17 22:09:00\",\"windDirDay\":\"北风\",\"windDirNight\":\"北风\",\"windLevelDay\":\"5-6\",\"windLevelNight\":\"3-4\"&#125;,&#123;\"conditionDay\":\"多云\",\"conditionIdDay\":\"1\",\"conditionIdNight\":\"31\",\"conditionNight\":\"多云\",\"predictDate\":\"2018-10-19\",\"tempDay\":\"22\",\"tempNight\":\"13\",\"updatetime\":\"2018-10-17 22:09:00\",\"windDirDay\":\"东北风\",\"windDirNight\":\"东北风\",\"windLevelDay\":\"3-4\",\"windLevelNight\":\"3\"&#125;]&#125;,\"msg\":\"success\",\"rc\":&#123;\"c\":0,\"p\":\"success\"&#125;&#125;"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.__dict__ = d</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Forecast</span><span class="params">()</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.prdict_date = d.predictDate <span class="comment"># yyyy-MM-dd</span></span><br><span class="line">        self.update_time = d.updatetime <span class="comment"># yyyy-MM-dd HH:mm:ss</span></span><br><span class="line">        self.condition_day = d.conditionDay <span class="comment"># 多云</span></span><br><span class="line">        self.condition_night = d.conditionNight <span class="comment"># 多云</span></span><br><span class="line">        self.temp_day = d.tempDay <span class="comment"># 23</span></span><br><span class="line">        self.temp_night = d.tempNight <span class="comment"># 14</span></span><br><span class="line">        self.wind_dir_day = d.windDirDay <span class="comment"># 北风</span></span><br><span class="line">        self.wind_dir_night = d.windDirNight <span class="comment"># 北风</span></span><br><span class="line">        self.wind_level_day = d.windLevelDay <span class="comment"># 3-4</span></span><br><span class="line">        self.wind_level_night = d.windLevelNight <span class="comment"># 4</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wind_level_to_word</span><span class="params">(self, wind_level)</span>:</span></span><br><span class="line">        wind_level = str(wind_level)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> wind_level.__contains__(<span class="string">'-'</span>):</span><br><span class="line">            <span class="keyword">return</span> Num2Word.to_word(wind_level)</span><br><span class="line">        <span class="keyword">return</span> Num2Word.to_word(wind_level.split(<span class="string">'-'</span>)[<span class="number">0</span>]) + <span class="string">'至'</span> + Num2Word.to_word(wind_level.split(<span class="string">'-'</span>)[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">to_chinese</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># date转为文字</span></span><br><span class="line">        month = self.prdict_date.split(<span class="string">'-'</span>)[<span class="number">1</span>]</span><br><span class="line">        day = self.prdict_date.split(<span class="string">'-'</span>)[<span class="number">2</span>]</span><br><span class="line">        date_word = Num2Word.to_word(month) + <span class="string">'月'</span> + Num2Word.to_word(day) + <span class="string">'日'</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">"%s, 白天天气%s, 温度%s度, %s%s级, 夜间天气%s, 温度%s度, %s%s级"</span> % \</span><br><span class="line">              (date_word, self.condition_day, Num2Word.to_word(self.temp_day), self.wind_dir_day, self.wind_level_to_word(self.wind_level_day),</span><br><span class="line">               self.condition_night, Num2Word.to_word(self.temp_night), self.wind_dir_night, self.wind_level_to_word(self.wind_level_night))</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MoJiWeather</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.config = &#123;</span><br><span class="line">            <span class="string">"baseURL"</span>: <span class="string">"http://freecityid.market.alicloudapi.com"</span>,</span><br><span class="line">            <span class="string">"forecastURL"</span>: <span class="string">"/whapi/json/alicityweather/briefforecast3days"</span>,</span><br><span class="line">            <span class="string">"AppCode"</span>: <span class="string">"阿里云的授权码"</span>,</span><br><span class="line">            <span class="string">"headers"</span>: &#123;</span><br><span class="line">                <span class="string">"Host"</span>:<span class="string">"freecityid.market.alicloudapi.com"</span>,</span><br><span class="line">                <span class="string">"gateway_channel"</span>:<span class="string">"http"</span>,</span><br><span class="line">                <span class="string">"Content-Type"</span>:<span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,</span><br><span class="line">                <span class="string">"Authorization"</span>:<span class="string">"APPCODE 阿里云的授权码"</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">"token"</span>: <span class="string">"墨迹天气token"</span></span><br><span class="line">        &#125;</span><br><span class="line">        self.city_codes = &#123;</span><br><span class="line">            <span class="string">"BeiJing"</span>: <span class="string">"2"</span>,</span><br><span class="line">            <span class="string">"ShangHaiMinHang"</span>: <span class="string">"50"</span>  <span class="comment"># 国内城市地区id见末尾附录</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetch_forecast</span><span class="params">(self, cityId)</span>:</span></span><br><span class="line">        req_body = &#123;</span><br><span class="line">            <span class="string">"cityId"</span>: str(cityId),</span><br><span class="line">            <span class="string">"token"</span>: self.config[<span class="string">"token"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        json_str = json.dumps(req_body)</span><br><span class="line">        url = self.config[<span class="string">"baseURL"</span>] + self.config[<span class="string">"forecastURL"</span>]</span><br><span class="line">        <span class="comment"># print(url)</span></span><br><span class="line">        <span class="comment"># print(self.config["headers"])</span></span><br><span class="line">        resp = requests.post(url=url, data=req_body, headers=self.config[<span class="string">"headers"</span>])</span><br><span class="line">        resp_json = resp.content.decode(<span class="string">'utf8'</span>)</span><br><span class="line">        <span class="comment"># print(resp_json)</span></span><br><span class="line">        <span class="comment"># print(resp.headers)</span></span><br><span class="line">        logging.debug(<span class="string">"[MoJiWeather.fetch_forecast] - status = %s"</span> % resp.status_code)</span><br><span class="line">        logging.debug(<span class="string">"[MoJiWeather.fetch_forecast] - resp json = %s"</span> % resp_json)</span><br><span class="line"></span><br><span class="line">        resp_body = json.loads(resp_json, object_hook=RespBody)</span><br><span class="line"></span><br><span class="line">        code = resp_body.code</span><br><span class="line">        <span class="keyword">if</span> code == <span class="number">0</span>:</span><br><span class="line">            data = resp_body.data</span><br><span class="line">            city = data.city</span><br><span class="line">            province_name = city.pname</span><br><span class="line">            city_name = city.name</span><br><span class="line">            logging.info(<span class="string">"[MoJiWeather.fetch_forecast] - %s, %s"</span> % (province_name, city_name))</span><br><span class="line"></span><br><span class="line">            three_days_forecast_list = data.forecast</span><br><span class="line">            <span class="keyword">return</span> three_days_forecast_list</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            logging.info(<span class="string">"[MoJiWeather.fetch_forecast] - Resp Not Success"</span>)</span><br><span class="line">            <span class="keyword">return</span> []</span><br></pre></td></tr></table></figure>
+
+<p>现在可以测试一下代码运行效果了，<code>MojiWeather.fetch_forecast</code>方法返回的是天气预报数组（字典数组）。为了方便测试，就直接在<code>MoJiWeather</code>中创建一个main方法来获取数据。</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    mo_ji_weather = MoJiWeather()</span><br><span class="line">     <span class="comment"># 天气预报的数组</span></span><br><span class="line">    forecast_list = mo_ji_weather.fetch_forecast(mo_ji_weather.city_codes[<span class="string">"ShangHaiMinHang"</span>])</span><br><span class="line"></span><br><span class="line">    print(forecast_list)</span><br><span class="line">    forecast_words = []</span><br><span class="line">    <span class="keyword">for</span> forecast <span class="keyword">in</span> forecast_list:</span><br><span class="line">        <span class="comment"># 将dict转为Forecast对象</span></span><br><span class="line">        f = Forecast(forecast)</span><br><span class="line">        <span class="comment"># 将天气预报转为中文文字</span></span><br><span class="line">        forecast_words.append(f.to_chinese())</span><br><span class="line">        print(f.to_chinese())</span><br><span class="line">    <span class="comment"># 将三个预报文本拼接成一个字符串</span></span><br><span class="line">    s = <span class="string">","</span>.join(forecast_words)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="http://upload-images.jianshu.io/upload_images/5471630-0ba46589d4f9e193.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h1 id="语音合成"><a href="#语音合成" class="headerlink" title="语音合成"></a>语音合成</h1><p>到目前为止，我们已经能够拿到最近三天内的天气预报了，既然是做天气闹钟，那就要让程序会“说话”，也就是把文字转为语音（语音合成）。国内做语音合成，第一个想到的就是讯飞了，而且<a href="https://www.xfyun.cn/services/online_tts" target="_blank" rel="noopener">讯飞语音合成</a>也有免费版的（每日500次限额，只有一个发音人可选），讯飞TTS介绍页也可以体验语音合成，经测试，讯飞的TTS还是挺清晰的。</p>
+<p>然后按照下面的步骤去获取讯飞的API-KEY，完成准备工作。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-74621a31d89480da.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>剩下的工作就是按文档下代码</p>
+<p>XunFeiTTS.py</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    handlers=[logging.StreamHandler()],</span><br><span class="line">    format=<span class="string">'%(levelname)s:%(asctime)s:%(message)s'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XunFeiTTS</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.app_id = <span class="string">"讯飞App id"</span> <span class="comment"># 讯飞的应用id</span></span><br><span class="line">        self.app_key = <span class="string">"讯飞TOKEN"</span> <span class="comment"># 讯飞的token</span></span><br><span class="line">        self.tts_url = <span class="string">"http://api.xfyun.cn/v1/service/v1/tts"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__gen_sig</span><span class="params">(self, req_params_base64, time_now)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        授权认证，生成认证信息</span></span><br><span class="line"><span class="string">        :param req_params_base64: 请求参数的base64串</span></span><br><span class="line"><span class="string">        :param time_now: 当前时间</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        s = self.app_key + time_now + req_params_base64</span><br><span class="line">        hl = hashlib.md5()</span><br><span class="line">        hl.update(s.encode(encoding=<span class="string">'utf8'</span>))</span><br><span class="line">        <span class="keyword">return</span> hl.hexdigest()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__gen_req_header</span><span class="params">(self, time_now, req_params_base64, sig)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        生成请求头</span></span><br><span class="line"><span class="string">        :param time_now: 当前时间</span></span><br><span class="line"><span class="string">        :param req_params_base64: 请求参数的base64串</span></span><br><span class="line"><span class="string">        :param sig:</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        header = &#123;</span><br><span class="line">            <span class="string">"X-Appid"</span>: self.app_id,</span><br><span class="line">            <span class="string">"X-CurTime"</span>: time_now,</span><br><span class="line">            <span class="string">"X-Param"</span>: req_params_base64,</span><br><span class="line">            <span class="string">"X-CheckSum"</span>: sig,</span><br><span class="line">            <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> header</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fetch_voice</span><span class="params">(self, text)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        根据传入text生成语音</span></span><br><span class="line"><span class="string">        :param text: </span></span><br><span class="line"><span class="string">        :return: </span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        req_params = &#123;</span><br><span class="line">            <span class="string">"auf"</span>: <span class="string">"audio/L16;rate=16000"</span>,</span><br><span class="line">            <span class="string">"aue"</span>: <span class="string">"raw"</span>, <span class="comment"># 返回的语音格式 raw为wav格式语音, lame为MP3格式语音</span></span><br><span class="line">            <span class="string">"voice_name"</span>: <span class="string">"xiaoyan"</span>,</span><br><span class="line">            <span class="string">"speed"</span>: <span class="string">"50"</span>,</span><br><span class="line">            <span class="string">"volume"</span>: <span class="string">"50"</span>,</span><br><span class="line">            <span class="string">"pitch"</span>: <span class="string">"50"</span>,</span><br><span class="line">            <span class="string">"engine_type"</span>: <span class="string">"intp65"</span>,</span><br><span class="line">            <span class="string">"text_type"</span>: <span class="string">"text"</span>,</span><br><span class="line">            <span class="string">"text"</span>: text + <span class="string">" 噻"</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        time_now = str(time.time()).split(<span class="string">'.'</span>)[<span class="number">0</span>]</span><br><span class="line">        req_params_json = json.dumps(req_params)</span><br><span class="line">        req_params_base64 = str(base64.b64encode(req_params_json.encode(<span class="string">'ascii'</span>)).decode(<span class="string">'ascii'</span>))</span><br><span class="line">        header = self.__gen_req_header(time_now, req_params_base64, self.__gen_sig(req_params_base64, time_now))</span><br><span class="line"></span><br><span class="line">        resp = requests.post(url=self.tts_url, data=req_params, headers=header)</span><br><span class="line">        content_type = resp.headers[<span class="string">'Content-type'</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 请求成功时， contentType为audio.mpeg, 失败时，contentType为text/plain, 返回异常信息</span></span><br><span class="line">        <span class="keyword">if</span> content_type == <span class="string">'audio/mpeg'</span>:</span><br><span class="line">            <span class="comment"># 将语音写入文件voice.wav</span></span><br><span class="line">            f = open(<span class="string">'voice.wav'</span>, <span class="string">'wb'</span>)</span><br><span class="line">            f.write(resp.content)</span><br><span class="line">            f.close()</span><br><span class="line"></span><br><span class="line">            logging.info(<span class="string">"[XunFeiTTS.fetch_voice] - Fetch Voice Success! Save As %s"</span> % f.name)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            resp_json = resp.content.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">            logging.info(<span class="string">"[XunFeiTTs.fetch_voice] - %s"</span> % resp_json)</span><br><span class="line">            resp_dict = json.loads(resp_json)</span><br><span class="line">            logging.error(<span class="string">"[XunFeiTTS.fetch_voice] - ErrCode = %s, Desc = %s"</span> % (resp_dict[<span class="string">'code'</span>], resp_dict[<span class="string">'desc'</span>]))</span><br></pre></td></tr></table></figure>
+
+<p>现在我们需要重新修改MoJiWeather中的main方法，调用讯飞TTS将天气预报的字符串转变为语音。<br>接下来就是使用pyaudio库来播放天气预报语音（python上有很多库可以播放音频，试了几个之后，感觉还是pyaudio更适合这个例子）。</p>
+<blockquote>
+<p>如果在树莓派上使用pip安装pyaudio时出现<code>Pyaudio installation error - &#39;command &#39;gcc&#39; failed with exit status 1&#39;</code>错误，请在树莓派上执行下面的命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-dev</span><br><span class="line">sudo apt-get install portaudio19-dev</span><br><span class="line">sudo apt-get install libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev</span><br><span class="line"></span><br><span class="line">pip3 install pyaudio</span><br></pre></td></tr></table></figure>
+
+<h2 id="播放wav语音的工具类"><a href="#播放wav语音的工具类" class="headerlink" title="播放wav语音的工具类"></a>播放wav语音的工具类</h2><p>VoicePlayer.py</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pyaudio</span><br><span class="line"><span class="keyword">import</span> wave</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"></span><br><span class="line">logging.basicConfig(</span><br><span class="line">    level=logging.DEBUG,</span><br><span class="line">    handlers=[logging.StreamHandler()],</span><br><span class="line">    format=<span class="string">'%(levelname)s:%(asctime)s:%(message)s'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VoicePlayer</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.chunk = <span class="number">1024</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">play</span><span class="params">(self, filename)</span>:</span></span><br><span class="line">        logging.debug(<span class="string">"[VoicePlayer.play] - load file %s"</span> % filename)</span><br><span class="line">        chunk = <span class="number">1024</span></span><br><span class="line">        wf = wave.open(<span class="string">'voice.wav'</span>, <span class="string">'rb'</span>)</span><br><span class="line">        p = pyaudio.PyAudio()</span><br><span class="line"></span><br><span class="line">        stream = p.open(</span><br><span class="line">            format=p.get_format_from_width(wf.getsampwidth()),</span><br><span class="line">            channels=wf.getnchannels(),</span><br><span class="line">            rate=wf.getframerate(),</span><br><span class="line">            output=<span class="literal">True</span>)</span><br><span class="line">        data = wf.readframes(chunk)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> data != <span class="string">''</span>:</span><br><span class="line">            stream.write(data)</span><br><span class="line">            data = wf.readframes(chunk)</span><br><span class="line">            <span class="keyword">if</span> data == <span class="string">b''</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        stream.close()</span><br><span class="line">        p.terminate()</span><br><span class="line">        logging.debug(<span class="string">"[VoicePlayer.play] - Voice Play Finish"</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="整合"><a href="#整合" class="headerlink" title="整合"></a>整合</h2><p>到这里，就可以把上面的代码整合到一起了，这里要注意一下Python的包引入问题，在<code>MoJiWeather.py</code>中会引入<code>Num2Word.py</code>,<code>VoicePlayer.py</code>,<code>XunFeiTTS.py</code>，在运行程序时请保证这几个文件都在同一目录下</p>
+<p>MoJiWeather.py</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    mo_ji_weather = MoJiWeather()</span><br><span class="line">    forecast_list = mo_ji_weather.fetch_forecast(mo_ji_weather.city_codes[<span class="string">"ShangHaiMinHang"</span>])</span><br><span class="line"></span><br><span class="line">    print(forecast_list)</span><br><span class="line"></span><br><span class="line">    xun_fei_tts = XunFeiTTS()</span><br><span class="line">    s = <span class="string">""</span></span><br><span class="line">    forecast_words = []</span><br><span class="line">    <span class="keyword">for</span> forecast <span class="keyword">in</span> forecast_list:</span><br><span class="line">        f = Forecast(forecast)</span><br><span class="line">        forecast_words.append(f.to_chinese())</span><br><span class="line">        print(f.to_chinese())</span><br><span class="line">    s = <span class="string">","</span>.join(forecast_words)</span><br><span class="line">    logging.debug(<span class="string">"[MojiWeather.main] - %s"</span> % s)</span><br><span class="line">    xun_fei_tts.fetch_voice(s)</span><br><span class="line"></span><br><span class="line">    voice_player = VoicePlayer()</span><br><span class="line">    voice_player.play(<span class="string">'voice.wav'</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>程序编写完成后，将代码通过FileZilla上传工具把代码上传到树莓派。现在距离天气闹钟只差最后一步（闹钟）。借助linux的crond定时任务就可以很容易的实现闹钟这一功能。在树莓派上执行<code>crontab -e</code>就可以编辑crond任务了，第一次打开时会提示让你选择一个编辑器，按个人喜好选择即可。</p>
+<blockquote>
+<p>使用<code>crontab -e</code>命令时要注意不要手滑按成<code>crontab -r</code>（这两个键挨着很近），后者是【清空corntab配置】。</p>
+</blockquote>
+<p>crond 配置说明 <img src="http://upload-images.jianshu.io/upload_images/5471630-d57d11d626ddecb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>附上本人树莓派上的crontab设置 <img src="http://upload-images.jianshu.io/upload_images/5471630-4a8bd5eb3137fa1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h1 id="实际效果"><a href="#实际效果" class="headerlink" title="实际效果"></a>实际效果</h1><p><img src="http://upload-images.jianshu.io/upload_images/5471630-a7e9ee1c5299bd22.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br>左边的就是淘宝上几十块买的小音响，分蓝牙和有线两种链接模式，颜值还是很高的。文章里的代码贴的比较多（娱乐项目，代码写的比较糟，想吐槽就吐吧orz），请各位看客海涵。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><ul>
+<li><a href="https://image-1253653901.cos.ap-shanghai.myqcloud.com/md-image/weather/5887.xml" target="_blank" rel="noopener">查询墨迹天气 城市id</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+        <tag>讯飞语音</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派3b+安装Raspbian系统</title>
+    <url>/2018/11/10/%E6%A0%91%E8%8E%93%E6%B4%BE3b+%E5%AE%89%E8%A3%85Raspbian%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<h1 id="树莓派3b-安装Raspbian系统"><a href="#树莓派3b-安装Raspbian系统" class="headerlink" title="树莓派3b+安装Raspbian系统"></a>树莓派3b+安装Raspbian系统</h1><h2 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0 准备工作"></a>0 准备工作</h2><ul>
+<li>系统：windows10</li>
+<li>工具：SD卡、读卡器、树莓派3b+、<a href="https://www.sdcard.org/downloads/formatter_4/eula_windows/" target="_blank" rel="noopener">SD卡格式化工具</a>、<a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">win32DiskImager</a>、<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">Raspbian系统镜像</a>、Xshell(ssh工具)</li>
+</ul>
+<h2 id="1-选择镜像"><a href="#1-选择镜像" class="headerlink" title="1 选择镜像"></a>1 选择镜像</h2><p>树莓派系统镜像<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">下载地址</a></p>
+<p>树莓派官网提供了多种不同的系统供用户选择下载，除了官方的Raspbian系统外，在官网镜像中也提供了很多第三方镜像。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-c2938a83f363b21e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>这里选择官方的Raspbian系统，Raspbian系统分为轻量版和桌面版两种。桌面版有图形化显示界面，并且预装了一些软件，看个人喜好下载其中一个就可以。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-3de02df08529755d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h2 id="2-安装系统并初始化"><a href="#2-安装系统并初始化" class="headerlink" title="2 安装系统并初始化"></a>2 安装系统并初始化</h2><p>在镜像下载完成之前，要对SD做格式化操作。<br>将SD卡连接电脑后，打开格式化软件，选择SD卡所在盘符，点击format进行格式化。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-4d43b0ab2149c74d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h3 id="2-1-写入镜像"><a href="#2-1-写入镜像" class="headerlink" title="2.1 写入镜像"></a>2.1 写入镜像</h3><p>将下载完成的镜像压缩包解压，打开win32diskimager软件，选择刚才解压出的系统镜像<code>2018-10-09-raspbian-stretch.img</code>，选择SD卡盘符。点击<code>写入</code>后，等待系统镜像写入到SD卡中。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-2963f139a18e3234.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h3 id="2-2-配置"><a href="#2-2-配置" class="headerlink" title="2.2 配置"></a>2.2 配置</h3><p>在写入完成后，不必急于拔出SD卡，现在在电脑中可以看到一个名字为boot的分区（此分区为FAT32格式，并且容量会很小，这是正常的，在SD卡插入树莓派后，这个<code>boot</code>分区就是系统的<code>/boot</code>文件夹），</p>
+<h4 id="2-2-1-开启SSH"><a href="#2-2-1-开启SSH" class="headerlink" title="2.2.1 开启SSH"></a>2.2.1 开启SSH</h4><p>现在的树莓派都是默认关闭SSH的，开启SSH只需要在boot下新建一个名为<code>ssh</code>的文件夹即可(无任何后缀)</p>
+<h4 id="2-2-2-开启强制HDMI输出-不接显示器的话可以跳过此处"><a href="#2-2-2-开启强制HDMI输出-不接显示器的话可以跳过此处" class="headerlink" title="2.2.2 开启强制HDMI输出 (不接显示器的话可以跳过此处)"></a>2.2.2 开启强制HDMI输出 (不接显示器的话可以跳过此处)</h4><p>打开boot分区下的config.txt<br>修改如下行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hdmi_safe=1</span><br><span class="line">config_hdmi_boost=4</span><br><span class="line">hdmi_ignore_edid=0xa5000080</span><br><span class="line">hdmi_group=2</span><br><span class="line">hdmi_mode=82</span><br></pre></td></tr></table></figure>
+
+<p>参数说明<br>|参数|说明|<br>|:–|:–|<br>hdmi_safe=1|    安全启动HDMI<br>config_hdmi_boost=4|    开启热插拔<br>hdmi_group=1|    CEA电视显示器<br>hdmi_group=2|    DMT电脑显示器<br>hdmi_ignore_edid=0xa5000080|    忽略自动探测的分辨率<br>hdmi_mode=4|    640x480 60Hz<br>hdmi_mode=9|    800x600 60Hz<br>hdmi_mode=16|    1024x768 60Hz<br>hdmi_mode=82|    1080p 60Hz</p>
+<h4 id="2-2-3-设置wifi连接-有网线连接可跳过此处"><a href="#2-2-3-设置wifi连接-有网线连接可跳过此处" class="headerlink" title="2.2.3 设置wifi连接(有网线连接可跳过此处)"></a>2.2.3 设置wifi连接(有网线连接可跳过此处)</h4><p>在boot分区下新建<code>wpa_supplicant.conf</code>文件<br>ssid 为wifi 名称<br>psk 为wifi密码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">country=CN</span><br><span class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</span><br><span class="line">update_config=1</span><br><span class="line"></span><br><span class="line">network=&#123;</span><br><span class="line">    ssid=&quot;wifiname&quot;</span><br><span class="line">    psk=&quot;password&quot;</span><br><span class="line">    priority=1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置完成后，即可将SD卡插入树莓派，启动电源</p>
+<h3 id="3-连接树莓派"><a href="#3-连接树莓派" class="headerlink" title="3. 连接树莓派"></a>3. 连接树莓派</h3><p>树莓派启动后，指示灯会亮起，3b+上，红色灯亮起时，为接通电源状态，绿色灯亮起时，为系统在对SD卡做读写操作。树莓派启动后，就可以通过SSH连接登录系统。（查询树莓派的IP地址就可，端口默认22）<br>树莓派默认ssh账户为<code>pi</code>，密码为<code>raspberry</code></p>
+<h4 id="3-1-修改密码"><a href="#3-1-修改密码" class="headerlink" title="3.1 修改密码"></a>3.1 修改密码</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 修改pi密码</span><br><span class="line">sudo passwd pi</span><br><span class="line"></span><br><span class="line"># 修改root密码</span><br><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-校正时区，时间"><a href="#3-2-校正时区，时间" class="headerlink" title="3.2 校正时区，时间"></a>3.2 校正时区，时间</h4><p>输入<code>date</code>命令看查看当前系统时间</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 打开时区设置</span><br><span class="line">sudo dpkg-reconfigure tzdata</span><br><span class="line"># 选择Asia  ---&gt; ShangHai</span><br></pre></td></tr></table></figure>
+
+<p>再次输入<code>date</code>命令检查时间</p>
+<h4 id="3-3-修改系统软件源"><a href="#3-3-修改系统软件源" class="headerlink" title="3.3 修改系统软件源"></a>3.3 修改系统软件源</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 树莓派系统默认使用nano做为编辑器，修改完成后使用ctrl+x退出，退出时会提示是否保存文件, 按Y即可</span><br><span class="line">sudo nano /etc/apt/sources.list</span><br><span class="line"># 修改系统源为清华大学源</span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ stretch main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-更换pip源"><a href="#3-4-更换pip源" class="headerlink" title="3.4 更换pip源"></a>3.4 更换pip源</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 国内源</span><br><span class="line"># 阿里云 https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"># 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line"># 豆瓣(douban) http://pypi.douban.com/simple/</span><br><span class="line"># 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line"># 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line"></span><br><span class="line"># 临时使用某一个源下载</span><br><span class="line">pip install scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"># 更换源</span><br><span class="line"># linux 编辑~/.pip/pip.conf , 如果不存在就新建一个</span><br><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"></span><br><span class="line"># windows 在C:\Users\[username]\pip目录下新建pip.ini文件</span><br><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-安装vim-替代nano"><a href="#3-5-安装vim-替代nano" class="headerlink" title="3.5 安装vim 替代nano"></a>3.5 安装vim 替代nano</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 更新软件源</span><br><span class="line">sudo apt-get update</span><br><span class="line"># 安装vim</span><br><span class="line">sudo apt-get install vim</span><br><span class="line"># 修改配置</span><br><span class="line">sudo vim /etc/vim/vimrc</span><br></pre></td></tr></table></figure>
+
+<p>vim配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 语法高亮</span><br><span class="line">syntax on</span><br><span class="line"># 显示行号</span><br><span class="line">set nu</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-安装-oh-my-zsh"><a href="#3-6-安装-oh-my-zsh" class="headerlink" title="3.6 安装 oh-my-zsh"></a>3.6 安装 oh-my-zsh</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 查看当前shel</span><br><span class="line">echo $SHELL </span><br><span class="line"></span><br><span class="line"># Install</span><br><span class="line">sudo apt-get install zsh</span><br><span class="line"></span><br><span class="line"># 切换shell为zsh</span><br><span class="line">chsh -s /bin/zsh</span><br><span class="line"></span><br><span class="line"># 自改设置(文件不存在就新建一个)</span><br><span class="line">vim ~/.zshrc</span><br><span class="line"># 添加</span><br><span class="line">ZSH_THEME=&quot;blinks&quot;    #将zsh的主题更改为blinks</span><br><span class="line">ENABLE_CORRECTION=&quot;true&quot;    #(去掉ENABLE前的&quot;#&quot;)打开zsh的自动纠错功能</span><br><span class="line">plugins=(git sudo)    #为zsh添加git和sudo插件</span><br><span class="line"># Alias Settings</span><br><span class="line">alias ll=&apos;ls -all&apos;</span><br><span class="line">alias vi=&apos;vim&apos;</span><br><span class="line">alias ps=&apos;ps -A&apos;</span><br><span class="line">alias ifconfig=&apos;sudo ifconfig&apos;</span><br><span class="line"></span><br><span class="line"># 更新设置</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7-安装远程桌面"><a href="#3-7-安装远程桌面" class="headerlink" title="3.7 安装远程桌面"></a>3.7 安装远程桌面</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 给板子装服务端</span><br><span class="line">sudo apt-get install tightvncserver</span><br><span class="line"># 开启一个 VNC 流，代号为 1， 冒号前有一个空格</span><br><span class="line">tightvncserver :1</span><br><span class="line"># 输入命令后，即可开启服务</span><br><span class="line"># 第一个运行时，会做初始化设置，按提示设置访问权限、连接密码，密码限制为8个字符</span><br></pre></td></tr></table></figure>
+
+<p>下载VNC Viewer客户端 <a href="https://www.realvnc.com/en/connect/download/viewer/" target="_blank" rel="noopener">下载地址</a></p>
+<p>开启VNC流后，在VNC Viewer中输入 [IP地址]:[代号] 如：192.168.0.111:1，输入密码，连接树莓派上的服务端。<br><img src="http://upload-images.jianshu.io/upload_images/5471630-9d9f5a5d632afade.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>停止VNC server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># vncserver -kill [代号]</span><br><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jQuery简易使用方法</title>
+    <url>/2016/12/30/jQuery%E7%9A%84%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h1><hr>
+<p>[TOC]</p>
+<h2 id="节点创建"><a href="#节点创建" class="headerlink" title="节点创建"></a>节点创建</h2><h3 id="节点创建-1"><a href="#节点创建-1" class="headerlink" title="节点创建"></a>节点创建</h3><p>jQuery中，创建节点可以使用$()函数<br><code>$(&quot;&lt;div&gt;&lt;/div&gt;&quot;)</code></p>
+<p>创建文本节点可以将文本直接添加进描述中<br><code>$(&quot;&lt;div&gt;文本内容&lt;/div&gt;&quot;)</code></p>
+<p>在创建节点时，可以同时为节点添加相应的属性<br><code>$(&quot;&lt;div id=&quot;test&quot; class=&quot;class1&quot;&gt;文本节点&lt;/div&gt;&quot;)</code></p>
+<blockquote>
+<p>动态创建的节点只保存在内存中</p>
+</blockquote>
+<h3 id="append与appendTo"><a href="#append与appendTo" class="headerlink" title="append与appendTo"></a>append与appendTo</h3><p>如果需要将节点动态的创建并保存在文档中，可以使用这两个方法，就节点放到某个元素的内部</p>
+<table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">append(content)</td>
+<td align="center">向每个匹配的元素内部追加内容</td>
+</tr>
+<tr>
+<td align="center">appendTo(content)</td>
+<td align="center">把匹配的元素追加到另一个指定的元素当中</td>
+</tr>
+</tbody></table>
+<p>append：这个操作与对指定的元素执行原生的appendChild方法，将它们添加到文档中的情况类似。</p>
+<p>appendTo：实际上，使用这个方法是颠倒了常规的$(A).append(B)的操作，即不是把B追加到A中，而是把A追加到B中。</p>
+<h2 id="节点插入"><a href="#节点插入" class="headerlink" title="节点插入"></a>节点插入</h2><h3 id="外部插入after和before"><a href="#外部插入after和before" class="headerlink" title="外部插入after和before"></a>外部插入after和before</h3><table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.after(content)</td>
+<td align="center">向每个匹配的元素后面追加内容，作为其兄弟节点</td>
+</tr>
+<tr>
+<td align="center">.before(content)</td>
+<td align="center">向每个匹配的元素前面追加内容，作为其兄弟节点</td>
+</tr>
+</tbody></table>
+<p>两个方法都是都可以接收HTML字符串，DOM 元素，元素数组，或者jQuery对象，用来插入到集合中每个匹配元素的前面或者后面</p>
+<p>两个方法都支持多个参数传递after(div1,div2,….)</p>
+<h3 id="内部插入prepend和prependTo"><a href="#内部插入prepend和prependTo" class="headerlink" title="内部插入prepend和prependTo"></a>内部插入prepend和prependTo</h3><table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">prepend</td>
+<td align="center">向每个匹配的元素内部前置内容</td>
+</tr>
+<tr>
+<td align="center">prependTo</td>
+<td align="center">把匹配的元素前置到另一个指定的元素当中</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>.prepend()方法将指定元素插入到匹配元素里面作为它的第一个子元素 (如果要作为最后一个子元素插入用.append())</p>
+</blockquote>
+<h3 id="外部插入insertAfter和insertBefore"><a href="#外部插入insertAfter和insertBefore" class="headerlink" title="外部插入insertAfter和insertBefore"></a>外部插入insertAfter和insertBefore</h3><table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">insertBefore</td>
+<td align="center">在目标元素前面插入集合中每个匹配的元素</td>
+</tr>
+<tr>
+<td align="center">insertAfter</td>
+<td align="center">在目标元素后面插入集合中每个匹配的元素</td>
+</tr>
+</tbody></table>
+<p>.before()和.insertBefore()实现同样的功能。主要的区别是语法——内容和目标的位置。</p>
+<p>对于before()选择表达式在函数前面，内容作为参数，而.insertBefore()刚好相反，内容在方法前面，它将被放在参数里元素的前面<br>.after()和.insertAfter() 实现同样的功能。</p>
+<p>主要的不同是语法——特别是（插入）内容和目标的位置。 对于after()选择表达式在函数的前面，参数是将要插入的内容。对于 .insertAfter(), 刚好相反，内容在方法前面，它将被放在参数里元素的后面</p>
+<blockquote>
+<p>before、after与insertBefore。insertAfter的除了目标与位置的不同外，后面的不支持多参数处理</p>
+</blockquote>
+<h2 id="节点删除"><a href="#节点删除" class="headerlink" title="节点删除"></a>节点删除</h2><h3 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h3><p>移除指定元素中的所有子节点，元素本身不会被清除<br><code>&lt;div class=&quot;hello&quot;&gt;&lt;p&gt;内容&lt;/p&gt;&lt;/div&gt;</code></p>
+<p><code>$(&quot;.hello&quot;).empty()</code></p>
+<p>结果为<br><code>&lt;div class=&quot;hello&quot;&gt;&lt;/div&gt;</code></p>
+<h3 id="remove"><a href="#remove" class="headerlink" title="remove"></a>remove</h3><p>remove会将元素自身移除，同时也会移除元素内部的一切，包括绑定的事件及与该元素相关的jQuery数据<br>删除节点的同时将绑定的事件也删除，可以防止内存泄漏</p>
+<p>remove比empty好用的地方就是可以传递一个选择器表达式用来过滤将被移除的匹配元素集合，可以选择性的删除指定的节点<br>我们可以通过$()选择一组相同的元素，然后通过remove（）传递筛选的规则</p>
+<p>过滤器处理<br><code>$(&quot;p&quot;).filter(&quot;:contains(&#39;3&#39;)&quot;).remove()</code></p>
+<p>删除所有包含了数字3的p元素</p>
+<h3 id="detach-保留数据删除"><a href="#detach-保留数据删除" class="headerlink" title="detach 保留数据删除"></a>detach 保留数据删除</h3><p>让一个web元素托管。即从当前页面中移除该元素，但保留这个元素的内存模型对象</p>
+<p>$(“div”).detach()这一句会移除对象，仅仅是显示效果没有了。但是内存中还是存在的。当你append之后，又重新回到了文档流中。就又显示出来了</p>
+<p>detach方法是JQuery特有的，所以它只能处理通过JQuery的方法绑定的事件或者数据</p>
+<h2 id="节点复制和替换"><a href="#节点复制和替换" class="headerlink" title="节点复制和替换"></a>节点复制和替换</h2><h3 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h3><p>.clone()方法深度 复制所有匹配的元素集合，包括所有匹配元素、匹配元素的下级元素、文字节点<br>clone方法比较简单就是克隆节点，但是需要注意，如果节点有事件或者数据之类的其他处理，我们需要通过clone(ture)传递一个布尔值ture用来指定，这样不仅仅只是克隆单纯的节点结构，还要把附带的事件与数据给一并克隆了</p>
+<ul>
+<li>clone()方法时，在将它插入到文档之前，我们可以修改克隆后的元素或者元素内容，如右边代码我 $(this).clone().css(‘color’,’red’) 增加了一个颜色</li>
+<li>通过传递true，将所有绑定在原始元素上的事件处理函数复制到克隆元素上</li>
+<li>clone()方法是jQuery扩展的，只能处理通过jQuery绑定的事件与数据<br>元素数据（data）内对象和数组不会被复制，将继续被克隆元素和原始元素共享。深复制的所有数据，需要手动复制每一个</li>
+</ul>
+<h3 id="replaceWith和replaceAll"><a href="#replaceWith和replaceAll" class="headerlink" title="replaceWith和replaceAll"></a>replaceWith和replaceAll</h3><p>.replaceWith(newContent)：用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合</p>
+<p>.replaceAll( target ) ：用集合的匹配元素替换每个目标元素</p>
+<p>简单来说：用$()选择节点A，调用replaceWith方法，传入一个新的内容B（HTML字符串，DOM元素，或者jQuery对象）用来替换选中的节点A</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;第一段&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;第二段&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;第三段&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>替换第二段</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p:eq(1)&quot;).replaceWith(&apos;&lt;a style=&quot;color:red&quot;&gt;替换第二段的内容&lt;/a&gt;&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>replaceAll</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&apos;&lt;a style=&quot;color:red&quot;&gt;替换第二段的内容&lt;/a&gt;&apos;).replaceAll(&apos;p:eq(1)&apos;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="wrap"><a href="#wrap" class="headerlink" title="wrap"></a>wrap</h3><p>.wrap( wrappingElement )：在集合中匹配的每个元素周围包裹一个HTML结构<br>也就是在匹配的元素上添加一个父元素</p>
+<p>.wrap( function ) ：一个回调函数，返回用于包裹匹配元素的 HTML 内容或 jQuery 对象<br>使用后的效果与直接传递参数是一样，只不过可以把代码写带函数体内部，写法不同而已</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&apos;p&apos;).wrap(function() &#123;</span><br><span class="line">    return &apos;&lt;div&gt;&lt;div/&gt;&apos;;   //与第一种类似，只是写法不一样</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="unwrap"><a href="#unwrap" class="headerlink" title="unwrap"></a>unwrap</h3><p>作用与wrap方法是相反的。将匹配元素集合的父级元素删除，保留自身（和兄弟元素，如果存在）在原来的位置</p>
+<h3 id="warpAll"><a href="#warpAll" class="headerlink" title="warpAll"></a>warpAll</h3><p>将集合中的元素用其他元素包裹起来<br>.wrapAll( wrappingElement)：给集合中匹配的元素增加一个外面包裹HTML结构</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>$(&#39;p&#39;).wrapAll(&#39;&lt;div&gt;&lt;/div&gt;&#39;)</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>.wrapAll( function ) ：一个回调函数，返回用于包裹匹配元素的 HTML 内容或 jQuery 对象<br>通过回调的方式可以单独处理每一个元素</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&apos;p&apos;).wrapAll(function() &#123;</span><br><span class="line">    return &apos;&lt;div&gt;&lt;div/&gt;&apos;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>等同于对每个元素进行wrap操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="wrapinner"><a href="#wrapinner" class="headerlink" title="wrapinner"></a>wrapinner</h3><p>将合集中的元素内部所有的子元素用其他元素包裹起来，并当作指定元素的子元素<br>.wrapInner( wrappingElement)：给集合中匹配的元素的内部，增加包裹的HTML结构</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br><span class="line">&lt;p&gt;p元素&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>$(&#39;p&#39;).wrapInner(&#39;&lt;div&gt;&lt;/div&gt;&#39;)</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">    &lt;div&gt;p元素&lt;/div&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">    &lt;div&gt;p元素&lt;/div&gt;</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>.wrapInner( function)：允许我们用一个callback函数做参数，每次遇到匹配元素时，该函数被执行，返回一个DOM元素，jQuery对象，或者HTML片段，用来包住匹配元素的内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&apos;p&apos;).wrapInner(function() &#123;</span><br><span class="line">    return &apos;&lt;div&gt;&lt;div/&gt;&apos;;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>等同于第一种写法</p>
+<h2 id="节点遍历"><a href="#节点遍历" class="headerlink" title="节点遍历"></a>节点遍历</h2><h3 id="children"><a href="#children" class="headerlink" title="children"></a>children</h3><p>jQuery是一个合集对象，如果想快速查找合集里面的第一级子元素，此时可以用children()方法。这里需要注意：.children(selector) 方法是返回匹配元素集合中每个元素的所有子元素（仅儿子辈，这里可以理解为就是父亲-儿子的关系）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;div&quot;&gt;</span><br><span class="line">    &lt;ul class=&quot;son&quot;&gt;</span><br><span class="line">        &lt;li class=&quot;grandson&quot;&gt;1&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>代码如果是<code>$(&quot;div&quot;).find()</code>，那么意味着只能找到ul，因为div与ul是父子关系，li与div是祖辈关系，因此无法找到。</p>
+<p>无参数</p>
+<p>允许我们通过在DOM树中对这些元素的直接子元素进行搜索，并且构造一个新的匹配元素的jQuery对象<br><font color="red">注意：jQuery是一个合集对象，所以通过children是匹配合集中每一给元素的第一级子元素</font></p>
+<p>.children()方法选择性地接受同一类型选择器表达式<br><code>$(&quot;div&quot;).children(&quot;.selected&quot;)</code></p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>jQuery是一个合集对象，如果想快速查找DOM树中的这些元素的后代元素，此时可以用find()方法，这也是开发使用频率很高的方法。这里要注意 children与find方法的区别，children是父子关系查找，find是后代关系（包含父子关系）</p>
+<p>find是遍历当前元素集合中每个元素的后代。只要符合，不管是儿子辈，孙子辈都可以。<br>与其他的树遍历方法不同，选择器表达式对于 .find() 是必需的参数。如果我们需要实现对所有后代元素的取回，可以传递通配选择器 ‘*‘.</p>
+<p>find只在后代中遍历，不包括自己。</p>
+<p>选择器 context 是由.find()方法实现的；因此，<code>$(&#39;li.item-ii&#39;).find(&#39;li&#39;)</code> 等价于 <code>$(&#39;li&#39;, &#39;li.item-ii&#39;)</code>。</p>
+<h3 id="parent"><a href="#parent" class="headerlink" title="parent"></a>parent</h3><p>jQuery是一个合集对象，如果想快速查找合集里面的每一个元素的父元素（这里可以理解为就是父亲-儿子的关系），此时可以用parent()方法<br><font color="red">此方法只能向上查找一级</font></p>
+<p>parent()无参数</p>
+<p>parent()方法选择性地接受同一型选择器表达式<br>同样的也是因为jQuery是合集对象，可能需要对这个合集对象进行一定的筛选，找出目标元素，所以允许传一个选择器的表达式</p>
+<h3 id="parents"><a href="#parents" class="headerlink" title="parents"></a>parents</h3><p>jQuery是一个合集对象，如果想快速查找合集里面的每一个元素的所有祖辈元素，此时可以用parents()方法</p>
+<p>其实也类似find与children的区别，parent只会查找一级，parents则会往上一直查到查找到祖先节点</p>
+<p>无参数</p>
+<p>parents()方法允许我们能够在DOM树中搜索到这些元素的祖先元素，从有序的向上匹配元素，并根据匹配的元素创建一个新的 jQuery 对象</p>
+<p>返回的元素秩序是从离他们最近的父级元素开始的</p>
+<p>parents()方法选择性地接受同一型选择器表达式</p>
+<blockquote>
+<p>1 .parents()和.parent()方法是相似的，但后者只是进行了一个单级的DOM树查找<br>2  <code>$( &quot;html&quot; ).parent()</code>方法返回一个包含document的集合，而<code>$( &quot;html&quot; ).parents()</code>返回一个空集合。</p>
+</blockquote>
+<h3 id="closest"><a href="#closest" class="headerlink" title="closest"></a>closest</h3><p>以选定的元素为中心，往内查找可以通过find、children方法。如果往上查找，也就是查找当前元素的父辈祖辈元素，jQuery提供了closest()方法，这个方法类似parents但是又有一些细微的区别，属于使用频率很高的方法</p>
+<p>closest()方法接受一个匹配元素的选择器字符串</p>
+<p>从元素本身开始，在DOM 树上逐级向上级元素匹配，并返回最先匹配的祖先元素<br><code>$(&quot;div&quot;).closet(&quot;li&#39;)</code><br>closest()方法给定的jQuery集合或元素来过滤元素<br>与parents的不同：</p>
+<ul>
+<li>起始位置不同：.closest开始于当前元素 .parents开始于父元素</li>
+<li>遍历的目标不同：.closest要找到指定的目标，.parents遍历到文档根元素，closest向上查找，知道找到一个匹配就停止查找，parents一直查找到根元素，并将匹配的元素加入集合</li>
+<li>结果不同：.closest返回的是包含零个或一个元素的jquery对象，parents返回的是包含零个或一个或多个元素的jquery对象</li>
+</ul>
+<h3 id="next"><a href="#next" class="headerlink" title="next"></a>next</h3><p>next()无参数</p>
+<p>允许我们找遍元素集合中紧跟着这些元素的直接兄弟元素，并根据匹配的元素创建一个新的 jQuery 对象</p>
+<p>next()方法选择性地接受同一类型选择器表达式</p>
+<h3 id="prev"><a href="#prev" class="headerlink" title="prev"></a>prev</h3><p>快速查找指定元素集合中每一个元素紧邻的前面同辈元素的元素集合</p>
+<h3 id="siblings"><a href="#siblings" class="headerlink" title="siblings"></a>siblings</h3><p>快速查找指定元集合中每一个元素紧邻的前面后面同辈元素<br>如下class=”item-2”的li元素，class=”item-1”和class=”item-3”的节点就是它的siblings兄弟节点</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul class=&quot;level-3&quot;&gt;</span><br><span class="line">    &lt;li class=&quot;item-1&quot;&gt;1&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;item-2&quot;&gt;2&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;item-3&quot;&gt;3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>jQuery是一个合集对象，通过$()方法找到指定的元素合集后可以进行一系列的操作。$()之后就意味着这个合集对象已经是确定的，如果后期需要再往这个合集中添加一新的元素要如何处理？jQuery为此提供add方法，用来创建一个新的jQuery对象 ，元素添加到匹配的元素集合中</p>
+<p>例</p>
+<p>选择所有的li元素，之后需要把p元素也加入到li的合集中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;list item 1&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;list item 3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;p&gt;新的p元素&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>$(&#39;li&#39;).add(&#39;p&#39;)</code></li>
+<li><code>$(&#39;li&#39;).add(document.getElementsByTagName(&#39;p&#39;)[0])</code></li>
+<li><code>$(&#39;li&#39;).add(&#39;&lt;p&gt;新的p元素&lt;/p&gt;&#39;).appendTo(目标位置)</code></li>
+</ol>
+<h3 id="each"><a href="#each" class="headerlink" title="each"></a>each</h3><p>.each() 方法就是一个for循环的迭代器，它会迭代jQuery对象合集中的每一个DOM元素。每次回调函数执行时，会传递当前循环次数作为参数(从0开始计数</p>
+<blockquote>
+<p>each是一个for循环的包装迭代器</p>
+</blockquote>
+<p>each通过回调的方式处理，并且会有2个固定的实参，索引与元素</p>
+<p>each回调方法中的this指向当前迭代的dom元素</p>
+<p>例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;慕课网&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;Aaron&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>开始迭代li，循环2次</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;li&quot;).each(function(index, element) &#123;</span><br><span class="line">     index 索引 0,1</span><br><span class="line">     element是对应的li节点 li,li</span><br><span class="line">     this 指向的是li</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这样可以在循环体会做一些逻辑操作了，如果需要提前退出，可以以通过返回 false以便在回调函数内中止循环</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python 爬虫入门</title>
+    <url>/2016/12/13/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h2 id="爬虫概述"><a href="#爬虫概述" class="headerlink" title="爬虫概述"></a>爬虫概述</h2><p>网络蜘蛛（Web spider）也叫网络爬虫（Web crawler），蚂蚁（ant），自动检索工具（automatic indexer），或者（在FOAF软件概念中）网络疾走（WEB scutter），是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。</p>
+<h2 id="使用爬虫抓取网页"><a href="#使用爬虫抓取网页" class="headerlink" title="使用爬虫抓取网页"></a>使用爬虫抓取网页</h2><p>想要使用python抓取网页，首先出场的就是urllib2，使用其<code>urlopen</code>方法就可以获取到一个网页信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">response = urllib2.urlopen(<span class="string">"http://baidu.com"</span>)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<p>对于urllib2库中的urlopen()方法，它可以接受三个参数<br><code>urlopen(url,data,timeout)</code><br>url即为URL，data为访问URL时要传送的数据，timeout为超时时间。后两个参数可以不添加，data默认为空None，timeout默认为<code>socket._GLOBAL_DEFAULT_TIMEOUT</code><br>通过urlopen方法获得的信息保存到response中<br>通过打印response.read()可以获取网页内容</p>
+<p>第三的参数就是timeout设置</p>
+<p><code>response = urllib2.urlopen(&#39;http://sdfsdf&#39;,timeout=10)</code><br><code>response = urllib2.urlopen(&#39;http://sdfsdf&#39;,data,10)</code></p>
+<h3 id="Request对象"><a href="#Request对象" class="headerlink" title="Request对象"></a>Request对象</h3><p>在urlopen的参数中，可以传入一个request请求，我们可以创建一个Request的实例来作为参数传给urlopen</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">request = urllib2.Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<h3 id="Post请求与Get请求"><a href="#Post请求与Get请求" class="headerlink" title="Post请求与Get请求"></a>Post请求与Get请求</h3><h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">values = &#123;<span class="string">"usename"</span>:<span class="string">"12345678@123.com"</span>,<span class="string">"password"</span>:<span class="string">"xxx"</span>&#125;</span><br><span class="line">data = urllib.urlencode(values)</span><br><span class="line">url = <span class="string">"http://urlurlurl"</span></span><br><span class="line">request = urllib2.Request(url,data)</span><br><span class="line">response = urllib2.urlopen(request)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<p>还可以使用以下方式定义字典</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">values = &#123;&#125;</span><br><span class="line">values[<span class="string">'username'</span>] = <span class="string">"123456@123.com"</span></span><br><span class="line">values[<span class="string">'password'</span>] = <span class="string">"123456"</span></span><br><span class="line">data = urllib.urlencode(values)</span><br></pre></td></tr></table></figure>
+
+<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line">data = urllib.urlencode(values)</span><br><span class="line">url = <span class="string">"http://urlurlurl"</span>+<span class="string">"?"</span>+data</span><br><span class="line">request = urllib2.Request(url)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Urllib库用法"><a href="#Urllib库用法" class="headerlink" title="Urllib库用法"></a>Urllib库用法</h2><h3 id="设置Headers"><a href="#设置Headers" class="headerlink" title="设置Headers"></a>设置Headers</h3><p>在Headers里有很多的信息，如文件编码，压缩方式，请求身份等<br>user_agent就是请求身份<br><code>&#39;User_Agent&#39;:&#39;Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)&#39;</code><br>这样就设置好了一个headers，在构建request时传入，这样在请求页面是，就会与request一起发到服务器上。<br>另外，有的服务器设置了防盗链，服务器会识别headers中的referer是不是它自己，如果不是，服务器就不会响应请求。<br><code>&#39;Referer&#39;:&#39;http://urlurlurl&#39;</code><br>另外，在headers中还有一些其他属性</p>
+<blockquote>
+<p>User-Agent : 有些服务器或 Proxy 会通过该值来判断是否是浏览器发出的请求<br>Content-Type : 在使用 REST 接口时，服务器会检查该值，用来确定 HTTP Body 中的内容该怎样解析。<br>application/xml ： 在 XML RPC，如 RESTful/SOAP 调用时使用<br>application/json ： 在 JSON RPC 调用时使用<br>application/x-www-form-urlencoded ： 浏览器提交 Web 表单时使用<br>在使用服务器提供的 RESTful 或 SOAP 服务时， Content-Type 设置错误会导致服务器拒绝服务</p>
+</blockquote>
+<h3 id="Proxy设置"><a href="#Proxy设置" class="headerlink" title="Proxy设置"></a>Proxy设置</h3><p>urllib2默认会使用环境变量http_proxy设置HTTP Proxy.有些网站会检测某一段时间内某个IP的访问次数，如果访问次数过多，会禁止访问。所以可以通过设置一些代理服务器来协助你抓取页面。</p>
+<p>Proxy的用法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">enable_proxy = <span class="literal">True</span></span><br><span class="line">proxy_handler = urllib2.ProxyHandler(&#123;<span class="string">"http"</span>:<span class="string">"http://some-proxy.com:8080"</span>&#125;)</span><br><span class="line">null_proxy_handler = urllib2.ProxyHandler(&#123;&#125;)</span><br><span class="line"><span class="keyword">if</span> enable_proxy:</span><br><span class="line">    opener = urllib2.build_opener(proxy_handler)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    opener = urllib2.build_opener(null_proxy_handler)</span><br><span class="line">urllib2.install_opener(opener)</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTP的PUT和DELETE方法"><a href="#HTTP的PUT和DELETE方法" class="headerlink" title="HTTP的PUT和DELETE方法"></a>HTTP的PUT和DELETE方法</h3><blockquote>
+<p>PUT和POST极为相似，都是向服务器发送数据，但它们之间有一个重要区别，PUT通常指定了资源的存放位置，而POST则没有，POST的数据存放位置由服务器自己决定。<br>DELETE：删除某一个资源。很少用到。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">request = urllib2.Request(uri, data=data)</span><br><span class="line">request.get_method = <span class="keyword">lambda</span>: <span class="string">'PUT'</span> <span class="comment"># or 'DELETE'</span></span><br><span class="line">response = urllib2.urlopen(request)</span><br></pre></td></tr></table></figure>
+
+<h2 id="URLError异常处理"><a href="#URLError异常处理" class="headerlink" title="URLError异常处理"></a>URLError异常处理</h2><h3 id="URLError"><a href="#URLError" class="headerlink" title="URLError"></a>URLError</h3><p>要想在python中捕获异常，就要用到try-except语句</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">requset = urllib2.Request(<span class="string">'http://www.xxxxx.com'</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    urllib2.urlopen(requset)</span><br><span class="line"><span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">    <span class="keyword">print</span> e.reason</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTPError"><a href="#HTTPError" class="headerlink" title="HTTPError"></a>HTTPError</h3><p>HTTPError是URLError的子类，HTTPError实例产生后，会有一个code属性。<br>code属性是服务器返回的状态码<br>由于HTTPError的父类是URLError，因此父类的异常应该放在子类的后面</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">req = urllib2.Request(<span class="string">'http://blog.csdn.net/cqcre'</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    urllib2.urlopen(req)</span><br><span class="line"><span class="keyword">except</span> urllib2.HTTPError, e:</span><br><span class="line">    <span class="keyword">print</span> e.code</span><br><span class="line"><span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">    <span class="keyword">print</span> e.reason</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"OK"</span></span><br></pre></td></tr></table></figure>
+
+<p>如果捕获到了HTTPError，则输出code，不会再处理URLError异常。如果发生的不是HTTPError，则会去捕获URLError异常，输出错误原因。</p>
+<p>另外还可以加入 hasattr属性提前对属性进行判断</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line">req = urllib2.Request(<span class="string">'http://blog.csdn.net/cqcre'</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    urllib2.urlopen(req)</span><br><span class="line"><span class="keyword">except</span> urllib2.URLError, e:</span><br><span class="line">    <span class="keyword">if</span> hasattr(e,<span class="string">"code"</span>):</span><br><span class="line">        <span class="keyword">print</span> e.code</span><br><span class="line">    <span class="keyword">if</span> hasattr(e,<span class="string">"reason"</span>):</span><br><span class="line">        <span class="keyword">print</span> e.reason</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"OK"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookie的使用"><a href="#Cookie的使用" class="headerlink" title="Cookie的使用"></a>Cookie的使用</h2><h3 id="Opener"><a href="#Opener" class="headerlink" title="Opener"></a>Opener</h3><p>当你获取一个URL你使用一个opener(一个urllib2.OpenerDirector的实例)。在前面，我们都是使用的默认的opener，也就是urlopen。它是一个特殊的opener，可以理解成opener的一个特殊实例，传入的参数仅仅是url，data，timeout。</p>
+<p>如果我们需要用到Cookie，只用这个opener是不能达到目的的，所以我们需要创建更一般的opener来实现对Cookie的设置。</p>
+<h3 id="Cookielib"><a href="#Cookielib" class="headerlink" title="Cookielib"></a>Cookielib</h3><p>cookielib模块的主要作用是提供可存储cookie的对象，以便于与urllib2模块配合使用来访问Internet资源。<br>可以利用本模块的CookieJar类的对象来捕获cookie并在后续连接请求时重新发送，比如可以实现模拟登录功能。该模块主要的对象有CookieJar、FileCookieJar、MozillaCookieJar、LWPCookieJar。</p>
+<blockquote>
+<p>CookieJar —-派生—-&gt;FileCookieJar  —-派生—–&gt;MozillaCookieJar和LWPCookieJar</p>
+</blockquote>
+<h4 id="获取Cookie保存到变量"><a href="#获取Cookie保存到变量" class="headerlink" title="获取Cookie保存到变量"></a>获取Cookie保存到变量</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明CookieJar保存Cookie对象</span></span><br><span class="line">cookie = cookielib.CookieJar()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建cookie处理器</span></span><br><span class="line">handler = urllib2.HTTPCookieProcessor(cookie)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过handler构建opener</span></span><br><span class="line">opener = urllib2.build_opener(handler)</span><br><span class="line"></span><br><span class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> cookie:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Name='</span>+item.name</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'Value='</span>+item.value</span><br></pre></td></tr></table></figure>
+
+<p>打印结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Name=BAIDUID</span><br><span class="line">Value=61D539BC6FC3780C74A3F9E76D463B12:FG=1</span><br><span class="line">Name=BIDUPSID</span><br><span class="line">Value=61D539BC6FC3780C74A3F9E76D463B12</span><br><span class="line">Name=H_PS_PSSID</span><br><span class="line">Value=19684_1433_18240_20076_19860_15268_11463</span><br><span class="line">Name=PSTM</span><br><span class="line">Value=1464948230</span><br><span class="line">Name=BDSVRTM</span><br><span class="line">Value=0</span><br><span class="line">Name=BD_HOME</span><br><span class="line">Value=0</span><br></pre></td></tr></table></figure>
+
+<h4 id="保存Cookie到文件"><a href="#保存Cookie到文件" class="headerlink" title="保存Cookie到文件"></a>保存Cookie到文件</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置保存cookie的文件</span></span><br><span class="line">filename = <span class="string">'cookie.txt'</span></span><br><span class="line"><span class="comment"># 声明MozillaCookieJar保存cookie，并写入文件</span></span><br><span class="line">cookie = cookielib.MozillaCookieJar(filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建Cookie管理器</span></span><br><span class="line">handler = urllib2.HTTPCookieProcessor(cookie)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建opener</span></span><br><span class="line">opener = urllib2.build_opener(handler)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建请求</span></span><br><span class="line">response = opener.open(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="comment"># 保存到文件</span></span><br><span class="line">cookie.save(ignore_discard=<span class="literal">True</span>, ignore_expires=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>ignore_discard的意思是即使cookies将被丢弃也将它保存下来，ignore_expires的意思是如果在该文件中cookies已经存在，则覆盖原文件写入，在这里，我们将这两个全部设置为True。运行之后，cookies将被保存到cookie.txt文件中</p>
+<h4 id="从文件中获取Cookie并访问"><a href="#从文件中获取Cookie并访问" class="headerlink" title="从文件中获取Cookie并访问"></a>从文件中获取Cookie并访问</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建MozillaCookieJar</span></span><br><span class="line">cookie = cookielib.MozillaCookieJar()</span><br><span class="line"><span class="comment"># 从文件中读取cookie</span></span><br><span class="line">cookie.load(<span class="string">'cookie.txt'</span>, ignore_expires=<span class="literal">True</span>, ignore_discard=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 创建request</span></span><br><span class="line">request = urllib2.Request(<span class="string">"http://www.baidu.com"</span>)</span><br><span class="line"><span class="comment"># 创建opener</span></span><br><span class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</span><br><span class="line">response = opener.open(request)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<h4 id="利用Cookie模拟网站登录"><a href="#利用Cookie模拟网站登录" class="headerlink" title="利用Cookie模拟网站登录"></a>利用Cookie模拟网站登录</h4><p>利用cookie模拟网站登录学校教务系统，读取课表</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存cookie的文件</span></span><br><span class="line">filename = <span class="string">'cookie.txt'</span></span><br><span class="line"><span class="comment"># 创建cookie</span></span><br><span class="line">cookie = cookielib.MozillaCookieJar(filename)</span><br><span class="line"><span class="comment"># 创建opener</span></span><br><span class="line">opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))</span><br><span class="line"><span class="comment"># 要提交的登陆账号密码</span></span><br><span class="line">postdata = urllib.urlencode(&#123;<span class="string">'USERNAME'</span>: <span class="string">'1341901120'</span>, <span class="string">'PASSWORD'</span>: <span class="string">'chuxuan123sh'</span>&#125;)</span><br><span class="line"><span class="comment"># 登陆验证要提交的后台页面地址</span></span><br><span class="line">loginurl = <span class="string">'http://jwgl.just.edu.cn:8080/jsxsd/xk/LoginToXk'</span></span><br><span class="line"></span><br><span class="line">response = opener.open(loginurl, postdata)</span><br><span class="line"><span class="comment"># 保存登陆成功的Cookie</span></span><br><span class="line">cookie.save(ignore_discard=<span class="literal">True</span>, ignore_expires=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示课表的后台页面地址</span></span><br><span class="line">gradeUrl = <span class="string">'http://jwgl.just.edu.cn:8080/jsxsd/xskb/xskb_list.do'</span></span><br><span class="line">response = opener.open(gradeUrl)</span><br><span class="line"><span class="comment"># 显示页面html</span></span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
+
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p><img src="../images/python-regex.png" alt="正则表达式"></p>
+<h3 id="正则表达式注解"><a href="#正则表达式注解" class="headerlink" title="正则表达式注解"></a>正则表达式注解</h3><h4 id="贪婪模式与非贪婪模式"><a href="#贪婪模式与非贪婪模式" class="headerlink" title="贪婪模式与非贪婪模式"></a>贪婪模式与非贪婪模式</h4><p>Python里数量词默认是贪婪的（在少数语言里也可能是默认非贪婪），总是尝试匹配尽可能多的字符；非贪婪的则相反，总是尝试匹配尽可能少的字符。例如：正则表达式”ab<em>”如果用于查找”abbbc”，将找到”abbb”。而如果使用非贪婪的数量词”ab</em>?”，将找到”a”。</p>
+<p>常用非贪婪模式提取</p>
+<h4 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠"></a>反斜杠</h4><p>使用反斜杠作为转义字符<br>python中可以使用r代替\<br>在正则表达式中如果要匹配”&quot;,需要写成\\,使用r可以写成r” \“表示。匹配使用可以写成\d,r” \d”</p>
+<h4 id="python-Re模块"><a href="#python-Re模块" class="headerlink" title="python Re模块"></a>python Re模块</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#返回pattern对象</span></span><br><span class="line">re.compile(string[,flag])  </span><br><span class="line"><span class="comment">#以下为匹配所用函数</span></span><br><span class="line">re.match(pattern, string[, flags])</span><br><span class="line">re.search(pattern, string[, flags])</span><br><span class="line">re.split(pattern, string[, maxsplit])</span><br><span class="line">re.findall(pattern, string[, flags])</span><br><span class="line">re.finditer(pattern, string[, flags])</span><br><span class="line">re.sub(pattern, repl, string[, count])</span><br><span class="line">re.subn(pattern, repl, string[, count])</span><br></pre></td></tr></table></figure>
+
+<p><code>pattern = re.compile(r&#39;hello&#39;)</code></p>
+<p>在参数中我们传入了原生字符串对象，通过compile方法编译生成一个pattern对象，然后我们利用这个对象来进行进一步的匹配<br>参数flag是匹配模式，取值可以使用按位或运算符’|’表示同时生效，比如<code>re.I|re.M</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">re.I(全拼：IGNORECASE): 忽略大小写（括号内是完整写法，下同）</span><br><span class="line">re.M(全拼：MULTILINE): 多行模式，改变&apos;^&apos;和&apos;$&apos;的行为（参见上图）</span><br><span class="line">re.S(全拼：DOTALL): 点任意匹配模式，改变&apos;.&apos;的行为</span><br><span class="line">re.L(全拼：LOCALE): 使预定字符类 \w \W \b \B \s \S 取决于当前区域设定</span><br><span class="line">re.U(全拼：UNICODE): 使预定字符类 \w \W \b \B \s \S \d \D 取决于unicode定义的字符属性</span><br><span class="line">re.X(全拼：VERBOSE): 详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释。</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-match-pattern-string-flags"><a href="#re-match-pattern-string-flags" class="headerlink" title="re.match(pattern, string[, flags])"></a>re.match(pattern, string[, flags])</h5><p>这个方法将会从string（我们要匹配的字符串）的开头开始，尝试匹配pattern，一直向后匹配，如果遇到无法匹配的字符，立即返回None，如果匹配未结束已经到达string的末尾，也会返回None。两个结果均表示匹配失败，否则匹配pattern成功，同时匹配终止，不再对string向后匹配</p>
+<p>match对象的的属性和方法<br>result.group , result.string</p>
+<ol>
+<li>string: 匹配时使用的文本。</li>
+<li>re: 匹配时使用的Pattern对象。</li>
+<li>pos: 文本中正则表达式开始搜索的索引。值与Pattern.match()和Pattern.seach()方法的同名参数相同。</li>
+<li>endpos: 文本中正则表达式结束搜索的索引。值与Pattern.match()和Pattern.seach()方法的同名参数相同。</li>
+<li>lastindex: 最后一个被捕获的分组在文本中的索引。如果没有被捕获的分组，将为None。</li>
+<li>lastgroup: 最后一个被捕获的分组的别名。如果这个分组没有别名或者没有被捕获的分组，将为None。</li>
+</ol>
+<p>方法：</p>
+<ol>
+<li>group([group1, …]):<br>获得一个或多个分组截获的字符串；指定多个参数时将以元组形式返回。group1可以使用编号也可以使用别名；编号0代表整个匹配的子串；不填写参数时，返回group(0)；没有截获字符串的组返回None；截获了多次的组返回最后一次截获的子串。</li>
+<li>groups([default]):<br>以元组形式返回全部分组截获的字符串。相当于调用group(1,2,…last)。default表示没有截获字符串的组以这个值替代，默认为None。</li>
+<li>groupdict([default]):<br>返回以有别名的组的别名为键、以该组截获的子串为值的字典，没有别名的组不包含在内。default含义同上。</li>
+<li>start([group]):<br>返回指定的组截获的子串在string中的起始索引（子串第一个字符的索引）。group默认值为0。</li>
+<li>end([group]):<br>返回指定的组截获的子串在string中的结束索引（子串最后一个字符的索引+1）。group默认值为0。</li>
+<li>span([group]):<br>返回(start(group), end(group))。</li>
+<li>expand(template):<br>将匹配到的分组代入template中然后返回。template中可以使用\id或\g、\g引用分组，但不能使用编号0。\id与\g是等价的；但\10将被认为是第10个分组，如果你想表达\1之后是字符’0’，只能使用\g0。</li>
+</ol>
+<h5 id="re-search-pattern-string-flags"><a href="#re-search-pattern-string-flags" class="headerlink" title="re.search(pattern, string[, flags])"></a>re.search(pattern, string[, flags])</h5><p>search方法与match方法极其类似，区别在于match()函数只检测re是不是在string的开始位置匹配，search()会扫描整个string查找匹配，match（）只有在0位置匹配成功的话才有返回，如果不是开始位置匹配成功的话，match()就返回None。同样，search方法的返回对象同样match()返回对象的方法和属性</p>
+<h5 id="re-split-pattern-string-maxsplit"><a href="#re-split-pattern-string-maxsplit" class="headerlink" title="re.split(pattern, string[, maxsplit])"></a>re.split(pattern, string[, maxsplit])</h5><p>按照能够匹配的子串将string分割后返回列表。maxsplit用于指定最大分割次数，不指定将全部分割</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;\d+&apos;)</span><br><span class="line">print re.split(pattern,&apos;one1two2three3four4&apos;)</span><br><span class="line"></span><br><span class="line">### 输出 ###</span><br><span class="line"># [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;, &apos;four&apos;, &apos;&apos;]</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-findall-pattern-string-flags"><a href="#re-findall-pattern-string-flags" class="headerlink" title="re.findall(pattern, string[, flags])"></a>re.findall(pattern, string[, flags])</h5><p>搜索string，以列表形式返回全部能匹配的子串</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;\d+&apos;)</span><br><span class="line">print re.findall(pattern,&apos;one1two2three3four4&apos;)</span><br><span class="line"></span><br><span class="line">### 输出 ###</span><br><span class="line"># [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;]</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-finditer-pattern-string-flags"><a href="#re-finditer-pattern-string-flags" class="headerlink" title="re.finditer(pattern, string[, flags])"></a>re.finditer(pattern, string[, flags])</h5><p>搜索string，返回一个顺序访问每一个匹配结果（Match对象）的迭代器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;\d+&apos;)</span><br><span class="line">for m in re.finditer(pattern,&apos;one1two2three3four4&apos;):</span><br><span class="line">    print m.group(),</span><br><span class="line"></span><br><span class="line">### 输出 ###</span><br><span class="line"># 1 2 3 4</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-sub-pattern-repl-string-count"><a href="#re-sub-pattern-repl-string-count" class="headerlink" title="re.sub(pattern, repl, string[, count])"></a>re.sub(pattern, repl, string[, count])</h5><p>使用repl替换string中每一个匹配的子串后返回替换后的字符串。<br>当repl是一个字符串时，可以使用\id或\g、\g引用分组，但不能使用编号0<br>当repl是一个方法时，这个方法应当只接受一个参数（Match对象），并返回一个字符串用于替换（返回的字符串中不能再引用分组）。<br>count用于指定最多替换次数，不指定时全部替换</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;(\w+) (\w+)&apos;)</span><br><span class="line">s = &apos;i say, hello world!&apos;</span><br><span class="line"></span><br><span class="line">print re.sub(pattern,r&apos;\2 \1&apos;, s)</span><br><span class="line"></span><br><span class="line">def func(m):</span><br><span class="line">    return m.group(1).title() + &apos; &apos; + m.group(2).title()</span><br><span class="line"></span><br><span class="line">print re.sub(pattern,func, s)</span><br><span class="line"></span><br><span class="line">### output ###</span><br><span class="line"># say i, world hello!</span><br><span class="line"># I Say, Hello World!</span><br></pre></td></tr></table></figure>
+
+<h5 id="re-subn-pattern-repl-string-count"><a href="#re-subn-pattern-repl-string-count" class="headerlink" title="re.subn(pattern, repl, string[, count])"></a>re.subn(pattern, repl, string[, count])</h5><p>返回 (sub(repl, string[, count]), 替换次数)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import re</span><br><span class="line"></span><br><span class="line">pattern = re.compile(r&apos;(\w+) (\w+)&apos;)</span><br><span class="line">s = &apos;i say, hello world!&apos;</span><br><span class="line">print re.subn(pattern,r&apos;\2 \1&apos;, s)</span><br><span class="line">def func(m):</span><br><span class="line">    return m.group(1).title() + &apos; &apos; + m.group(2).title()</span><br><span class="line">print re.subn(pattern,func, s)</span><br><span class="line">### output ###</span><br><span class="line"># (&apos;say i, world hello!&apos;, 2)</span><br><span class="line"># (&apos;I Say, Hello World!&apos;, 2)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java中的super关键字</title>
+    <url>/2016/12/06/2016-12-6-Java%E4%B8%AD%E7%9A%84super%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <content><![CDATA[<h2 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h2><p>super关键字具有以下作用：</p>
+<ol>
+<li>调用父类的成员或方法</li>
+<li>调用父类的构造函数</li>
+</ol>
+<h3 id="调用父类的构造函数"><a href="#调用父类的构造函数" class="headerlink" title="调用父类的构造函数"></a>调用父类的构造函数</h3><p>使用super关键字可以调用父类的构造函数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Parent&#123;</span><br><span class="line">    public String name;</span><br><span class="line"></span><br><span class="line">    public Parent()&#123;</span><br><span class="line">        // 父类的无参构造函数</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Parent(String name)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Son extends Parent&#123;</span><br><span class="line">    public Son()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Son(String name)&#123;</span><br><span class="line">        super(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Son son = new Son(&quot;jack&quot;);</span><br><span class="line">        System.out.println(son.name); // 打印jack</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过super()调用父类构造器必须放在构造函数第一行。<br>通过super(),父类的无参构造函数会被执行，通过super(parameter list),父类中的带参数构造函数会被执行。</p>
+<blockquote>
+<p>如果子类构造函数中没有显式调用父类构造器，则jvm默认调用父类的无参构造函数，如果父类中没有无参构造函数，则报错。</p>
+</blockquote>
+<h3 id="调用父类中的方法"><a href="#调用父类中的方法" class="headerlink" title="调用父类中的方法"></a>调用父类中的方法</h3><p>现在在Parent类中添加一个方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public void parentMethod()&#123;</span><br><span class="line">    System.out.println(&quot;父类中的方法&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子类中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Son extends Parent &#123;</span><br><span class="line">    public Son()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public Son(String name) &#123;</span><br><span class="line">        super(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void showParentMethod()&#123;</span><br><span class="line">        super.parentMethod();</span><br><span class="line">        this.parentMethod();</span><br><span class="line">    &#125;</span><br><span class="line">    // 为了显示super调用父类的方法，这里重写了父类的方法</span><br><span class="line">    public void parentMethod()&#123;</span><br><span class="line">        System.out.println(&quot;子类中的方法&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Son son = new Son();</span><br><span class="line">        son.showParentMethod();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用Son类中的main方法后，就会在控制台打印出</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">父类中的方法</span><br><span class="line">子类中的方法</span><br></pre></td></tr></table></figure>
+
+<p>那么问题来了，super关键字是不是就可以认为是Parent对象的一个引用了?</p>
+<h3 id="super是指向父类对象的引用？"><a href="#super是指向父类对象的引用？" class="headerlink" title="super是指向父类对象的引用？"></a>super是指向父类对象的引用？</h3><p>回答问题前先来看一下下面的代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Son extends Parent &#123;</span><br><span class="line">    public Son(String name) &#123;</span><br><span class="line">        super(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public Son()&#123;&#125;</span><br><span class="line"></span><br><span class="line">    public void show()&#123;</span><br><span class="line">        System.out.println(super.getClass().getName());</span><br><span class="line">        System.out.println(this.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Son son = new Son();</span><br><span class="line">        son.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后打印的是什么？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Son</span><br><span class="line">Son</span><br></pre></td></tr></table></figure>
+
+<p>也许你会觉得<code>super.getClass().getName()</code>会返回Parent类的名字，可惜不凑巧，你想错了。<br>为什么super.getClass().getName()会返回子类的名字，super.parentMathod()却可以调用父类的方法?</p>
+<p>其实super在类中并不是父类对象的引用，程序中是不能使用<code>System.out.println(super)</code>打印出super，只是具有调用父类方法的功能。而getClass()方法是Object类的方法，并且是final的，在调用时返回对象在运行时的类的类型。super.getClass()和this.getClass()都是在Son类中调用Object类的getClass()方法，这也就解释了为什么super.getClass().getName()返回的是Son类名了。</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>MySQL存储过程</title>
+    <url>/2016/11/29/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><h3 id="什么是存储过程"><a href="#什么是存储过程" class="headerlink" title="什么是存储过程"></a>什么是存储过程</h3><p>百科上的解释是</p>
+<blockquote>
+<p>存储过程是在大型数据库系统中，一组为了完成特定功能的SQL语句集。存储在数据库中，一次编译后再次调用不需要再次编译，用户通过指定存储过程的名字并给出参数来执行它。</p>
+</blockquote>
+<p>简单来说，存储过程就是一组SQL语句集合。</p>
+<h3 id="为什么要使用存储过程"><a href="#为什么要使用存储过程" class="headerlink" title="为什么要使用存储过程"></a>为什么要使用存储过程</h3><p>考虑如下情景：<br>某个商品抢购系统的数据库中，分别有订单表，库存商品表，用户表。<br></p>
+<ul>
+<li>当一个用户要预定仓库中的某一个商品时，首先要检索库存商品表以保证库存中有相应的商品。</li>
+<li>如果存在货物，则在订单表中插入一条新数据，并对商品表相应商品进行减库存的操作。</li>
+<li>如果库存中已没有客户抢购的商品，则返回售空信息。</li>
+<li>每个用户对同一商品只能抢购一次，以保证公平性。</li>
+</ul>
+<p>在实现上述要求时，可以单独编写每条语句，并根据结果条件地执行另外的语句。在每次需要这样的处理流程时，都需要重复这些工作。<br>在这种情景下，如果单独编写每条SQL语句，这样做是非常低效的。<br></p>
+<p>而使用存储过程，通过把处理封装在容易使用的单元中，简化复杂的操作，并且使用存储过程比使用单独的SQL语句要快，这样可以很好的提高效率。<br>最重要的一点，在web应用中，网络延迟是引起SQL语句执行效率的重要因素，而使用存储过程可以很好地避开这一点。<br>这点我们在后面讨论。</p>
+<h3 id="存储过程的应用"><a href="#存储过程的应用" class="headerlink" title="存储过程的应用"></a>存储过程的应用</h3><h4 id="执行存储过程"><a href="#执行存储过程" class="headerlink" title="执行存储过程"></a>执行存储过程</h4><p>执行存储过程使用CALL关键字</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CALL productpriceavg();</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 修改MySQL语句分隔符</span><br><span class="line">DELIMITER $$</span><br><span class="line">CREATE PROCEDURE productpriceavg()</span><br><span class="line">BEGIN</span><br><span class="line">    SELECT Avg(prod_price) as priceaverage FROM products;</span><br><span class="line">END $$</span><br><span class="line">DELIMITER ;</span><br></pre></td></tr></table></figure>
+
+<p>通过上面的语句就可以创建存储过程productpriceavg()，该存储过程没有参数，没有返回值，只是显示产品的平均价格。<br>(可以使用<code>SHOW CREATE PROCEDURE productpriceavg\G</code>)查看存储过程的创建命令。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CALL productpriceavg();</span><br></pre></td></tr></table></figure>
+
+<p>执行结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">|------------|</span><br><span class="line">|priceaverage|</span><br><span class="line">|------------|</span><br><span class="line">|12.3456     |</span><br><span class="line">|------------|</span><br></pre></td></tr></table></figure>
+
+<p>创建带有参数的存储过程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- in表示输入参数，out表示输出参数</span><br><span class="line">-- 输出参数只能被赋值</span><br><span class="line">-- r_result:0，商品售空，1，抢购成功，-1，已抢购，-2，系统错误</span><br><span class="line">DELIMITER $$</span><br><span class="line">CREATE PROCEDURE execute_sell</span><br><span class="line">    (IN v_goods_id BIGINT,IN v_customer_id BIGINT,IN v_create_time TIMESTAMP,OUT r_result INT)</span><br><span class="line">    BEGIN</span><br><span class="line">        -- 定义变量</span><br><span class="line">        DECLARE insert_count INT DEFAULT 0;</span><br><span class="line">        -- 开启事务，把减库存表与创建订单表放在事务内，如果中间的操作出现的任何问题，回滚，如果操作正确，则提交事务</span><br><span class="line">        START TRANSACTION;</span><br><span class="line">        -- goods_order 订单表</span><br><span class="line">        -- goods_id 与 customer_id做联合主键，保证一个用户对一个商品只能抢购一次</span><br><span class="line">        INSERT IGNORE INTO goods_order (goods_id,customer_id,create_time)</span><br><span class="line">            VALUES(v_goods_id,v_customer_id,v_create_time);</span><br><span class="line">        -- 读取row_count()函数值，存放在insert_count中</span><br><span class="line">        -- row_count()返回上条语句影响的行数：0，未修改数据，&gt;0，修改n条数据,&lt;0，SQL错误</span><br><span class="line">        SELECT row_count() INTO insert_count;</span><br><span class="line">        -- 如果影响条数为0，说明用户已抢购</span><br><span class="line">        IF (insert_count = 0) THEN</span><br><span class="line">            ROLLBACK;</span><br><span class="line">            SET r_result = -1;</span><br><span class="line">        ELSEIF (insert_count &lt; 0) THEN</span><br><span class="line">            ROLLBACK;</span><br><span class="line">            SET r_result = -2;</span><br><span class="line">        ELSE</span><br><span class="line">            -- 如果插入成功，说明用户之前未抢购过此商品，此时可以执行减库存</span><br><span class="line">            UPDATE goods SET goods_number = goods_number - 1</span><br><span class="line">                WHERE goods_id = v_goods_id AND goods_number &gt; 0;</span><br><span class="line">            SELECT row_count() INTO insert_count;</span><br><span class="line"></span><br><span class="line">            IF (insert_count == 0) THEN</span><br><span class="line">                -- 商品已买完</span><br><span class="line">                ROLLBACK;</span><br><span class="line">                SET r_result = 0;</span><br><span class="line">            ELSEIF (insert_count &lt; 0) THEN</span><br><span class="line">                ROLLBACK;</span><br><span class="line">                SET r_result = -2;</span><br><span class="line">            ELSE</span><br><span class="line">                -- 操作成功</span><br><span class="line">                COMMIT;</span><br><span class="line">                SET r_result = 1;</span><br><span class="line">            END IF;</span><br><span class="line">        END IF;</span><br><span class="line">    END;</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">DELIMITER ;</span><br><span class="line">-- SET @result = -3;</span><br><span class="line">-- CALL execute_sell(1003,10005,now(),@result);</span><br><span class="line">-- 获取结果</span><br><span class="line">-- SELECT @result;</span><br></pre></td></tr></table></figure>
+
+<h4 id="删除存储过程"><a href="#删除存储过程" class="headerlink" title="删除存储过程"></a>删除存储过程</h4><p>删除存储过程，使用DROP关键字</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DROP PROCEDURE execute_sell;</span><br></pre></td></tr></table></figure>
+
+<p>如果存储过程不存在，上面语句将会产生一个错误。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DROP PROCEDURE IF EXISTS execute_sell;</span><br></pre></td></tr></table></figure>
+
+<h3 id="存储过程真的有用吗"><a href="#存储过程真的有用吗" class="headerlink" title="存储过程真的有用吗"></a>存储过程真的有用吗</h3><p>在文章开头，我们说到了存储过程可以提高SQL的执行效率，当然，这是在特定场景下的说法。<br>当web应用与数据库不在同一台服务器上时，web应用访问数据库时，不仅要考虑SQL语句的效率，还要考虑两台服务器之间的网络延迟。如果在程序中使用事务来实现上面的情景，当我们执行新增订单操作时，要先将sql语句传递到数据库服务器。此时，数据库将会对订单表中的数据加锁，同时将执行结果返回给web应用上，应用通过此结果判断是继续执行操作还是回滚。这一来一回的网络延迟会对应用的执行时间造成很大的压力，同时由于表中数据处于锁状态，其他访问这条数据的请求都会阻塞。</p>
+<p>这种情况下，使用存储过程，将事务放在数据库服务器上执行，web应用只需一次性将参数传递给数据库，数据库将存储过程的执行结果返回给web应用，中间只有一次来回，减少了网络延迟的影响，也缩短了数据库行级锁的时间。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>存储过程是一系列SQL语句的集合，用于优化SQL语句的执行效率，虽然存储过程有着诸多的优点，但我们也不应该过于依赖它，还是要根据实际情况合理选择。</p>
+]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>String</title>
+    <url>/2016/11/21/String/</url>
+    <content><![CDATA[<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>java中的String不是基本类型，是一个不可变对象，String类是final类型的，不可被继承。</p>
+<h3 id="null-””-new-String-的区别"><a href="#null-””-new-String-的区别" class="headerlink" title="null,””,new String()的区别"></a>null,””,new String()的区别</h3><blockquote>
+<p>null 表示String还没有new，也就是说对象的引用还没有创建，也没有分配内存空间给它；而””、new String()则说明String已经new了，只不过内部为空，但是它创建了对象的引用，是需要分配内存空间的。</p>
+</blockquote>
+<h3 id="字符串池"><a href="#字符串池" class="headerlink" title="字符串池"></a>字符串池</h3><p>每当我们创建一个字符串对象时，首先就会检查字符串池中是否存在字面值相等的字符串。如果有，则不再创建，直接返回字符串池中该对象的引用，若没有则创建新对象然后放入到字符串池中并且返回新建对象的引用。这个机制对提高效率，减少内存空间的占用有很大作用。所以在使用字符串的过程中，推荐使用直接赋值（即<code>String s=&quot;aa&quot;</code>），除非有必要才去新建一个String对象（即<code>String s = new String(&quot;aa&quot;)</code>）
+看下面的代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestString</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        String str1 = <span class="string">"hello"</span>;</span><br><span class="line">        String str2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        String str3 = <span class="string">"hel"</span>+<span class="string">"lo"</span>;</span><br><span class="line">        String str4 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">        String str5 = <span class="string">"hel"</span>;</span><br><span class="line">        String str6 = str5 + <span class="string">"lo"</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(str1 == str2);</span><br><span class="line">        System.out.println(str1 == str3);</span><br><span class="line">        System.out.println(str2 == str4);</span><br><span class="line">        System.out.println(str6 == str1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">false</span><br><span class="line">true</span><br><span class="line">false</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+<p>首先来看，<code>str1 == str2</code>,str1使用字面常量创建字符串hello保存在字符串常量池中，str2使用new关键字创建一个值为hello的字符串对象，保存在堆中。两者的内存地址自然不同。<code>str1 == str3</code>呢？这里要注意的是在使用+拼接字面字符串时，jvm会在编译时执行拼接操作，将结果保存在str3中，由于字符串常量池中已经存在hello字符串了，所以在创建变量str3时，jvm返回了hello的地址，一次打印出true。而<code>str2==str4</code>，str2与str4都使用new关键字创建了值为hello的字符串对象，但两者在堆上的地址并不相同。最后，<code>str6==str1</code>，str6是通过str5和“lo”计算得到的字符串，这种程序中计算得到的字符串是不会放在字符串常量池的，所以其引用地址与str1不同</p>
+<h3 id="intern方法："><a href="#intern方法：" class="headerlink" title="intern方法："></a>intern方法：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String str1 = &quot;hello&quot;;</span><br><span class="line">String str2 = new String(&quot;hello&quot;);</span><br><span class="line">System.out.println(str1 == str2);</span><br><span class="line">System.out.println(str1 == str2.intern());</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">false</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<p>在使用intern方法后,返回一个字符串常量池中的字符串，此时str与1与str.intern()返回的字符串的地址相同。</p>
+<h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><p>StringBuffer和String一样都是用来存储字符串的，只不过由于他们内部的实现方式不同，导致他们的使用范围不同。对于StringBuffer而言，他在处理字符串时，若是对其进行修改操作，它并不会产生一个新的字符串对象，所以说在内存使用方面它是优于String的</p>
+<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><p>StringBuilder也是一个可变的字符串对象，他与StringBuffer不同之处就在于它是线程不安全的，基于这点，它的速度一般都比StringBuffer快。与StringBuffer一样，StringBuider的主要操作也是append与insert方法。这两个方法都能有效地将给定的数据转换成字符串，然后将该字符串的字符添加或插入到字符串生成器中</p>
+<h2 id="三者比较"><a href="#三者比较" class="headerlink" title="三者比较"></a>三者比较</h2><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">类型</th>
+<th align="center">可变</th>
+<th align="center">线程</th>
+<th align="center">操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">String</td>
+<td align="center">字符串常量</td>
+<td align="center">不可变</td>
+<td align="center">线程安全</td>
+<td align="center">产生一个新对象</td>
+</tr>
+<tr>
+<td align="center">StringBuffer</td>
+<td align="center">字符串变量</td>
+<td align="center">可变</td>
+<td align="center">线程安全</td>
+<td align="center">改变自身内容</td>
+</tr>
+<tr>
+<td align="center">StringBuilder</td>
+<td align="center">字符串变量</td>
+<td align="center">可变</td>
+<td align="center">线程安全</td>
+<td align="center">改变自身内容</td>
+</tr>
+</tbody></table>
+<p>并不是所有的String字符串操作都会比StringBuffer慢，在某些特殊的情况下，String字符串的拼接会被JVM解析成StringBuilder对象拼接，在这种情况下String的速度比StringBuffer的速度快。如：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String name = ”I  ” + ”am ” + ”chenssy ” ;</span><br><span class="line">StringBuffer name = new StringBuffer(”I ”).append(” am ”).append(” chenssy ”);</span><br></pre></td></tr></table></figure>
+
+<p>对于这两种方式，你会发现第一种比第二种快太多了，在这里StringBuffer的优势荡然无存。其真实的原因就在于JVM做了一下优化处理，其实String name = ”I ” + ”am ” + ”chenssy ” ;在JVM眼中就是String name = ”I am  chenssy ” ;这样的方式对于JVM而言，真的是不要什么时间。但是如果我们在这个其中增加一个String对象，那么JVM就会按照原来那种规范来构建String对象了</p>
+<h2 id="字符串拼接方式"><a href="#字符串拼接方式" class="headerlink" title="字符串拼接方式"></a>字符串拼接方式</h2><p>java中有三种拼装的方法：<strong>+、concat()以及append()方法</strong></p>
+<h3 id="拼接字符串"><a href="#拼接字符串" class="headerlink" title="+ 拼接字符串"></a>+ 拼接字符串</h3><p>我们知道编译器对+进行了优化，它是使用StringBuilder的append()方法来进行处理的，我们知道StringBuilder的速度比StringBuffer的速度更加快，但是为何运行速度还是那样呢？主要是因为编译器使用append()方法追加后要同toString()转换成String字符串，也就说  str +=”b”等同于<code>str = new StringBuilder(str).append(&quot;b&quot;).toString();</code><br>它变慢的关键原因就在于<code>new StringBuilder()</code>和<code>toString()</code></p>
+<h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public String concat(String str) &#123;</span><br><span class="line">    int otherLen = str.length();</span><br><span class="line">    if (otherLen == 0) &#123;</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">    char buf[] = new char[count + otherLen];</span><br><span class="line">    getChars(0, count, buf, 0);</span><br><span class="line">    str.getChars(0, otherLen, buf, count);</span><br><span class="line">    return new String(0, count + otherLen, buf);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是concat()的源码，它看上去就是一个数字拷贝形式，我们知道数组的处理速度是非常快的，但是由于该方法最后是这样的：return new String(0, count + otherLen, buf);这同样也创建了10W个字符串对象，这是它变慢的根本原因</p>
+<h3 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public synchronized StringBuffer append(String str) &#123;</span><br><span class="line">    super.append(str);</span><br><span class="line">        return this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>StringBuffer的append()方法是直接使用父类AbstractStringBuilder的append()方法，该方法的源码如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public AbstractStringBuilder append(String str) &#123;</span><br><span class="line">    if (str == null) str = &quot;null&quot;;</span><br><span class="line">        int len = str.length();</span><br><span class="line">    if (len == 0) return this;</span><br><span class="line">    int newCount = count + len;</span><br><span class="line">    if (newCount &gt; value.length)</span><br><span class="line">        expandCapacity(newCount);</span><br><span class="line">    str.getChars(0, len, value, count);</span><br><span class="line">    count = newCount;</span><br><span class="line">    return this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与concat()方法相似，它也是进行字符数组处理的，加长，然后拷贝，但是请注意它最后是返回并没有返回一个新串，而是返回本身，也就说这这个10W次的循环过程中，它并没有产生新的字符串对象</p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>String</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java 多态</title>
+    <url>/2016/11/21/java%E5%A4%9A%E6%80%81/</url>
+    <content><![CDATA[<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性</p>
+<p>在多态中<br>指向子类的父类引用由于向上转型了，它只能访问父类中拥有的方法和属性，而对于子类中存在而父类中不存在的方法，该引用是不能使用的，尽管是重载该方法。若子类重写了父类中的某些方法，在调用该些方法的时候，必定是使用子类中定义的这些方法（动态连接、动态调用）</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>多态分为编译时多态和运行时多态<br>编译时多态是静态的，主要指方法的重载<br>运行时多态是通过动态绑定实现的</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>java中实现多态有三个条件：继承，重写，向上转型</p>
+<p>实现多态有两种方式：接口和继承</p>
+<h3 id="基于继承的多态"><a href="#基于继承的多态" class="headerlink" title="基于继承的多态"></a>基于继承的多态</h3><p>基于继承的实现机制主要表现在父类和继承该父类的一个或多个子类对某些方法的重写，多个子类对同一方法的重写可以表现出不同的行为</p>
+<p>由于所有的类都是由Object类继承而来，因此假设有类B继承自类A,类B重写了toString方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Object o = new B();</span><br><span class="line">o.toString();</span><br></pre></td></tr></table></figure>
+
+<p>程序段会执行类B的toString方法，当子类重写父类的方法被调用时，只有对象继承链中的最末端的方法才会被调用，这里Object-&gt;A-&gt;B，B在对象链的末端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Object o = new A();</span><br><span class="line">o.toString();</span><br></pre></td></tr></table></figure>
+
+<p>若A重写了toString方法，执行的是A的toString方法</p>
+<p>对于引用子类的父类类型，在处理该引用时，它适用于继承该父类的所有子类，子类对象的不同，对方法的实现也就不同，执行相同动作产生的行为也就不同<br>如果父类是抽象类，那么子类必须要实现父类中所有的抽象方法，这样该父类所有的子类一定存在统一的对外接口，但其内部的具体实现可以各异。这样我们就可以使用顶层类提供的统一接口来处理该层次的方法</p>
+<h3 id="基于接口的多态"><a href="#基于接口的多态" class="headerlink" title="基于接口的多态"></a>基于接口的多态</h3><p>继承是通过重写父类的同一方法的几个不同子类来体现的，那么就可就是通过实现接口并覆盖接口中同一方法的几不同的类体现的。<br>在接口的多态中，指向接口的引用必须是指定这实现了该接口的一个类的实例程序，在运行时，根据对象引用的实际类型来执行对应的方法</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class A &#123;</span><br><span class="line">    public String show(D obj) &#123;</span><br><span class="line">        return (&quot;A and D&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String show(A obj) &#123;</span><br><span class="line">        return (&quot;A and A&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class B extends A&#123;</span><br><span class="line">    public String show(B obj)&#123;</span><br><span class="line">        return (&quot;B and B&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String show(A obj)&#123;</span><br><span class="line">        return (&quot;B and A&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class C extends B&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class D extends B&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Test &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        A a1 = new A();</span><br><span class="line">        A a2 = new B();</span><br><span class="line">        B b = new B();</span><br><span class="line">        C c = new C();</span><br><span class="line">        D d = new D();</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;1--&quot; + a1.show(b));</span><br><span class="line">        System.out.println(&quot;2--&quot; + a1.show(c));</span><br><span class="line">        System.out.println(&quot;3--&quot; + a1.show(d));</span><br><span class="line">        System.out.println(&quot;4--&quot; + a2.show(b));</span><br><span class="line">        System.out.println(&quot;5--&quot; + a2.show(c));</span><br><span class="line">        System.out.println(&quot;6--&quot; + a2.show(d));</span><br><span class="line">        System.out.println(&quot;7--&quot; + b.show(b));</span><br><span class="line">        System.out.println(&quot;8--&quot; + b.show(c));</span><br><span class="line">        System.out.println(&quot;9--&quot; + b.show(d));      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1--A and A</span><br><span class="line">2--A and A</span><br><span class="line">3--A and D</span><br><span class="line">4--B and A</span><br><span class="line">5--B and A</span><br><span class="line">6--A and D</span><br><span class="line">7--B and B</span><br><span class="line">8--B and B</span><br><span class="line">9--A and D</span><br></pre></td></tr></table></figure>
+
+<p>当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法。这句话对多态进行了一个概括。其实在继承链中对象方法的调用存在一个优先级：<br><font color="blue"><code>this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)</code></font></p>
+<p>分析5，a2.show(c)，a2是A类型的引用变量，所以this就代表了A，a2.show(c),它在A类中找发现没有找到，于是到A的超类中找(super)，由于A没有超类（Object除外），所以跳到第三级，也就是this.show((super)O)，C的超类有B、A，所以(super)O为B、A，this同样是A，这里在A中找到了show(A obj)，同时由于a2是B类的一个引用且B类重写了show(A obj)，因此最终会调用子类B类的show(A obj)方法，结果也就是B and A</p>
+<p>方法已经找到了但是我们这里还是存在一点疑问，我们还是来看这句话：当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法。这我们用一个例子来说明这句话所代表的含义：a2.show(b)</p>
+<p>这里a2是引用变量，为A类型，它引用的是B对象，因此按照上面那句话的意思是说有B来决定调用谁的方法,所以a2.show(b)应该要调用B中的show(B obj)，产生的结果应该是“B and B”，但是为什么会与前面的运行结果产生差异呢？这里我们忽略了后面那句话“但是这儿被调用的方法必须是在超类中定义过的”，那么show(B obj)在A类中存在吗？根本就不存在！所以这句话在这里不适用？那么难道是这句话错误了？非也！其实这句话还隐含这这句话：它仍然要按照继承链中调用方法的优先级来确认。所以它才会在A类中找到show(A obj)，同时由于B重写了该方法所以才会调用B类中的方法，否则就会调用A类中的方法</p>
+<p>所以多态机制遵循的原则概括为：当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法，但是它仍然要根据继承链中方法调用的优先级来确认方法，该优先级为：<b>this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)</b></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>静态代码块与构造函数</title>
+    <url>/2016/11/12/%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
+<p>静态代码块：用static{}包围的代码<br><br>构造代码块：用{}包围的代码<br><br>构造函数：类中与类同名的无返回值函数<br></p>
+</blockquote>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数是类中与类同名的无返回值函数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//A.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">// 构造函数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>在创建类的对象时就会调用其构造函数</li>
+<li>构造函数的作用就是为对象进行初始化</li>
+<li>构造函数可以重载，但要保证所有构造函数都有唯一的参数列表</li>
+<li>当类中没有构造函数，jvm会创建一个无参的默认构造函数</li>
+<li>当创建子类的对象时，其父类中一定要有无参的构造函数</li>
+</ol>
+<h3 id="构造代码块"><a href="#构造代码块" class="headerlink" title="构造代码块"></a>构造代码块</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//构造代码块</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>构造代码块也可用于对象的初始化，且先于构造函数执行</li>
+<li>只用在创建类的对象时才会调用构造代码块</li>
+<li>一个类中可以有多个构造代码块，且执行顺序按先后位置先后执行</li>
+</ol>
+<h3 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        <span class="comment">// 静态代码块</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>静态代码块在类被jvm加载时执行，且只执行一次</li>
+<li>静态代码块中的变量都是局部变量</li>
+<li>静态代码块中不可使用非static的变量</li>
+<li>一个类中可以有多个静态代码块</li>
+</ol>
+<h2 id="三者的执行顺序"><a href="#三者的执行顺序" class="headerlink" title="三者的执行顺序"></a>三者的执行顺序</h2><p>静态代码块&gt;代码块&gt;构造函数</p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="单类"><a href="#单类" class="headerlink" title="单类"></a>单类</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"I am C class static code block"</span>);<span class="comment">// 静态代码块</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">C</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I am C class constructor"</span>);<span class="comment">// 构造函数</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"I am C class code block two"</span>);<span class="comment">// 构造代码块</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"I am C class code block one"</span>);<span class="comment">// 构造代码块</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        C c = <span class="keyword">new</span> C();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I am C class static code block</span><br><span class="line">I am C class code block two</span><br><span class="line">I am C class code block one</span><br><span class="line">I am C class constructor</span><br></pre></td></tr></table></figure>
+
+<p>在main函数中添加<b>C c2 = new C();</b>后再次执行，<br>执行结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I am C class static code block//静态代码块只执行一次</span><br><span class="line">I am C class code block two</span><br><span class="line">I am C class code block one</span><br><span class="line">I am C class constructor</span><br><span class="line">I am C class code block two</span><br><span class="line">I am C class code block one</span><br><span class="line">I am C class constructor</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承的情况"><a href="#继承的情况" class="headerlink" title="继承的情况"></a>继承的情况</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"I am A class static code block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I am A class constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"I am A class code block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">"I am B class static code block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">B</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I am B class constructor"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">"I am B class code block"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"I am B class static method"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        B b = <span class="keyword">new</span> B();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I am A class static code block</span><br><span class="line">I am B class static code block</span><br><span class="line">I am A class code block</span><br><span class="line">I am A class constructor</span><br><span class="line">I am B class code block</span><br><span class="line">I am B class constructor</span><br></pre></td></tr></table></figure>
+
+<p>由于B类继承A类，由继承特性可以了解到，当调用B类的构造函数时，会隐式的调用A类中的无参构造函数，如果A类仍是某个类的子类，程序会继续向上寻找A类的父类的无参构造函数。<br>而static代码块的执行方式与之类似，当jvm加载B类时，发现B类继承自A类，因此会优先去执行A类中的静态代码块，然后执行B类的静态代码块，之后依次调用构造代码块和构造函数。</p>
+<p>这里还存在一个问题，那就是main方法的执行时间<br>如果将main方法中的代码改为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">System.out.println(&quot;I am B class main method&quot;);</span><br><span class="line">B b = new B();</span><br><span class="line">B.init();</span><br></pre></td></tr></table></figure>
+
+<p>执行的结果是:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">I am A class static code block</span><br><span class="line">I am B class static code block</span><br><span class="line">I am B class main method</span><br><span class="line">I am A class code block</span><br><span class="line">I am A class constructor</span><br><span class="line">I am B class code block</span><br><span class="line">I am B class constructor</span><br><span class="line">I am B class static method</span><br></pre></td></tr></table></figure>
+
+<p>这里可以看到既执行了A类的静态代码块，也执行了B类的静态代码块，之后执行B类中的静态方法。在程序运行时，执行<code>B.main();</code>jvm会去加载B类，当发现B类继承自A类时，会继续加载A类，当所需类都加载完成后，在执行B.init方法。</p>
+<p>因此构造代码块，静态代码块，main方法，构造函数的执行顺序为<br><b>静态代码块&gt;main方法&gt;构造代码块&gt;构造函数</b></p>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+  </entry>
+</search>
