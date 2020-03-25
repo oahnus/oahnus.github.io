@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CPU后缀含义解释</title>
+    <url>/oahnus.github.io/2020/03/25/CPU%E5%90%8E%E7%BC%80%E5%90%AB%E4%B9%89%E8%A7%A3%E9%87%8A/</url>
+    <content><![CDATA[<h3 id="M"><a href="#M" class="headerlink" title="M"></a>M</h3><p>笔记本专用CPU，一般为双核。</p>
+<p>M前面一位数字是0，意味着是标准电压处理器。</p>
+<p>如果是7，则是低电压处理器</p>
+<h3 id="U"><a href="#U" class="headerlink" title="U"></a>U</h3><p>笔记本专用低电压CPU，一般为双核。</p>
+<p>U前面一位数字为8，则是28W功耗的低压处理器（标准电压双核处理器功耗为35W）。</p>
+<p>若前一位数字为7，则是17W功耗的低压处理器，若为0，则是15W功耗的低压处理器。</p>
+<h3 id="QM、MQ"><a href="#QM、MQ" class="headerlink" title="QM、MQ"></a>QM、MQ</h3><p>笔记本专用CPU，“Q”是“Quad”的缩写，即四核CPU。</p>
+<p>若QM前一位数字是0，则表示此产品为功耗45W的标准电压四核处理器。</p>
+<p>若为2，则表示此产品为35W功耗的低电压四核处理器。</p>
+<p>若为5，与对应为0的CPU主要规格相同，但集成的核芯显卡频率更高（如3630QM和3635QM，后者核显最大频率1.2GHz，前者则是1.15GHz）</p>
+<h3 id="HQ"><a href="#HQ" class="headerlink" title="HQ"></a>HQ</h3><p>标准电压45WCPU，H是BGA封装的意思，通俗来说是焊上的不能随便换，Q是四个物理核心，也就是说2核6核8核都不带Q。</p>
+<h3 id="B"><a href="#B" class="headerlink" title="B"></a>B</h3><p>65WCPU，采用了笔记本的BGA1440封装，直接焊接在主板上</p>
+<h3 id="K"><a href="#K" class="headerlink" title="K"></a>K</h3><p>不锁频版CPU</p>
+<h3 id="G"><a href="#G" class="headerlink" title="G"></a>G</h3><p>Kaby Lake G处理器，是Intel和AMD合作的产品。CPU部分由Intel负责，GPU部分则是AMD提供，两者连同超强性能的HBM2显存一同整合在同一块基板上，性能强大</p>
+<h3 id="XM"><a href="#XM" class="headerlink" title="XM"></a>XM</h3><p>笔记本CPU，功耗一般为55W。“X”意为“Extreme”，此类型CPU完全不锁频，在散热和供电允许的情况下可以无限制超频，M（pga封装，一般都可更换同代CPU）</p>
+<h3 id="XE"><a href="#XE" class="headerlink" title="XE"></a>XE</h3><p>旗舰产品，比X后缀性能更好</p>
+<h3 id="W"><a href="#W" class="headerlink" title="W"></a>W</h3><p>多核的专业级cpu，具有w后缀的cpu都是ryzen系列的顶级cpu，具有极其强大的性能</p>
+<h3 id="WX"><a href="#WX" class="headerlink" title="WX"></a>WX</h3><p>W的升级版</p>
+<h3 id="KS"><a href="#KS" class="headerlink" title="KS"></a>KS</h3><p>S代表特别版，可以达到8核全核心5GHz （i9-9900KS）</p>
+<h3 id="Y"><a href="#Y" class="headerlink" title="Y"></a>Y</h3><p>笔记本CPU，超低压，性能弱但功耗低。Inter Core i7-7Y75</p>
+<h3 id="T"><a href="#T" class="headerlink" title="T"></a>T</h3><p>低压版桌面处理器，功耗和性能都比不带后缀的产品低</p>
+<h3 id="PM"><a href="#PM" class="headerlink" title="PM"></a>PM</h3><p>没有核显的CPU</p>
+<h3 id="M-1"><a href="#M-1" class="headerlink" title="M"></a>M</h3><p>专供移动平台</p>
+<h3 id="F"><a href="#F" class="headerlink" title="F"></a>F</h3><p>九代Core处理器中不含核显的型号</p>
+<h3 id="台式机CPU型号"><a href="#台式机CPU型号" class="headerlink" title="台式机CPU型号"></a>台式机CPU型号</h3><table>
+<thead>
+<tr>
+<th align="center">型号</th>
+<th align="center">系列</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">X</td>
+<td align="center">Intel</td>
+<td align="center">极致性能</td>
+</tr>
+<tr>
+<td align="center">K</td>
+<td align="center">Intel</td>
+<td align="center">不锁频版</td>
+</tr>
+<tr>
+<td align="center">P</td>
+<td align="center">Intel</td>
+<td align="center">无核显版</td>
+</tr>
+<tr>
+<td align="center">S</td>
+<td align="center">Intel</td>
+<td align="center">低功耗版</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">Intel</td>
+<td align="center">超低功耗版</td>
+</tr>
+<tr>
+<td align="center">K</td>
+<td align="center">AMD</td>
+<td align="center">不锁频版</td>
+</tr>
+<tr>
+<td align="center">T</td>
+<td align="center">AMD</td>
+<td align="center">带睿频版</td>
+</tr>
+<tr>
+<td align="center">e</td>
+<td align="center">AMD</td>
+<td align="center">低功耗版</td>
+</tr>
+<tr>
+<td align="center">u</td>
+<td align="center">AMD</td>
+<td align="center">超低功耗版</td>
+</tr>
+</tbody></table>
+<h3 id="CPU天梯图"><a href="#CPU天梯图" class="headerlink" title="CPU天梯图"></a>CPU天梯图</h3><p><a href="https://product.pconline.com.cn/itbk/diy/cpu/1501/6068476.html" target="_blank" rel="noopener">CPU天梯图</a></p>
+]]></content>
+      <categories>
+        <category>系统装机</category>
+      </categories>
+      <tags>
+        <tag>系统装机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常见食品添加剂说明</title>
     <url>/oahnus.github.io/2020/03/13/%E5%B8%B8%E8%A7%81%E9%A3%9F%E5%93%81%E6%B7%BB%E5%8A%A0%E5%89%82%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><h3 id="阿斯巴甜"><a href="#阿斯巴甜" class="headerlink" title="阿斯巴甜"></a>阿斯巴甜</h3><p>非碳水化合物类人造==甜味剂==。甜度高，热量低，主要用于饮料，含片代替糖使用。高温会使其分解失去甜味，不适用于烹饪和热饮。</p>
@@ -18,7 +108,7 @@
 <h2 id="T"><a href="#T" class="headerlink" title="T"></a>T</h2><h3 id="特丁基对苯二酚"><a href="#特丁基对苯二酚" class="headerlink" title="特丁基对苯二酚"></a>特丁基对苯二酚</h3><p>抗氧化剂和==防腐剂==。用于油脂和含油脂食品中。耐高温。能有效抑制细菌及霉菌生长。长期服用含有特丁基对苯二酚的食品可能致畸或致癌（存在争议）。</p>
 ]]></content>
       <categories>
-        <category>奇怪的知识</category>
+        <category>杂货柜</category>
       </categories>
       <tags>
         <tag>常识</tag>
@@ -51,9 +141,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>编程技术</category>
       </categories>
       <tags>
+        <tag>Java</tag>
         <tag>设计模式</tag>
       </tags>
   </entry>
@@ -83,7 +174,7 @@
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="noopener">git子模块文档</a></p>
 ]]></content>
       <categories>
-        <category>git</category>
+        <category>编程技术</category>
       </categories>
       <tags>
         <tag>git</tag>
@@ -107,7 +198,7 @@
 
 ]]></content>
       <categories>
-        <category>linux</category>
+        <category>编程技术</category>
       </categories>
       <tags>
         <tag>linux</tag>
@@ -123,7 +214,7 @@
 
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>编程技术</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -281,7 +372,7 @@
 <h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p><a href="https://docs.python.org/zh-cn/3.7/library/ctypes.html" target="_blank" rel="noopener">ctypes中文文档</a></p>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>编程技术</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -356,7 +447,7 @@
 
 <h2 id="其他命令参考Linux常见命令"><a href="#其他命令参考Linux常见命令" class="headerlink" title="其他命令参考Linux常见命令"></a>其他命令参考Linux常见命令</h2>]]></content>
       <categories>
-        <category>树莓派</category>
+        <category>编程技术</category>
       </categories>
       <tags>
         <tag>树莓派</tag>
@@ -397,10 +488,10 @@
 <p>重新启动 supervisord</p>
 ]]></content>
       <categories>
-        <category>Linux</category>
+        <category>编程技术</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
+        <tag>linux</tag>
         <tag>运维</tag>
       </tags>
   </entry>
@@ -460,7 +551,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>树莓派</category>
+        <category>编程技术</category>
       </categories>
       <tags>
         <tag>树莓派</tag>
@@ -516,7 +607,7 @@
 
 ]]></content>
       <categories>
-        <category>树莓派</category>
+        <category>编程技术</category>
       </categories>
       <tags>
         <tag>树莓派</tag>
@@ -728,8 +819,11 @@
 <p>这样可以在循环体会做一些逻辑操作了，如果需要提前退出，可以以通过返回 false以便在回调函数内中止循环</p>
 ]]></content>
       <categories>
-        <category>JavaScript</category>
+        <category>编程技术</category>
       </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
   </entry>
   <entry>
     <title>Python 爬虫入门</title>
@@ -841,9 +935,10 @@
 
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>编程技术</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>爬虫</tag>
       </tags>
   </entry>
@@ -884,8 +979,11 @@
 <p>其实super在类中并不是父类对象的引用，程序中是不能使用<code>System.out.println(super)</code>打印出super，只是具有调用父类方法的功能。而getClass()方法是Object类的方法，并且是final的，在调用时返回对象在运行时的类的类型。super.getClass()和this.getClass()都是在Son类中调用Object类的getClass()方法，这也就解释了为什么super.getClass().getName()返回的是Son类名了。</p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>编程技术</category>
       </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>MySQL存储过程</title>
@@ -929,11 +1027,14 @@
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>存储过程是一系列SQL语句的集合，用于优化SQL语句的执行效率，虽然存储过程有着诸多的优点，但我们也不应该过于依赖它，还是要根据实际情况合理选择。</p>
 ]]></content>
       <categories>
-        <category>MySQL</category>
+        <category>编程技术</category>
       </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
   </entry>
   <entry>
-    <title>String</title>
+    <title>Java String</title>
     <url>/oahnus.github.io/2016/11/21/String/</url>
     <content><![CDATA[<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>java中的String不是基本类型，是一个不可变对象，String类是final类型的，不可被继承。</p>
 <h3 id="null-””-new-String-的区别"><a href="#null-””-new-String-的区别" class="headerlink" title="null,””,new String()的区别"></a>null,””,new String()的区别</h3><blockquote>
@@ -1004,14 +1105,15 @@
 <p>与concat()方法相似，它也是进行字符数组处理的，加长，然后拷贝，但是请注意它最后是返回并没有返回一个新串，而是返回本身，也就说这这个10W次的循环过程中，它并没有产生新的字符串对象</p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>编程技术</category>
       </categories>
       <tags>
-        <tag>String</tag>
+        <tag>Java</tag>
+        <tag>Java基础</tag>
       </tags>
   </entry>
   <entry>
-    <title>java 多态</title>
+    <title>Java 多态</title>
     <url>/oahnus.github.io/2016/11/21/java%E5%A4%9A%E6%80%81/</url>
     <content><![CDATA[<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性</p>
 <p>在多态中<br>指向子类的父类引用由于向上转型了，它只能访问父类中拥有的方法和属性，而对于子类中存在而父类中不存在的方法，该引用是不能使用的，尽管是重载该方法。若子类重写了父类中的某些方法，在调用该些方法的时候，必定是使用子类中定义的这些方法（动态连接、动态调用）</p>
@@ -1040,8 +1142,11 @@
 <p>所以多态机制遵循的原则概括为：当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法，但是它仍然要根据继承链中方法调用的优先级来确认方法，该优先级为：<b>this.show(O)、super.show(O)、this.show((super)O)、super.show((super)O)</b></p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>编程技术</category>
       </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title>静态代码块与构造函数</title>
@@ -1099,7 +1204,10 @@
 <p>因此构造代码块，静态代码块，main方法，构造函数的执行顺序为<br><b>静态代码块&gt;main方法&gt;构造代码块&gt;构造函数</b></p>
 ]]></content>
       <categories>
-        <category>Java</category>
+        <category>编程技术</category>
       </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
 </search>
