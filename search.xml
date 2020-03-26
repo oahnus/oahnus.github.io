@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>CPU后缀含义解释</title>
-    <url>/oahnus.github.io/2020/03/25/CPU%E5%90%8E%E7%BC%80%E5%90%AB%E4%B9%89%E8%A7%A3%E9%87%8A/</url>
+    <url>/2020/03/25/CPU%E5%90%8E%E7%BC%80%E5%90%AB%E4%B9%89%E8%A7%A3%E9%87%8A/</url>
     <content><![CDATA[<h3 id="M"><a href="#M" class="headerlink" title="M"></a>M</h3><p>笔记本专用CPU，一般为双核。</p>
 <p>M前面一位数字是0，意味着是标准电压处理器。</p>
 <p>如果是7，则是低电压处理器</p>
@@ -92,7 +92,7 @@
   </entry>
   <entry>
     <title>常见食品添加剂说明</title>
-    <url>/oahnus.github.io/2020/03/13/%E5%B8%B8%E8%A7%81%E9%A3%9F%E5%93%81%E6%B7%BB%E5%8A%A0%E5%89%82%E8%AF%B4%E6%98%8E/</url>
+    <url>/2020/03/13/%E5%B8%B8%E8%A7%81%E9%A3%9F%E5%93%81%E6%B7%BB%E5%8A%A0%E5%89%82%E8%AF%B4%E6%98%8E/</url>
     <content><![CDATA[<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><h3 id="阿斯巴甜"><a href="#阿斯巴甜" class="headerlink" title="阿斯巴甜"></a>阿斯巴甜</h3><p>非碳水化合物类人造==甜味剂==。甜度高，热量低，主要用于饮料，含片代替糖使用。高温会使其分解失去甜味，不适用于烹饪和热饮。</p>
 <a id="more"></a>
 
@@ -116,7 +116,7 @@
   </entry>
   <entry>
     <title>Java单例模式常见实现方式</title>
-    <url>/oahnus.github.io/2020/03/12/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</url>
+    <url>/2020/03/12/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<p>单例模式：确保一个类在任何情况下只有一个实例，并提供一个全局访问点，隐藏其所有构造方法</p>
 <a id="more"></a>
 <h2 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 声明时就初始化实例，缺点是浪费空间</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HungrySingleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HungrySingleton HUNGRY_SINGLETON = <span class="keyword">new</span> HungrySingleton();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">HungrySingleton</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HungrySingleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> HUNGRY_SINGLETON;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -150,7 +150,7 @@
   </entry>
   <entry>
     <title>git submodule</title>
-    <url>/oahnus.github.io/2020/03/10/git-submodule/</url>
+    <url>/2020/03/10/git-submodule/</url>
     <content><![CDATA[<h1 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h1><p>git submodule，子模块，允许将一个git仓库作为另一个git仓库的子目录，能够让你将另一个仓库克隆到自己的项目中，同时保持提交的独立性。</p>
 <a id="more"></a>
 <h2 id="添加子模块"><a href="#添加子模块" class="headerlink" title="添加子模块"></a>添加子模块</h2><p>将一个已存在的远程仓库添加到当前仓库作为子模块</p>
@@ -182,7 +182,7 @@
   </entry>
   <entry>
     <title>Linux常见命令</title>
-    <url>/oahnus.github.io/2020/02/26/linux%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</url>
+    <url>/2020/02/26/linux%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
 <li>统计目录下文件数量(不包含子目录文件)<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">ls -l|grep "^-"| wc -l</span><br><span class="line"># grep "^-" 过滤已'-'开头的行</span><br><span class="line"># wc 统计显示行数</span><br></pre></td></tr></table></figure>
 
@@ -207,7 +207,7 @@
   </entry>
   <entry>
     <title>Python日期时间处理</title>
-    <url>/oahnus.github.io/2020/02/25/Python%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/</url>
+    <url>/2020/02/25/Python%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<h1 id="Python-日期时间处理"><a href="#Python-日期时间处理" class="headerlink" title="Python 日期时间处理"></a>Python 日期时间处理</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取年月 YYYYMM</span></span><br><span class="line">today = datetime.date.today()</span><br><span class="line">first = today.replace(day=<span class="number">1</span>)</span><br><span class="line">last_month = first - datetime.timedelta(days=<span class="number">1</span>)</span><br><span class="line">period = last_month.strftime(<span class="string">"%Y%m"</span>)</span><br><span class="line">print(<span class="string">"当前日期(YYYYMM) =&gt; %s"</span> % period)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化时间</span></span><br><span class="line">now = datetime.datetime.now()</span><br><span class="line">date_str = now.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">print(<span class="string">"当前时间(YYYY-MM-DD HH:mm:ss) =&gt; %s"</span> % date_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换时间</span></span><br><span class="line">result = datetime.datetime.strptime(<span class="string">"2012-10-11 10:00:12"</span>, <span class="string">"%Y-%m-%d %H:%M:%S"</span>)</span><br><span class="line">print(<span class="string">"字符串转时间 =&gt; %s"</span> % result)</span><br><span class="line">print(str(result.year))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 时间戳</span></span><br><span class="line">print(<span class="string">"时间戳 =&gt; %s"</span> % time.time())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 两个日期相差天数</span></span><br><span class="line">d1 = datetime.datetime.strptime(<span class="string">"2012-10-11"</span>, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line">d2 = datetime.datetime.strptime(<span class="string">"2012-11-1"</span>, <span class="string">"%Y-%m-%d"</span>)</span><br><span class="line">delta = d2 - d1</span><br><span class="line">print(<span class="string">"相差 %s 天"</span> % delta.days)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待</span></span><br><span class="line">time.sleep(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python中时间日期格式化符号：</span><br><span class="line">%y 两位数的年份表示（00-99）</span><br><span class="line">%Y 四位数的年份表示（000-9999）</span><br><span class="line">%m 月份（01-12）</span><br><span class="line">%d 月内中的一天（0-31）</span><br><span class="line">%H 24小时制小时数（0-23）</span><br><span class="line">%I 12小时制小时数（01-12）</span><br><span class="line">%M 分钟数（00=59）</span><br><span class="line">%S 秒（00-59）</span><br><span class="line">%a 本地简化星期名称</span><br><span class="line">%A 本地完整星期名称</span><br><span class="line">%b 本地简化的月份名称</span><br><span class="line">%B 本地完整的月份名称</span><br><span class="line">%c 本地相应的日期表示和时间表示</span><br><span class="line">%j 年内的一天（001-366）</span><br><span class="line">%p 本地A.M.或P.M.的等价符</span><br><span class="line">%U 一年中的星期数（00-53）星期天为星期的开始</span><br><span class="line">%w 星期（0-6），星期天为星期的开始</span><br><span class="line">%W 一年中的星期数（00-53）星期一为星期的开始</span><br><span class="line">%x 本地相应的日期表示</span><br><span class="line">%X 本地相应的时间表示</span><br><span class="line">%Z 当前时区的名称</span><br><span class="line">%% %号本身</span><br></pre></td></tr></table></figure>
@@ -223,7 +223,7 @@
   </entry>
   <entry>
     <title>Python使用ctypes模块调用DLL</title>
-    <url>/oahnus.github.io/2019/10/29/Python%E4%BD%BF%E7%94%A8ctypes%E6%A8%A1%E5%9D%97%E8%B0%83%E7%94%A8DLL/</url>
+    <url>/2019/10/29/Python%E4%BD%BF%E7%94%A8ctypes%E6%A8%A1%E5%9D%97%E8%B0%83%E7%94%A8DLL/</url>
     <content><![CDATA[<h1 id="Python使用ctypes模块调用DLL"><a href="#Python使用ctypes模块调用DLL" class="headerlink" title="Python使用ctypes模块调用DLL"></a>Python使用ctypes模块调用DLL</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用ctypes调用DLL文件时，要保证python解释器的位数和DLL使用的C解释器位数一致，32位C解释器必须与32位Python解释器配合使用，否则会报错<code>OSError: [WinError xxx] xxx 不是有效的 Win32 应用程序</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前python环境使用的解释器位数</span></span><br><span class="line"><span class="keyword">import</span> platform</span><br><span class="line"></span><br><span class="line">print(platform.architecture())</span><br></pre></td></tr></table></figure>
 
@@ -382,7 +382,7 @@
   </entry>
   <entry>
     <title>树莓派常用命令</title>
-    <url>/oahnus.github.io/2019/10/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <url>/2019/10/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="树莓派常用命令"><a href="#树莓派常用命令" class="headerlink" title="树莓派常用命令"></a>树莓派常用命令</h1><h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -a               # 查看内核/操作系统/CPU信息</span><br><span class="line">lsb_release -a         # 查看操作系统版本 (适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb)   </span><br><span class="line">cat /proc/cpuinfo      # 查看CPU信息</span><br><span class="line">hostname               # 查看计算机名</span><br><span class="line">lspci -tv              # 列出所有PCI设备</span><br><span class="line">lsusb -tv              # 列出所有USB设备</span><br><span class="line">lsmod                  # 列出加载的内核模块</span><br><span class="line">env                    # 查看环境变量</span><br><span class="line">vcgencmd measure_temp  # 查看CPU温度</span><br><span class="line">alsamixer              # 调节系统音量</span><br></pre></td></tr></table></figure>
 
 <p>查看CPU信息（型号） </p>
@@ -455,7 +455,7 @@
   </entry>
   <entry>
     <title>supervisor常见问题</title>
-    <url>/oahnus.github.io/2019/10/10/supervisor%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <url>/2019/10/10/supervisor%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="Supervisor常见问题"><a href="#Supervisor常见问题" class="headerlink" title="Supervisor常见问题"></a>Supervisor常见问题</h1><p>[TOC]</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install supervisor </span><br><span class="line">或</span><br><span class="line">pip install supervisor</span><br></pre></td></tr></table></figure>
 
@@ -497,7 +497,7 @@
   </entry>
   <entry>
     <title>利用树莓派制作天气闹钟</title>
-    <url>/oahnus.github.io/2018/11/29/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%B6%E4%BD%9C%E5%A4%A9%E6%B0%94%E9%97%B9%E9%92%9F/</url>
+    <url>/2018/11/29/%E5%88%A9%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E5%88%B6%E4%BD%9C%E5%A4%A9%E6%B0%94%E9%97%B9%E9%92%9F/</url>
     <content><![CDATA[<h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>讯飞API升级，旧的语音合成接口已不可用，新的实现方式直接扔<a href="https://github.com/oahnus/raspberrypi-python-weather-alarm" target="_blank" rel="noopener">github</a>了。</p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>为了能让刚买的树莓派有效的利用起来（避免吃灰），今天分享一下如何用树莓派做天气闹钟。</p>
 <h1 id="环境及工具"><a href="#环境及工具" class="headerlink" title="环境及工具"></a>环境及工具</h1><p>树莓派3B+、IDE、XShell、FileZilla(FTP文件上传)、小音箱。</p>
@@ -560,7 +560,7 @@
   </entry>
   <entry>
     <title>树莓派3b+安装Raspbian系统</title>
-    <url>/oahnus.github.io/2018/11/10/%E6%A0%91%E8%8E%93%E6%B4%BE3b+%E5%AE%89%E8%A3%85Raspbian%E7%B3%BB%E7%BB%9F/</url>
+    <url>/2018/11/10/%E6%A0%91%E8%8E%93%E6%B4%BE3b+%E5%AE%89%E8%A3%85Raspbian%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<h1 id="树莓派3b-安装Raspbian系统"><a href="#树莓派3b-安装Raspbian系统" class="headerlink" title="树莓派3b+安装Raspbian系统"></a>树莓派3b+安装Raspbian系统</h1><h2 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0 准备工作"></a>0 准备工作</h2><ul>
 <li>系统：windows10</li>
 <li>工具：SD卡、读卡器、树莓派3b+、<a href="https://www.sdcard.org/downloads/formatter_4/eula_windows/" target="_blank" rel="noopener">SD卡格式化工具</a>、<a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">win32DiskImager</a>、<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener">Raspbian系统镜像</a>、Xshell(ssh工具)</li>
@@ -615,7 +615,7 @@
   </entry>
   <entry>
     <title>jQuery简易使用方法</title>
-    <url>/oahnus.github.io/2016/12/30/jQuery%E7%9A%84%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+    <url>/2016/12/30/jQuery%E7%9A%84%E7%AE%80%E6%98%93%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h1 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h1><hr>
 <p>[TOC]</p>
 <h2 id="节点创建"><a href="#节点创建" class="headerlink" title="节点创建"></a>节点创建</h2><h3 id="节点创建-1"><a href="#节点创建-1" class="headerlink" title="节点创建"></a>节点创建</h3><p>jQuery中，创建节点可以使用$()函数<br><code>$(&quot;&lt;div&gt;&lt;/div&gt;&quot;)</code></p>
@@ -827,7 +827,7 @@
   </entry>
   <entry>
     <title>Python 爬虫入门</title>
-    <url>/oahnus.github.io/2016/12/13/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
+    <url>/2016/12/13/Python%E7%88%AC%E8%99%AB%E5%85%A5%E9%97%A8/</url>
     <content><![CDATA[<h2 id="爬虫概述"><a href="#爬虫概述" class="headerlink" title="爬虫概述"></a>爬虫概述</h2><p>网络蜘蛛（Web spider）也叫网络爬虫（Web crawler），蚂蚁（ant），自动检索工具（automatic indexer），或者（在FOAF软件概念中）网络疾走（WEB scutter），是一种“自动化浏览网络”的程序，或者说是一种网络机器人。它们被广泛用于互联网搜索引擎或其他类似网站，以获取或更新这些网站的内容和检索方式。它们可以自动采集所有其能够访问到的页面内容，以供搜索引擎做进一步处理（分检整理下载的页面），而使得用户能更快的检索到他们需要的信息。</p>
 <h2 id="使用爬虫抓取网页"><a href="#使用爬虫抓取网页" class="headerlink" title="使用爬虫抓取网页"></a>使用爬虫抓取网页</h2><p>想要使用python抓取网页，首先出场的就是urllib2，使用其<code>urlopen</code>方法就可以获取到一个网页信息</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line">response = urllib2.urlopen(<span class="string">"http://baidu.com"</span>)</span><br><span class="line"><span class="keyword">print</span> response.read()</span><br></pre></td></tr></table></figure>
@@ -944,7 +944,7 @@
   </entry>
   <entry>
     <title>java中的super关键字</title>
-    <url>/oahnus.github.io/2016/12/06/2016-12-6-Java%E4%B8%AD%E7%9A%84super%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+    <url>/2016/12/06/2016-12-6-Java%E4%B8%AD%E7%9A%84super%E5%85%B3%E9%94%AE%E5%AD%97/</url>
     <content><![CDATA[<h2 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h2><p>super关键字具有以下作用：</p>
 <ol>
 <li>调用父类的成员或方法</li>
@@ -987,7 +987,7 @@
   </entry>
   <entry>
     <title>MySQL存储过程</title>
-    <url>/oahnus.github.io/2016/11/29/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</url>
+    <url>/2016/11/29/MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><h3 id="什么是存储过程"><a href="#什么是存储过程" class="headerlink" title="什么是存储过程"></a>什么是存储过程</h3><p>百科上的解释是</p>
 <blockquote>
 <p>存储过程是在大型数据库系统中，一组为了完成特定功能的SQL语句集。存储在数据库中，一次编译后再次调用不需要再次编译，用户通过指定存储过程的名字并给出参数来执行它。</p>
@@ -1035,7 +1035,7 @@
   </entry>
   <entry>
     <title>Java String</title>
-    <url>/oahnus.github.io/2016/11/21/String/</url>
+    <url>/2016/11/21/String/</url>
     <content><![CDATA[<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>java中的String不是基本类型，是一个不可变对象，String类是final类型的，不可被继承。</p>
 <h3 id="null-””-new-String-的区别"><a href="#null-””-new-String-的区别" class="headerlink" title="null,””,new String()的区别"></a>null,””,new String()的区别</h3><blockquote>
 <p>null 表示String还没有new，也就是说对象的引用还没有创建，也没有分配内存空间给它；而””、new String()则说明String已经new了，只不过内部为空，但是它创建了对象的引用，是需要分配内存空间的。</p>
@@ -1114,7 +1114,7 @@
   </entry>
   <entry>
     <title>Java 多态</title>
-    <url>/oahnus.github.io/2016/11/21/java%E5%A4%9A%E6%80%81/</url>
+    <url>/2016/11/21/java%E5%A4%9A%E6%80%81/</url>
     <content><![CDATA[<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性</p>
 <p>在多态中<br>指向子类的父类引用由于向上转型了，它只能访问父类中拥有的方法和属性，而对于子类中存在而父类中不存在的方法，该引用是不能使用的，尽管是重载该方法。若子类重写了父类中的某些方法，在调用该些方法的时候，必定是使用子类中定义的这些方法（动态连接、动态调用）</p>
 <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>多态分为编译时多态和运行时多态<br>编译时多态是静态的，主要指方法的重载<br>运行时多态是通过动态绑定实现的</p>
@@ -1150,7 +1150,7 @@
   </entry>
   <entry>
     <title>静态代码块与构造函数</title>
-    <url>/oahnus.github.io/2016/11/12/%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</url>
+    <url>/2016/11/12/%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><blockquote>
 <p>静态代码块：用static{}包围的代码<br><br>构造代码块：用{}包围的代码<br><br>构造函数：类中与类同名的无返回值函数<br></p>
 </blockquote>
